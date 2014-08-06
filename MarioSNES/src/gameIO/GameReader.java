@@ -1,7 +1,10 @@
+/**
+ *
+ * @author Zackary Misso
+ * 
+ */
 package gameIO;
-
 import gameState.Level1State;
-
 public class GameReader {
     public static void loadLevel(String s){
         // implement

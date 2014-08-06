@@ -1,7 +1,10 @@
+/**
+ *
+ * @author Zackary Misso
+ * 
+ */
 package core;
-
 import gameState.GameStateManager;
-
 import javax.swing.JPanel;
 import java.awt.image.BufferedImage;
 import java.awt.Dimension;
@@ -9,7 +12,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.awt.Graphics2D;
 import java.awt.Graphics;
-
 public class GamePanel extends JPanel implements Runnable,KeyListener{
     public static final int WIDTH=320;
     public static final int HEIGHT=240;

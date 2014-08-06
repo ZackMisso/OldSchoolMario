@@ -1,7 +1,10 @@
+/**
+ *
+ * @author Zackary Misso
+ * 
+ */
 package tilesAndGraphics;
-
 import java.awt.image.BufferedImage;
-
 public class Tile{
     public static final int NORMAL=0;
     public static final int BLOCKED=1;
@@ -19,8 +22,12 @@ public class Tile{
         size=16;
     }
     
-    public Tile(BufferedImage img,int tp,int x,int y){
-        
+    public Tile(BufferedImage img,int tp,int siz,int x,int y){
+        image=img;
+        type=tp;
+        size=siz;
+        xpos=x*size;
+        ypos=y*size;
     }
     
     // getter methods

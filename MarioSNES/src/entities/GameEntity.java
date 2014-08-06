@@ -1,10 +1,14 @@
+/**
+ *
+ * @author Zackary Misso
+ * 
+ */
 package entities;
-
+import core.GamePanel;
 import tilesAndGraphics.TileMap;
-
+import tilesAndGraphics.Tile;
 import java.awt.image.BufferedImage;
 import java.awt.Rectangle;
-
 public abstract class GameEntity {
     private TileMap tileMap;
     private int tileSize;
@@ -35,6 +39,7 @@ public abstract class GameEntity {
     private boolean down;
     private boolean jumping;
     private boolean falling;
+    private boolean facingRight;
     private double moveSpeed;
     private double maxSpeed;
     private double stopSpeed;
@@ -43,8 +48,9 @@ public abstract class GameEntity {
     private double jumpStart;
     private double stopJumpSpeed;
     
-    public GameEntity(){
-        // implement if needed
+    public GameEntity(TileMap param){
+        tileMap=param;
+        tileSize=tileMap.getTileSize();
     }
     
     public boolean collidesWith(GameEntity other){
@@ -54,14 +60,99 @@ public abstract class GameEntity {
     }
     
     public void calculateCorners(double x,double y){
-        //int leftTile=()
+        int leftTile=(int)(xpos-cwidth/2)/tileSize;
+        int rightTile=(int)(xpos+cwidth/2-1)/tileSize;
+        int topTile=(int)(ypos-cheight/2)/tileSize;
+        int bottomTile=(int)(ypos+cheight/2-1)/tileSize;
+        int tl=tileMap.getType(topTile,leftTile);
+        int tr=tileMap.getType(topTile,rightTile);
+        int bl=tileMap.getType(bottomTile,leftTile);
+        int br=tileMap.getType(bottomTile,rightTile);
+        topLeft=tl==Tile.BLOCKED;
+        topRight=tr==Tile.BLOCKED;
+        bottomLeft=bl==Tile.BLOCKED;
+        bottomRight=br==Tile.BLOCKED;
+    }
+    
+    public void checkTileMapCollision(){
+        currentCol=(int)xpos/tileSize;
+        currentRow=(int)ypos/tileSize;
+        xdest=xpos+dx;
+        ydest=ypos+dy;
+        xtemp=xpos;
+        ytemp=ypos;
+        calculateCorners(xpos,ydest);
+        if(dy<0){
+            if(topLeft||topRight){
+                dy=0;
+                ytemp=currentRow*tileSize+cheight/2;
+            }
+            else{
+                ytemp+=dy;
+            }
+        }
+        if(dy>0){
+            if(bottomLeft||bottomRight){
+                dy=0;
+                falling=false;
+                ytemp=(currentRow+1)*tileSize-cheight/2;
+            }
+            else{
+                ytemp+=dy;
+            }
+        }
+        calculateCorners(xdest,ypos);
+        if(dx<0){
+            if(topLeft||bottomLeft){
+                dx=0;
+                xtemp=currentCol*tileSize+cwidth/2;
+            }
+            else{
+                xtemp+=dx;
+            }
+        }
+        if(dx>0){
+            if(topRight||bottomRight){
+                dx=0;
+                xtemp=(currentCol+1)*tileSize-cwidth/2;
+            }
+            else{
+                xtemp=dx;
+            }
+        }
+        if(!falling){
+            calculateCorners(xpos,ydest+1);
+            if(!bottomLeft&&!bottomRight){
+                falling=true;
+            }
+        }
+    }
+    
+    public void setPosition(double x,double y){
+        xpos=x;
+        ypos=y;
+    }
+    
+    public void setVector(double x,double y){
+        dx=x;
+        dy=y;
+    }
+    
+    public void setMapPosition(){
+        xmap=tileMap.getX();
+        ymap=tileMap.getY();
+    }
+    
+    public boolean notOnScreen(){
+        if(xpos+xmap+width<0||xpos+xmap-width>GamePanel.WIDTH)
+            if(ypos+ymap+height<0||ypos+ymap-height>GamePanel.HEIGHT)
+                return true;
+        return false;
     }
     
     public Rectangle getRigidBody(){
-        return new Rectangle((int)xpos,(int)ypos,width,height);
+        return new Rectangle((int)xpos-cwidth,(int)ypos-cheight,cwidth,cheight);
     }
-    
-    // CONTINUE AT 8 MINUTES IN
     
     // getter methods
     public TileMap getTileMap(){return tileMap;}
@@ -93,6 +184,7 @@ public abstract class GameEntity {
     public boolean getDown(){return down;}
     public boolean getJumping(){return jumping;}
     public boolean getFalling(){return falling;}
+    public boolean getFacingRight(){return facingRight;}
     public double getMoveSpeed(){return moveSpeed;}
     public double getMaxSpeed(){return maxSpeed;}
     public double getStopSpeed(){return stopSpeed;}
@@ -131,6 +223,7 @@ public abstract class GameEntity {
     public void setDown(boolean param){down=param;}
     public void setJumping(boolean param){jumping=param;}
     public void setFalling(boolean param){falling=param;}
+    public void setFacingRight(boolean param){facingRight=param;}
     public void setMoveSpeed(double param){moveSpeed=param;}
     public void setMaxSpeed(double param){maxSpeed=param;}
     public void setStopSpeed(double param){stopSpeed=param;}

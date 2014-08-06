@@ -1,7 +1,10 @@
+/**
+ *
+ * @author Zackary Misso
+ * 
+ */
 package gameState;
-
 import gameState.Level1State;
-
 import java.util.ArrayList;
 import java.awt.Graphics2D;
 public class GameStateManager {

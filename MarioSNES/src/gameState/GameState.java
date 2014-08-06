@@ -1,7 +1,10 @@
+/**
+ *
+ * @author Zackary Misso
+ * 
+ */
 package gameState;
-
 import java.awt.Graphics2D;
-
 public abstract class GameState {
     private GameStateManager gsm;
     

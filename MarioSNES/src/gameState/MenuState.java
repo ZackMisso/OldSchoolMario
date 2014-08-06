@@ -1,7 +1,10 @@
+/**
+ *
+ * @author Zackary Misso
+ * 
+ */
 package gameState;
-
 import java.awt.Graphics2D;
-
 public class MenuState extends GameState{
     public MenuState(GameStateManager param){
         setGSM(param);

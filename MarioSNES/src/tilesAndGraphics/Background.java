@@ -1,7 +1,10 @@
+/**
+ *
+ * @author Zackary Misso
+ * 
+ */
 package tilesAndGraphics;
-
 import core.GamePanel;
-
 import java.awt.image.BufferedImage;
 import java.awt.Graphics2D;
 import javax.imageio.ImageIO;
