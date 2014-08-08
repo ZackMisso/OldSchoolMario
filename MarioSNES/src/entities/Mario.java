@@ -4,10 +4,13 @@
  * 
  */
 package entities;
+import java.awt.Color;
+import tilesAndGraphics.ImageCache;
 import tilesAndGraphics.TileMap;
+import java.util.ArrayList;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics2D;
-import tilesAndGraphics.ImageCache;
+import java.awt.event.KeyEvent;
 public class Mario extends GameEntity{
     // TODO :: REWATCH PLAYER TUTORIAL TO IMPLEMENT THE ANIMATIONS
     private int health;
@@ -15,6 +18,10 @@ public class Mario extends GameEntity{
     private boolean flinching;
     private long flinchTime;
     private BufferedImage image;
+    private boolean collidingRight;
+    private boolean collidingLeft;
+    private boolean collidingUp;
+    private boolean collidingDown;
     
     public Mario(TileMap tm){
         super(tm);
@@ -31,15 +38,94 @@ public class Mario extends GameEntity{
         setStopJumpSpeed(.3);
         setFacingRight(true);
         health=1;
-        // load the image
         image=ImageCache.mario;
+        setFalling(true);
+        //setDy(1);
     }
     
-    public void update(){
+    public void update(ArrayList<Block> list){
         // update position
-        getNextPosition();
-        checkTileMapCollision();
-        setPosition(getXTemp(),getYTemp());
+        //getNextPosition();
+        //checkTileMapCollision();
+        //setPosition(getXTemp(),getYTemp());
+        if(getFalling())
+            setDy(getDy()+.15);
+        if(getRight()){
+            setDx(1);
+        }
+        else if(getLeft()){
+            setDx(-1);
+        }
+        //else if(getUp()){
+        //    setDy(-1);
+        //}
+        //else if(getDown()){
+        //    setDy(1);
+        //}
+        else{
+            setDx(0);
+            //setDy(0);
+        }
+        setXTemp(getXpos()+getDx());
+        setYTemp(getYpos()+getDy());
+        checkCollisionsWithBlocks(list);
+        if(getJumping()&&!getFalling()){
+            setDy(getJumpStart());
+            setJumping(false);
+            setFalling(true);
+            setYTemp(getYpos()+getDy());
+        }
+        //setXTemp(getXpos()+getDx());
+        //setYTemp(getYpos()+getDy());
+    }
+    
+    public void finalizeMovement(){
+        setXpos(getXTemp());
+        setYpos(getYTemp());
+    }
+    
+    public void checkCollisionsWithBlocks(ArrayList<Block> list){
+        setFalling(true);
+        for(int i=0;i<list.size();i++){
+            double w=.5*(list.get(i).getWidth()+getWidth());
+            double h=.5*(list.get(i).getHeight()+getHeight());
+            double dx=list.get(i).getCenterX()-getCenterX();
+            double dy=list.get(i).getCenterY()-getCenterY();
+            if(Math.abs(dx)<=w&&Math.abs(dy)<=h){
+                //System.out.println("THere was a Collision");
+                double wy=w*dy;
+                double hx=h*dx;
+                if(wy>hx){
+                    if(wy>-hx){
+                        // Collision from the top
+                        if(getDy()>0)
+                            setDy(0);
+                        setYTemp(list.get(i).getYpos()-getHeight()-1);
+                        setFalling(false);
+                        //System.out.println("TOP");
+                    }else{
+                        // Collision from the left
+                        setDx(0);
+                        setXTemp(list.get(i).getXpos()+getWidth()+1);
+                        //System.out.println("LEFT");
+                    }
+                }else{
+                    if(wy>-hx){
+                        // Collision on the right
+                        if(getDx()>0)
+                            setDx(0);
+                        setXTemp(list.get(i).getXpos()-getWidth()-1);
+                        //System.out.println("RIGHT");
+                    }else{
+                        // Collision on the bottom
+                        if(getDy()<0)
+                            setDy(0);
+                        setYTemp(list.get(i).getYpos()+list.get(i).getHeight()+1);
+                        //System.out.println("BOTTOM");
+                    }
+                }
+            }
+        }
     }
     
     public void getNextPosition(){
@@ -80,9 +166,28 @@ public class Mario extends GameEntity{
         }
     }
     
+    public void keyPressed(int k){
+        if(k==KeyEvent.VK_D)setRight(true);
+        if(k==KeyEvent.VK_A)setLeft(true);
+        //if(k==KeyEvent.VK_W)setUp(true);
+        //if(k==KeyEvent.VK_S)setDown(true);
+        if(k==KeyEvent.VK_SPACE)setJumping(true);
+    }
+    
+    public void keyReleased(int k){
+        if(k==KeyEvent.VK_D)setRight(false);
+        if(k==KeyEvent.VK_A)setLeft(false);
+        //if(k==KeyEvent.VK_W)setUp(false);
+        //if(k==KeyEvent.VK_S)setDown(false);
+        if(k==KeyEvent.VK_SPACE)setJumping(false);
+    }
+    
     public void draw(Graphics2D g){
-        setMapPosition();
-        g.drawImage(image,(int)(getXpos()+getXMap()-getWidth()/2),(int)(getYpos()+getYMap()-getHeight()/2),null);
+        //setMapPosition();
+        //g.drawImage(image,(int)(getXpos()+getXMap()-getWidth()/2),(int)(getYpos()+getYMap()-getHeight()/2),null);
+        g.drawImage(image,(int)getXpos(),(int)getYpos(),null);
+        g.setColor(Color.BLACK);
+        g.drawRect((int)getXpos(),(int)getYpos(),getWidth(),getHeight());
     }
     
     // getter methods

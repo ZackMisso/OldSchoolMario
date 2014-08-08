@@ -128,6 +128,14 @@ public abstract class GameEntity {
         }
     }
     
+    public double getCenterX(){
+        return xpos+width/2;
+    }
+    
+    public double getCenterY(){
+        return ypos+height/2;
+    }
+    
     public void setPosition(double x,double y){
         xpos=x;
         ypos=y;

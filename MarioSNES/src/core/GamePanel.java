@@ -85,6 +85,7 @@ public class GamePanel extends JPanel implements Runnable,KeyListener{
     
     public void keyPressed(KeyEvent event){
         gsm.keyPressed(event.getKeyCode());
+        //System.out.println("ASDFASDFAds");
     }
     
     public void keyReleased(KeyEvent event){
