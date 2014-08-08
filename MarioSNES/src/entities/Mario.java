@@ -4,9 +4,10 @@
  * 
  */
 package entities;
-import java.awt.Color;
+import gameState.Level1State;
 import tilesAndGraphics.ImageCache;
 import tilesAndGraphics.TileMap;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics2D;
@@ -43,7 +44,7 @@ public class Mario extends GameEntity{
         //setDy(1);
     }
     
-    public void update(ArrayList<Block> list){
+    public void update(ArrayList<Block> list,Level1State state){
         // update position
         //getNextPosition();
         //checkTileMapCollision();
@@ -66,9 +67,10 @@ public class Mario extends GameEntity{
             setDx(0);
             //setDy(0);
         }
-        setXTemp(getXpos()+getDx());
+        //setXTemp(getXpos()+getDx());
+        setXTemp(100+state.getXOffset()+getDx());
         setYTemp(getYpos()+getDy());
-        checkCollisionsWithBlocks(list);
+        checkCollisionsWithBlocks(list,state);
         if(getJumping()&&!getFalling()){
             setDy(getJumpStart());
             setJumping(false);
@@ -79,18 +81,22 @@ public class Mario extends GameEntity{
         //setYTemp(getYpos()+getDy());
     }
     
-    public void finalizeMovement(){
-        setXpos(getXTemp());
+    public void finalizeMovement(Level1State state){
+        //double changeX=getXTemp()-getXpos();
+        //setXpos(getXTemp());
+        state.setXOffset(getXTemp()-100);
         setYpos(getYTemp());
+        System.out.println(state.getXOffset());
     }
     
-    public void checkCollisionsWithBlocks(ArrayList<Block> list){
+    public void checkCollisionsWithBlocks(ArrayList<Block> list,Level1State state){
         setFalling(true);
         for(int i=0;i<list.size();i++){
             double w=.5*(list.get(i).getWidth()+getWidth());
             double h=.5*(list.get(i).getHeight()+getHeight());
-            double dx=list.get(i).getCenterX()-getCenterX();
-            double dy=list.get(i).getCenterY()-getCenterY();
+            double dx=list.get(i).getCenterX(state)-getCenterX(state);
+            System.out.println(getCenterX(state));
+            double dy=list.get(i).getCenterY(state)-getCenterY(state);
             if(Math.abs(dx)<=w&&Math.abs(dy)<=h){
                 //System.out.println("THere was a Collision");
                 double wy=w*dy;
@@ -100,13 +106,13 @@ public class Mario extends GameEntity{
                         // Collision from the top
                         if(getDy()>0)
                             setDy(0);
-                        setYTemp(list.get(i).getYpos()-getHeight()-1);
+                        setYTemp(list.get(i).getYpos()-state.getYOffset()-getHeight()-1);
                         setFalling(false);
-                        //System.out.println("TOP");
+                        System.out.println("TOP");
                     }else{
                         // Collision from the left
                         setDx(0);
-                        setXTemp(list.get(i).getXpos()+getWidth()+1);
+                        setXTemp(list.get(i).getXpos()-state.getXOffset()+getWidth()+1);
                         //System.out.println("LEFT");
                     }
                 }else{
@@ -114,13 +120,13 @@ public class Mario extends GameEntity{
                         // Collision on the right
                         if(getDx()>0)
                             setDx(0);
-                        setXTemp(list.get(i).getXpos()-getWidth()-1);
+                        setXTemp(list.get(i).getXpos()-state.getXOffset()-getWidth()-1);
                         //System.out.println("RIGHT");
                     }else{
                         // Collision on the bottom
                         if(getDy()<0)
                             setDy(0);
-                        setYTemp(list.get(i).getYpos()+list.get(i).getHeight()+1);
+                        setYTemp(list.get(i).getYpos()-state.getYOffset()+list.get(i).getHeight()+1);
                         //System.out.println("BOTTOM");
                     }
                 }

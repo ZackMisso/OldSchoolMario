@@ -4,11 +4,12 @@
  * 
  */
 package entities;
+import gameState.Level1State;
+import tilesAndGraphics.ImageCache;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import tilesAndGraphics.ImageCache;
 public class Block {
     private BufferedImage image;
     private double xpos;
@@ -28,18 +29,19 @@ public class Block {
         return new Rectangle((int)xpos,(int)ypos,width,height);
     }
     
-    public void draw(Graphics2D g){
-        g.drawImage(image,(int)xpos,(int)ypos,null);
+    public double getCenterX(Level1State state){
+        //System.out.println(xpos-state.getXOffset()+width/2);
+        return xpos-state.getXOffset()+width/2;
+    }
+    
+    public double getCenterY(Level1State state){
+        return ypos-state.getYOffset()+height/2;
+    }
+    
+    public void draw(Graphics2D g,Level1State state){
+        g.drawImage(image,(int)(xpos-state.getXOffset()),(int)ypos,null);
         g.setColor(Color.black);
-        g.drawRect((int)xpos, (int)ypos, width, height);
-    }
-    
-    public double getCenterX(){
-        return xpos+width/2;
-    }
-    
-    public double getCenterY(){
-        return ypos+height/2;
+        g.drawRect((int)(xpos-state.getXOffset()), (int)ypos, width, height);
     }
     
     // getter methods

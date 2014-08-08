@@ -5,6 +5,7 @@
  */
 package entities;
 import core.GamePanel;
+import gameState.Level1State;
 import tilesAndGraphics.TileMap;
 import tilesAndGraphics.Tile;
 import java.awt.image.BufferedImage;
@@ -128,12 +129,13 @@ public abstract class GameEntity {
         }
     }
     
-    public double getCenterX(){
-        return xpos+width/2;
+    public double getCenterX(Level1State state){
+        //System.out.println("asdfasdfasd "+xpos);
+        return xpos+state.getXOffset()+width/2;
     }
     
-    public double getCenterY(){
-        return ypos+height/2;
+    public double getCenterY(Level1State state){
+        return ypos+state.getYOffset()+height/2;
     }
     
     public void setPosition(double x,double y){
