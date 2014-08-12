@@ -50,7 +50,7 @@ public class Mario extends GameEntity{
         //checkTileMapCollision();
         //setPosition(getXTemp(),getYTemp());
         if(getFalling())
-            setDy(getDy()+.15);
+            setDy(getDy()+.11);
         if(getRight()){
             setDx(1);
         }
@@ -86,7 +86,9 @@ public class Mario extends GameEntity{
         //setXpos(getXTemp());
         state.setXOffset(getXTemp()-100);
         setYpos(getYTemp());
-        System.out.println(state.getXOffset());
+        //System.out.println(state.getXOffset());
+        if(getYpos()>330)
+            System.exit(0);
     }
     
     public void checkCollisionsWithBlocks(ArrayList<Block> list,Level1State state){
@@ -95,7 +97,7 @@ public class Mario extends GameEntity{
             double w=.5*(list.get(i).getWidth()+getWidth());
             double h=.5*(list.get(i).getHeight()+getHeight());
             double dx=list.get(i).getCenterX(state)-getCenterX(state);
-            System.out.println(getCenterX(state));
+            //System.out.println(getCenterX(state));
             double dy=list.get(i).getCenterY(state)-getCenterY(state);
             if(Math.abs(dx)<=w&&Math.abs(dy)<=h){
                 //System.out.println("THere was a Collision");
@@ -106,13 +108,13 @@ public class Mario extends GameEntity{
                         // Collision from the top
                         if(getDy()>0)
                             setDy(0);
-                        setYTemp(list.get(i).getYpos()-state.getYOffset()-getHeight()-1);
+                        setYTemp(list.get(i).getYpos()-getHeight()-1);
                         setFalling(false);
-                        System.out.println("TOP");
+                        //System.out.println("TOP");
                     }else{
                         // Collision from the left
                         setDx(0);
-                        setXTemp(list.get(i).getXpos()-state.getXOffset()+getWidth()+1);
+                        setXTemp(list.get(i).getXpos()+getWidth()+1);
                         //System.out.println("LEFT");
                     }
                 }else{
@@ -120,13 +122,13 @@ public class Mario extends GameEntity{
                         // Collision on the right
                         if(getDx()>0)
                             setDx(0);
-                        setXTemp(list.get(i).getXpos()-state.getXOffset()-getWidth()-1);
+                        setXTemp(list.get(i).getXpos()-getWidth()-1);
                         //System.out.println("RIGHT");
                     }else{
                         // Collision on the bottom
                         if(getDy()<0)
                             setDy(0);
-                        setYTemp(list.get(i).getYpos()-state.getYOffset()+list.get(i).getHeight()+1);
+                        setYTemp(list.get(i).getYpos()+list.get(i).getHeight()+1);
                         //System.out.println("BOTTOM");
                     }
                 }
@@ -193,7 +195,7 @@ public class Mario extends GameEntity{
         //g.drawImage(image,(int)(getXpos()+getXMap()-getWidth()/2),(int)(getYpos()+getYMap()-getHeight()/2),null);
         g.drawImage(image,(int)getXpos(),(int)getYpos(),null);
         g.setColor(Color.BLACK);
-        g.drawRect((int)getXpos(),(int)getYpos(),getWidth(),getHeight());
+        //g.drawRect((int)getXpos(),(int)getYpos(),getWidth(),getHeight());
     }
     
     // getter methods

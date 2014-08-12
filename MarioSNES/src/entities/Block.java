@@ -31,17 +31,17 @@ public class Block {
     
     public double getCenterX(Level1State state){
         //System.out.println(xpos-state.getXOffset()+width/2);
-        return xpos-state.getXOffset()+width/2;
+        return xpos+width/2;
     }
     
     public double getCenterY(Level1State state){
-        return ypos-state.getYOffset()+height/2;
+        return ypos+height/2;
     }
     
     public void draw(Graphics2D g,Level1State state){
         g.drawImage(image,(int)(xpos-state.getXOffset()),(int)ypos,null);
         g.setColor(Color.black);
-        g.drawRect((int)(xpos-state.getXOffset()), (int)ypos, width, height);
+        //g.drawRect((int)(xpos-state.getXOffset()), (int)ypos, width, height);
     }
     
     // getter methods

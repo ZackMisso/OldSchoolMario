@@ -21,6 +21,7 @@ public class Level1State extends GameState{
     private ArrayList<Block> blocks;
     private double xOffset;
     private double yOffset;
+    private double totalPast;
     
     public Level1State(GameStateManager param){
         setGSM(param);
@@ -34,6 +35,7 @@ public class Level1State extends GameState{
         // load the tile map
         player=new Mario(tileMap);
         player.setPosition(100,100);
+        totalPast=100;
         xOffset=0;
         yOffset=0;
         initBlocks();
@@ -47,10 +49,39 @@ public class Level1State extends GameState{
         blocks.add(new Block(95+32,160,16,16));
         //blocks.add(new Block(80,100,16,16));
         //blocks.add(new Block(100,160,16,16));
-        int y=200;
+        int y=208;
         for(int i=0;i<31;i++){
             blocks.add(new Floor(i*16,y,16,16));
             blocks.add(new Floor(i*16,y+16,16,16));
+        }
+        int x=34*16;
+        for(int i=0;i<16;i++){
+            blocks.add(new Floor(i*16+x,y,16,16));
+            blocks.add(new Floor(i*16+x,y+16,16,16));
+        }
+        x+=(16+7)*16;
+        for(int i=0;i<38;i++){
+            blocks.add(new Floor(i*16+x,y,16,16));
+            blocks.add(new Floor(i*16+x,y+16,16,16));
+        }
+        x+=(38+4)*16;
+        for(int i=0;i<32;i++){
+            blocks.add(new Floor(i*16+x,y,16,16));
+            blocks.add(new Floor(i*16+x,y+16,16,16));
+        }
+        x+=(32+4)*16;
+        for(int i=0;i<20;i++){
+            blocks.add(new Floor(i*16+x,y,16,16));
+            blocks.add(new Floor(i*16+x,y+16,16,16));
+        }
+        System.out.println(x+=10*16);
+        x=39*16;
+        for(int i=0;i<4;i++){
+            blocks.add(new Block(i*16+x,208-4*16,16,16));
+        }
+        x+=4*16;
+        for(int i=0;i<8;i++){
+            blocks.add(new Block(i*16+x,208-7*16,16,16));
         }
     }
     
@@ -60,6 +91,13 @@ public class Level1State extends GameState{
         // now check for collisions
         //player.checkCollisionsWithBlocks(blocks);
         player.finalizeMovement(this);
+        for(int i=0;i<blocks.size();i++){
+            blocks.get(i).setXpos(blocks.get(i).getXpos()-xOffset);
+        }
+        totalPast+=xOffset;
+        if(totalPast>2320)
+            System.exit(0);
+        xOffset=0;
     }
     
     public void draw(Graphics2D g){
@@ -87,6 +125,7 @@ public class Level1State extends GameState{
     public Background getBackground(){return background;}
     public double getXOffset(){return xOffset;}
     public double getYOffset(){return yOffset;}
+    public double getTotalPast(){return totalPast;}
     
     // setter methods
     public void setTileMap(TileMap param){tileMap=param;}
@@ -94,4 +133,5 @@ public class Level1State extends GameState{
     public void setBackground(Background param){background=param;}
     public void setXOffset(double param){xOffset=param;}
     public void setYOffset(double param){yOffset=param;}
+    public void setTotalPast(double param){totalPast=param;}
 }

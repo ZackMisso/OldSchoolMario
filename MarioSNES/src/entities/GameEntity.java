@@ -131,11 +131,11 @@ public abstract class GameEntity {
     
     public double getCenterX(Level1State state){
         //System.out.println("asdfasdfasd "+xpos);
-        return xpos+state.getXOffset()+width/2;
+        return xpos+width/2;
     }
     
     public double getCenterY(Level1State state){
-        return ypos+state.getYOffset()+height/2;
+        return ypos+height/2;
     }
     
     public void setPosition(double x,double y){

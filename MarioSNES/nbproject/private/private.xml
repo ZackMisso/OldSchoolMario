@@ -3,31 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/src/entities/Floor.java</file>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/src/gameState/GameState.java</file>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/src/gameState/GameStateManager.java</file>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/src/entities/Animation.java</file>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/src/tilesAndGraphics/ImageCache.java</file>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/src/entities/Block.java</file>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/src/gameState/Level1State.java</file>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/src/mariosnes/MarioSNES.java</file>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/src/tilesAndGraphics/TileMap.java</file>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/resources/images/marioBig.png</file>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/src/tilesAndGraphics/Background.java</file>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/resources/images/sky.png</file>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/src/entities/Mario.java</file>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/src/gameIO/GameReader.java</file>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/src/tilesAndGraphics/ManualLevel.java</file>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/src/tilesAndGraphics/Tile.java</file>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/src/gameState/MenuState.java</file>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/resources/images/floor.png</file>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/src/entities/GameEntity.java</file>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/resources/images/block.png</file>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/src/entities/BreakableBlock.java</file>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/src/tilesAndGraphics/TileCache.java</file>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/resources/images/breakableBlock.png</file>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/src/core/GamePanel.java</file>
-            <file>file:/C:/Users/Zack%20Misso/Documents/ProgrammingProjects/OldSchoolMario/MarioSNES/src/core/Game.java</file>
+            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/core/Game.java</file>
         </group>
     </open-files>
 </project-private>
