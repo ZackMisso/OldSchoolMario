@@ -1,6 +1,6 @@
 /**
  *
- * @author Zack Misso
+ * @author Zackary Misso
  * 
  */
 package entities;
@@ -9,37 +9,39 @@ import tilesAndGraphics.ImageCache;
 import tilesAndGraphics.TileMap;
 import java.awt.Color;
 import java.util.ArrayList;
-import java.awt.image.BufferedImage;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 public class Mario extends GameEntity{
-    // TODO :: REWATCH PLAYER TUTORIAL TO IMPLEMENT THE ANIMATIONS
     private int health;
     private boolean dead;
     private boolean flinching;
     private long flinchTime;
-    private BufferedImage image;
-    private boolean collidingRight;
-    private boolean collidingLeft;
-    private boolean collidingUp;
-    private boolean collidingDown;
+    private double rectx;
+    private double recty;
+    private int rectw;
+    private int recth;
+    private double rectx2;
+    private double recty2;
+    private int rectw2;
+    private int recth2;
+    int num;
     
     public Mario(TileMap tm){
-        super(tm);
+        //super(tm);
         setWidth(16);
         setHeight(32);
         setCWidth(16);
         setCHeight(32);
-        setMoveSpeed(.3);
-        setMaxSpeed(1.6);
-        setStopSpeed(.4);
+        //setMoveSpeed(.3);
+        //setMaxSpeed(1.6);
+        //setStopSpeed(.4);
         setFallSpeed(.15);
         setMaxFallSpeed(4.0);
         setJumpStart(-4.8);
         setStopJumpSpeed(.3);
-        setFacingRight(true);
+        //setFacingRight(true);
         health=1;
-        image=ImageCache.mario;
+        setImage(ImageCache.mario);
         setFalling(true);
         //setDy(1);
     }
@@ -68,9 +70,14 @@ public class Mario extends GameEntity{
             //setDy(0);
         }
         //setXTemp(getXpos()+getDx());
+        //System.out.println(getDx());
+        
         setXTemp(100+state.getXOffset()+getDx());
+        //System.out.print(getXTemp()+" ");
         setYTemp(getYpos()+getDy());
         checkCollisionsWithBlocks(list,state);
+        //System.out.println(getXTemp());
+        //System.out.println(getDx());
         if(getJumping()&&!getFalling()){
             setDy(getJumpStart());
             setJumping(false);
@@ -93,14 +100,17 @@ public class Mario extends GameEntity{
     
     public void checkCollisionsWithBlocks(ArrayList<Block> list,Level1State state){
         setFalling(true);
+        //System.out.print(getDx()+" ");
+        double tempDx=getDx();
+        double tempX=getXTemp();
         for(int i=0;i<list.size();i++){
-            double w=.5*(list.get(i).getWidth()+getWidth());
-            double h=.5*(list.get(i).getHeight()+getHeight());
-            double dx=list.get(i).getCenterX(state)-getCenterX(state);
-            //System.out.println(getCenterX(state));
-            double dy=list.get(i).getCenterY(state)-getCenterY(state);
+            boolean rgt=false;
+            boolean lft=false;
+            double w=.5*(list.get(i).getCWidth()+getWidth());
+            double h=.5*(list.get(i).getCHeight()+getHeight());
+            double dx=list.get(i).getCCenterX()-getCenterX(state);
+            double dy=list.get(i).getCCenterY()-getCenterY(state);
             if(Math.abs(dx)<=w&&Math.abs(dy)<=h){
-                //System.out.println("THere was a Collision");
                 double wy=w*dy;
                 double hx=h*dx;
                 if(wy>hx){
@@ -108,93 +118,97 @@ public class Mario extends GameEntity{
                         // Collision from the top
                         if(getDy()>0)
                             setDy(0);
-                        setYTemp(list.get(i).getYpos()-getHeight()-1);
+                        setYTemp(list.get(i).getYpos()-getHeight());
                         setFalling(false);
                         //System.out.println("TOP");
                     }else{
                         // Collision from the left
-                        setDx(0);
-                        setXTemp(list.get(i).getXpos()+getWidth()+1);
+                        if(getDx()<0){
+                            setDx(0);
+                            //setXTemp(list.get(i).getXpos()+getWidth()+1);
+                            //System.out.println("BROKEN2");
+                        }
+                        rectx2=list.get(i).getXpos();
+                        recty2=list.get(i).getYpos();
+                        rectw2=list.get(i).getWidth();
+                        recth2=list.get(i).getHeight();
+                        //setXTemp(list.get(i).getXpos()+getWidth()+1);
+                        if(distanceBetweenCenters(list.get(i))>getMaxDistance(list.get(i))-2){
+                            //setXTemp(list.get(i).getXpos()+getWidth()+1);
+                            //System.out.print(distanceBetweenCenters(list.get(i))+" ");
+                            //System.out.println(getMaxDistance(list.get(i)));
+                            setDx(tempDx);
+                            setXTemp(tempX);
+                        }else{
+                            setXTemp(list.get(i).getXpos()+getWidth());
+                            System.out.print(distanceBetweenCenters(list.get(i))+" ");
+                            System.out.println(getMaxDistance(list.get(i)));
+                        }
+                        lft=true;
+                        //setXTemp(list.get(i).getXpos()+getWidth()+1);
                         //System.out.println("LEFT");
                     }
                 }else{
                     if(wy>-hx){
                         // Collision on the right
-                        if(getDx()>0)
+                        if(getDx()>0){
+                            //System.out.println("BROKEN");
+                            //setXTemp(list.get(i).getXpos()-getWidth()-1);
                             setDx(0);
+                        }
+                        //System.out.println("MARIO :: "+getXpos()+" "+getYpos());
+                        //System.out.println("BLOCK :: "+list.get(i).getXpos()+" "+list.get(i).getYpos());
+                        rectx=list.get(i).getXpos();
+                        recty=list.get(i).getYpos();
+                        rectw=list.get(i).getWidth();
+                        recth=list.get(i).getHeight();
                         setXTemp(list.get(i).getXpos()-getWidth()-1);
+                        if(distanceBetweenCenters(list.get(i))>getMaxDistance(list.get(i))){
+                            //setXTemp(list.get(i).getXpos()+getWidth()+1);
+                            //System.out.print(distanceBetweenCenters(list.get(i))+" ");
+                            //System.out.println(getMaxDistance(list.get(i)));
+                            setDx(tempDx);
+                            setXTemp(tempX);
+                        }
+                        rgt=true;
                         //System.out.println("RIGHT");
                     }else{
                         // Collision on the bottom
-                        if(getDy()<0)
+                        if(getDy()<0){
                             setDy(0);
+                        }
                         setYTemp(list.get(i).getYpos()+list.get(i).getHeight()+1);
-                        //System.out.println("BOTTOM");
+                        //System.out.println("BOT");
                     }
+                }
+                if(rgt&&lft){
+                    setDx(tempDx);
+                    setXTemp(tempX);
+                    System.out.println("ADFASDFADF");
                 }
             }
         }
-    }
-    
-    public void getNextPosition(){
-        // movement
-        if(getLeft()){
-            setDx(getDx()-getMoveSpeed());
-            if(getDx()<-getMaxSpeed())
-                setDx(-getMaxSpeed());
-        }
-        else if(getRight()){
-            setDx(getDx()+getMoveSpeed());
-            if(getDx()>getMaxSpeed())
-                setDx(getMoveSpeed());
-        }
-        else{
-            if(getDx()>0){
-                setDx(getDx()-getStopSpeed());
-                if(getDx()<0)
-                    setDx(0);
-            }
-            else if(getDx()<0){
-                setDx(getDx()+getStopSpeed());
-                if(getDx()>0)
-                    setDx(0);
-            }
-        }
-        // jumping
-        if(getJumping()&&!getFalling()){
-            setDy(getJumpStart());
-            setFalling(true);
-        }
-        // falling
-        if(getFalling()){
-            setDy(getDy()+getFallSpeed());
-            if(getDy()>0)setJumping(false);
-            if(getDy()<0&&!getJumping())setDy(getDy()+getStopJumpSpeed());
-            if(getDy()>getMaxFallSpeed())setDy(getMaxFallSpeed());
-        }
+        //System.out.print(getDx());
     }
     
     public void keyPressed(int k){
         if(k==KeyEvent.VK_D)setRight(true);
         if(k==KeyEvent.VK_A)setLeft(true);
-        //if(k==KeyEvent.VK_W)setUp(true);
-        //if(k==KeyEvent.VK_S)setDown(true);
         if(k==KeyEvent.VK_SPACE)setJumping(true);
     }
     
     public void keyReleased(int k){
         if(k==KeyEvent.VK_D)setRight(false);
         if(k==KeyEvent.VK_A)setLeft(false);
-        //if(k==KeyEvent.VK_W)setUp(false);
-        //if(k==KeyEvent.VK_S)setDown(false);
         if(k==KeyEvent.VK_SPACE)setJumping(false);
     }
     
     public void draw(Graphics2D g){
-        //setMapPosition();
-        //g.drawImage(image,(int)(getXpos()+getXMap()-getWidth()/2),(int)(getYpos()+getYMap()-getHeight()/2),null);
-        g.drawImage(image,(int)getXpos(),(int)getYpos(),null);
+        g.drawImage(getImage(),(int)getXpos(),(int)getYpos(),null);
         g.setColor(Color.BLACK);
+        g.drawRect((int)rectx,(int)recty,rectw,recth);
+        g.setColor(Color.YELLOW);
+        g.drawRect((int)rectx2,(int)recty2,rectw2,recth2);
         //g.drawRect((int)getXpos(),(int)getYpos(),getWidth(),getHeight());
     }
     
@@ -203,12 +217,10 @@ public class Mario extends GameEntity{
     public boolean getDead(){return dead;}
     public boolean getFlinching(){return flinching;}
     public long getFlinchTime(){return flinchTime;}
-    public BufferedImage getMainImage(){return image;}
     
     // setter methods
     public void setHealth(int param){health=param;}
     public void setDead(boolean param){dead=param;}
     public void setFlinching(boolean param){flinching=param;}
     public void setFlinchTime(long param){flinchTime=param;}
-    public void setMainImage(BufferedImage param){image=param;}
 }

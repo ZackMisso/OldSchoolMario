@@ -44,11 +44,9 @@ public class Level1State extends GameState{
     private void initBlocks(){
         blocks.add(new Block(180,120,16,16));
         blocks.add(new Block(50,120,16,16));
-        blocks.add(new Block(95,160,16,16));
-        blocks.add(new Block(95+16,160,16,16));
-        blocks.add(new Block(95+32,160,16,16));
-        //blocks.add(new Block(80,100,16,16));
-        //blocks.add(new Block(100,160,16,16));
+        blocks.add(new Block(88,160,16,16));
+        blocks.add(new Block(88+16,160,16,16));
+        blocks.add(new Block(88+32,160,16,16));
         int y=208;
         for(int i=0;i<31;i++){
             blocks.add(new Floor(i*16,y,16,16));
@@ -87,12 +85,10 @@ public class Level1State extends GameState{
     
     public void update(){
         player.update(blocks,this);
-        // implement more updates
-        // now check for collisions
-        //player.checkCollisionsWithBlocks(blocks);
         player.finalizeMovement(this);
         for(int i=0;i<blocks.size();i++){
             blocks.get(i).setXpos(blocks.get(i).getXpos()-xOffset);
+            blocks.get(i).updateC();
         }
         totalPast+=xOffset;
         if(totalPast>2320)
@@ -103,7 +99,6 @@ public class Level1State extends GameState{
     public void draw(Graphics2D g){
         g.setColor(Color.WHITE);
         g.fillRect(0,0,GamePanel.WIDTH*GamePanel.SCALE,GamePanel.HEIGHT*GamePanel.SCALE);
-        // implement
         //background.draw(g);
         for(int i=0;i<blocks.size();i++)
             blocks.get(i).draw(g,this);
