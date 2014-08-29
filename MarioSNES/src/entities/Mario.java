@@ -7,15 +7,20 @@ package entities;
 import gameState.Level1State;
 import tilesAndGraphics.ImageCache;
 import tilesAndGraphics.TileMap;
+import collectables.Collectable;
+import enemies.Enemy;
+import projectiles.Projectile;
+import neuroevolution.MarioAI;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 public class Mario extends GameEntity{
-    private int health;
+    private MarioAI ann; // this should be moved
+    //private int health;
     private boolean dead;
-    private boolean flinching;
-    private long flinchTime;
+    //private boolean flinching;
+    //private long flinchTime;
     private double rectx;
     private double recty;
     private int rectw;
@@ -24,9 +29,14 @@ public class Mario extends GameEntity{
     private double recty2;
     private int rectw2;
     private int recth2;
-    int num;
+    private int num; // what is this?
+
+    public Mario(){
+        this(null);
+    }
     
     public Mario(TileMap tm){
+        ann=null;
         //super(tm);
         setWidth(16);
         setHeight(32);
@@ -40,8 +50,9 @@ public class Mario extends GameEntity{
         setJumpStart(-4.8);
         setStopJumpSpeed(.3);
         //setFacingRight(true);
-        health=1;
+        //health=1;
         setImage(ImageCache.mario);
+        setOnScreen(true);
         setFalling(true);
         //setDy(1);
     }
@@ -97,6 +108,49 @@ public class Mario extends GameEntity{
         if(getYpos()>330)
             System.exit(0);
     }
+
+    public void rebound(){
+        // implement
+    }
+
+    public void checkCollisionsWithEnemies(ArrayList<Enemy> list,Level1State state){
+        for(int i=0;i<list.size();i++){
+            double w=.5*(list.get(i).getCWidth()+getWidth());
+            double h=.5*(list.get(i).getCHeight()+getHeight());
+            double dx=list.get(i).getCCenterX()-getCenterX();
+            double dy=list.get(i).getCCenterY()-getCenterY();
+            if(Math.abs(dx)<=w&&Math.abs(dy)<=h){
+                double wy=w*dy;
+                double hx=h*dx;
+                if(wy>hx){
+                    if(wy>-hx){
+                        // Collision is on the top
+                        if(list.get(i).hit(state.getPlayerState(),this))
+                            list.remove(i--);
+                    }else{
+                        // Collision is from the left
+                        hit();
+                    }
+                }else{
+                    if(wy>-hx){
+                        // Collision is on the right
+                        hit();
+                    }else{
+                        // Collision is on the bottom
+                        hit();
+                    }
+                }
+            }
+        }
+    }
+
+    public void checkCollisionsWithCollectables(ArrayList<Collectable> list){
+        // implement
+    }
+
+    public void checkCollisionsWithProjectiles(ArrayList<Projectile> list){
+        // implement
+    }
     
     public void checkCollisionsWithBlocks(ArrayList<Block> list,Level1State state){
         setFalling(true);
@@ -108,8 +162,8 @@ public class Mario extends GameEntity{
             boolean lft=false;
             double w=.5*(list.get(i).getCWidth()+getWidth());
             double h=.5*(list.get(i).getCHeight()+getHeight());
-            double dx=list.get(i).getCCenterX()-getCenterX(state);
-            double dy=list.get(i).getCCenterY()-getCenterY(state);
+            double dx=list.get(i).getCCenterX()-getCenterX();
+            double dy=list.get(i).getCCenterY()-getCenterY();
             if(Math.abs(dx)<=w&&Math.abs(dy)<=h){
                 double wy=w*dy;
                 double hx=h*dx;
@@ -184,11 +238,15 @@ public class Mario extends GameEntity{
                 if(rgt&&lft){
                     setDx(tempDx);
                     setXTemp(tempX);
-                    System.out.println("ADFASDFADF");
+                    //System.out.println("ADFASDFADF");
                 }
             }
         }
         //System.out.print(getDx());
+    }
+
+    public void hit(){
+        System.out.println("The Player Was Hit");
     }
     
     public void keyPressed(int k){
@@ -204,7 +262,9 @@ public class Mario extends GameEntity{
     }
     
     public void draw(Graphics2D g){
-        g.drawImage(getImage(),(int)getXpos(),(int)getYpos(),null);
+        //g.drawImage(getImage(),(int)getXpos(),(int)getYpos(),null);
+        super.draw(g);
+        // the code below is for debugging purposes
         g.setColor(Color.BLACK);
         g.drawRect((int)rectx,(int)recty,rectw,recth);
         g.setColor(Color.YELLOW);
@@ -213,14 +273,14 @@ public class Mario extends GameEntity{
     }
     
     // getter methods
-    public int getHealth(){return health;}
-    public boolean getDead(){return dead;}
-    public boolean getFlinching(){return flinching;}
-    public long getFlinchTime(){return flinchTime;}
+    //public int getHealth(){return health;}
+    //public boolean getDead(){return dead;}
+    //public boolean getFlinching(){return flinching;}
+    //public long getFlinchTime(){return flinchTime;}
     
     // setter methods
-    public void setHealth(int param){health=param;}
-    public void setDead(boolean param){dead=param;}
-    public void setFlinching(boolean param){flinching=param;}
-    public void setFlinchTime(long param){flinchTime=param;}
+    //public void setHealth(int param){health=param;}
+    //public void setDead(boolean param){dead=param;}
+    //public void setFlinching(boolean param){flinching=param;}
+    //public void setFlinchTime(long param){flinchTime=param;}
 }

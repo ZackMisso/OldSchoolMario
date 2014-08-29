@@ -14,14 +14,16 @@ public class PlayerState {
         score=0;
         coins=0;
     }
+
+    public void addPoints(int num){
+        score+=num;
+    }
     
     // getter methods
-    public long getScore(){return score;}
     public int getCoins(){return coins;}
     public int getLives(){return lives;}
     
     // setter methods
-    public void setScore(long param){score=param;}
     public void setCoins(int param){coins=param;}
     public void setLives(int param){lives=param;}
 }

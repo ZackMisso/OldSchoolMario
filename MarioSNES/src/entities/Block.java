@@ -18,7 +18,7 @@ public class Block extends GameEntity{
         updateC();
     }
     
-    public void updateC(){
+    public void updateC(){ // TODO :: Test if this is even being called
         setCXpos(getXpos()-1);
         setCYpos(getYpos()-1);
         setCWidth(getWidth()-1);

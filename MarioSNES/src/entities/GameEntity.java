@@ -4,17 +4,12 @@
  * 
  */
 package entities;
-//import core.GamePanel;
+import core.GamePanel;
 import gameState.Level1State;
-//import tilesAndGraphics.TileMap;
-//import tilesAndGraphics.Tile;
 import java.awt.image.BufferedImage;
 import java.awt.Rectangle;
+import java.awt.Graphics2D;
 public abstract class GameEntity {
-    //private TileMap tileMap;
-    //private int tileSize;
-    //private double xmap;
-    //private double ymap;
     private BufferedImage image;
     private double xpos;
     private double ypos;
@@ -26,20 +21,10 @@ public abstract class GameEntity {
     private double cypos;
     private int cwidth;
     private int cheight;
-    //private int currentRow;
-    //private int currentCol;
-    //private double xdest;
-    //private double ydest;
     private double xtemp;
     private double ytemp;
-    //private boolean topLeft;
-    //private boolean topRight;
-    //private boolean bottomLeft;
-    //private boolean bottomRight;
     private boolean left;
     private boolean right;
-    //private boolean up;
-    //private boolean down;
     private boolean jumping;
     private boolean falling;
     //private boolean facingRight;
@@ -50,11 +35,7 @@ public abstract class GameEntity {
     private double maxFallSpeed;
     private double jumpStart;
     private double stopJumpSpeed;
-    
-    //public GameEntity(TileMap param){
-    //    //tileMap=param;
-    //    //tileSize=tileMap.getTileSize();
-    //}
+    private boolean onScreen; // used to save some computation
     
     public boolean collidesWith(GameEntity other){
         Rectangle one=getRigidBody();
@@ -62,12 +43,12 @@ public abstract class GameEntity {
         return one.intersects(two);
     }
     
-    public double getCenterX(Level1State state){
+    public double getCenterX(){
         //System.out.println("asdfasdfasd "+xpos);
         return xpos+width/2;
     }
     
-    public double getCenterY(Level1State state){
+    public double getCenterY(){
         return ypos+height/2;
     }
     
@@ -90,8 +71,8 @@ public abstract class GameEntity {
     }
     
     public double distanceBetweenCenters(GameEntity other){
-        double x=getCenterX(null)-other.getCenterX(null);
-        double y=getCenterY(null)-other.getCenterY(null);
+        double x=getCenterX()-other.getCenterX();
+        double y=getCenterY()-other.getCenterY();
         x*=x;
         y*=y;
         return Math.sqrt(x+y);
@@ -104,28 +85,29 @@ public abstract class GameEntity {
         y*=y;
         return Math.sqrt(x+y);
     }
-    
-    //public void setMapPosition(){
-    //    xmap=tileMap.getX();
-    //    ymap=tileMap.getY();
-    //}
-    
-    //public boolean notOnScreen(){
-    //    if(xpos+xmap+width<0||xpos+xmap-width>GamePanel.WIDTH)
-    //        if(ypos+ymap+height<0||ypos+ymap-height>GamePanel.HEIGHT)
-    //            return true;
-    //    return false;
-    //}
+
+    public boolean isOnScreen(){
+        if(xpos+width<0||xpos>GamePanel.WIDTH){
+            onScreen=false;
+            return false;
+        }
+        if(ypos+height<0||ypos>GamePanel.HEIGHT){
+            onScreen=false;
+            return false;
+        }
+        onScreen=true;
+        return true;
+    }
     
     public Rectangle getRigidBody(){
         return new Rectangle((int)xpos-cwidth,(int)ypos-cheight,cwidth,cheight);
     }
+
+    public void draw(Graphics2D g){
+        g.drawImage(image,(int)xpos,(int)ypos,null);
+    }
     
     // getter methods
-    //public TileMap getTileMap(){return tileMap;}
-    //public int getTileSize(){return tileSize;}
-    //public double getXMap(){return xmap;}
-    //public double getYMap(){return ymap;}
     public BufferedImage getImage(){return image;}
     public double getXpos(){return xpos;}
     public double getYpos(){return ypos;}
@@ -137,20 +119,10 @@ public abstract class GameEntity {
     public double getCYpos(){return cypos;}
     public int getCWidth(){return cwidth;}
     public int getCHeight(){return cheight;}
-    //public int getCurrentRow(){return currentRow;}
-    //public int getCurrentCol(){return currentCol;}
-    //public double getXDest(){return xdest;}
-    //public double getYDest(){return ydest;}
     public double getXTemp(){return xtemp;}
     public double getYTemp(){return ytemp;}
-    //public boolean getTopLeft(){return topLeft;}
-    //public boolean getTopRight(){return topRight;}
-    //public boolean getBottomLeft(){return bottomLeft;}
-    //public boolean getBottomRight(){return bottomRight;}
     public boolean getLeft(){return left;}
     public boolean getRight(){return right;}
-    //public boolean getUp(){return up;}
-    //public boolean getDown(){return down;}
     public boolean getJumping(){return jumping;}
     public boolean getFalling(){return falling;}
     //public boolean getFacingRight(){return facingRight;}
@@ -161,12 +133,9 @@ public abstract class GameEntity {
     public double getMaxFallSpeed(){return maxFallSpeed;}
     public double getJumpStart(){return jumpStart;}
     public double getStopJumpSpeed(){return stopJumpSpeed;}
+    public boolean getOnScreen(){return onScreen;}
     
     // setter methods
-    //public void setTileMap(TileMap param){tileMap=param;}
-    //public void setTileSize(int param){tileSize=param;}
-    //public void setXMap(double param){xmap=param;}
-    //public void setYMap(double param){ymap=param;}
     public void setImage(BufferedImage param){image=param;}
     public void setXpos(double param){xpos=param;}
     public void setYpos(double param){ypos=param;}
@@ -178,20 +147,10 @@ public abstract class GameEntity {
     public void setCYpos(double param){cypos=param;}
     public void setCWidth(int param){cwidth=param;}
     public void setCHeight(int param){cheight=param;}
-    //public void setCurrentRow(int param){currentRow=param;}
-    //public void setCurrentCol(int param){currentCol=param;}
-    //public void setXDest(double param){xdest=param;}
-    //public void setYDest(double param){ydest=param;}
     public void setXTemp(double param){xtemp=param;}
     public void setYTemp(double param){ytemp=param;}
-    //public void setTopLeft(boolean param){topLeft=param;}
-    //public void setTopRight(boolean param){topRight=param;}
-    //public void setBottomRight(boolean param){bottomRight=param;}
-    //public void setBottomLeft(boolean param){bottomLeft=param;}
     public void setLeft(boolean param){left=param;}
     public void setRight(boolean param){right=param;}
-    //public void setUp(boolean param){up=param;}
-    //public void setDown(boolean param){down=param;}
     public void setJumping(boolean param){jumping=param;}
     public void setFalling(boolean param){falling=param;}
     //public void setFacingRight(boolean param){facingRight=param;}
@@ -202,4 +161,5 @@ public abstract class GameEntity {
     public void setMaxFallSpeed(double param){maxFallSpeed=param;}
     public void setJumpStart(double param){jumpStart=param;}
     public void setStopJumpSpeed(double param){stopJumpSpeed=param;}
+    public void setOnScreen(boolean param){onScreen=param;}
 }

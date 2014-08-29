@@ -1,0 +1,6 @@
+All Game entities :: Make Collision Checking smoother
+Koopa :: 52 :: Implement the projectile abstraction for a Koopa
+Projectile :: 11 :: Change this class into an abstract class
+Level1State :: 23 :: Figure out a way to merge the four arraylists
+ALL :: Make Mario apart of the PlayerState
+Enemy :: 13 :: Fix this class
