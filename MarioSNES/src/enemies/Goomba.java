@@ -12,7 +12,7 @@ public class Goomba extends Enemy{
     private boolean facingRight;
 
     public Goomba(){
-        // implement
+        facingRight=false;
     }
 
     public void update(ArrayList<Block> blocks){
@@ -95,14 +95,48 @@ public class Goomba extends Enemy{
         }
     }
 
+    public void checkEnemyCollision(ArrayList<Enemy> list){
+        for(int i=0;i<list.size();i++){
+            double w=.5*(list.get(i).getCWidth()+getWidth());
+            double h=.5*(list.get(i).getCHeight()+getHeight());
+            double dx=list.get(i).getCCenterX()-getCenterX();
+            double dy=list.get(i).getCCenterY()-getCenterY();
+            if(Math.abs(dx)<=w&&Math.abs(dy)<=h){
+                double wy=w*dy;
+                double hx=h*dx;
+                if(wy>hx){
+                    if(wy>-hx){
+                        // Collision is on the top
+                    }else{
+                        // Collision is from the left
+                        turn();
+                        list.get(i).turn();
+                    }
+                }else{
+                    if(wy>-hx){
+                        // Collision is on the right
+                        turn();
+                        list.get(i).turn();
+                    }else{
+                        // Collision is on the bottom
+                    }
+                }
+            }
+        }
+    }
+
     public boolean hit(PlayerState state,Mario mario){
         mario.rebound();
         state.addPoints(100);
         killed();
         return true;
     }
+
+    public boolean hitByProjectile(Projectile projectile){
+        killed();
+    }
     
     public void killed(){
-        // IDK if I am going to use this method yet
+        removeEnemyFromList();
     }
 }

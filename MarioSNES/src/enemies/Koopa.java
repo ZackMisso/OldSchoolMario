@@ -12,6 +12,7 @@ import enemies.Enemy;
 import projectiles.Projectile;
 import java.util.ArrayList;
 public class Koopa extends Enemy implements Projectile{
+    private Level1State reference;
 	private double shellSpeed;
     private boolean facingRight;
     private boolean flying; // implement later
@@ -72,6 +73,56 @@ public class Koopa extends Enemy implements Projectile{
         }
     }
 
+    public void checkEnemyCollision(ArrayList<Enemy> list){
+        //setFalling(true);
+        //double tempDx=getDx();
+        //double tempX=getXTemp();
+        for(int i=0;i<list.size();i++){
+            //boolean rgt=false;
+            //boolean lft=false;
+            double w=.5*(list.get(i).getCWidth()+getWidth());
+            double h=.5*(list.get(i).getCHeight()+getHeight());
+            double dx=list.get(i).getCCenterX()-getCenterX();
+            double dy=list.get(i).getCCenterY()-getCenterY();
+            if(Math.abs(dx)<=w&&Math.abs(dy)<=h){
+                double wy=w*dy;
+                double hx=h*dx;
+                if(wy>hx){
+                    if(wy>-hx){
+                        // Collision is on the top
+                        // This will probably never happen
+                        System.out.println("Not supposed to happen :: Koopa");
+                    }else{
+                        // Collision is from the left
+                        if(!shell){
+                            turn();
+                            list.get(i).turn();
+                        }else{
+                            list.get(i--).hitByProjectile(this);
+                        }
+                    }
+                }else{
+                    if(wy>-hx){
+                        // Collision is on the right
+                        if(!shell){
+                            turn();
+                            list.get(i).turn();
+                        }else{
+                            list.get(i--).hitByProjectile(this);
+                        }
+                    }else{
+                        // Collision is on the bottom
+                        System.out.println("Not supposed to happen :: Koopa");
+                    }
+                }
+                //if(rgt&&lft){
+                //    setDx(tempDx);
+                //    setXTemp(tempX);
+                //}
+            }
+        }
+    }
+
     public boolean hit(PlayerState param,Mario mario){
     	// TODO :: IMPLEMENT PROJECTILE INFO FOR THE KOOPA
     	mario.rebound();
@@ -110,23 +161,36 @@ public class Koopa extends Enemy implements Projectile{
     }
 
     public void addProjectileToList(Level1State state){
-        // implement
+        if(reference==null)
+            reference=state;
+        state.getProjectiles().add(this);
+        state.getEnemies().remove(this); // update this later
     }
 
     public void removeProjectileFromList(Level1State state){
-        // implement
+        state.getProjectiles().remove(this);
     }
 
     public void enemyHit(Enemy enemy){
-        // implement
+        // I dont think this is needed
     }
 
     public void checkProjectileCollision(ArrayList<Projectile> list){
-        // implment
+        for(int i=0;i<list.size();i++){
+            double w=.5*(list.get(i).getCWidth()+getWidth());
+            double h=.5*(list.get(i).getCHeight()+getHeight());
+            double dx=list.get(i).getCCenterX()-getCenterX();
+            double dy=list.get(i).getCCenterY()-getCenterY();
+            if(Math.abs(dx)<=w&&Math.abs(dy)<=h){
+                projectileHit(projectile);
+                i--;
+            }
+        }
     }
 
     public void projectileHit(Projectile projectile){
-        // implement
+        projectile.removeProjectileFromList(reference);
+        removeProjectileFromList(reference);
     }
 
     // this projectile can always hurt the player

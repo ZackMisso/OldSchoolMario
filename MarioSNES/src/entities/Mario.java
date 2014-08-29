@@ -125,8 +125,11 @@ public class Mario extends GameEntity{
                 if(wy>hx){
                     if(wy>-hx){
                         // Collision is on the top
-                        if(list.get(i).hit(state.getPlayerState(),this))
-                            list.remove(i--);
+                        if(list.get(i).getKilledByTop())
+                            if(list.get(i).hit(state.getPlayerState(),this))
+                                list.remove(i--);
+                        else
+                            hit();
                     }else{
                         // Collision is from the left
                         hit();

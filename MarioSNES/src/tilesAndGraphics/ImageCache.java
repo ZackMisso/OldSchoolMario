@@ -13,10 +13,16 @@ public class ImageCache {
     public static BufferedImage block;
     public static BufferedImage floor;
     public static BufferedImage breakableBlock;
-    public static BufferedImage sky;
-    //public static final BufferedImage goomba;
-    //public static final BufferedImage koopa;
-    //public static final BufferedImage pipe;
+    //public static BufferedImage sky;
+    public static final BufferedImage goomba;
+    public static final BufferedImage koopa;
+    public static final BufferedImage flyingKoopa;
+    public static final BufferedImage koopaShell;
+    public static final BufferedImage pipe1v1;
+    public static final BufferedImage pipe1v2;
+    public static final BufferedImage pipe1v3;
+    public static final BufferedImage pipe1v4;
+    public static final BufferedImage pipe1v5;
     //public static final BufferedImage flag;
     
     public static void initImages(){

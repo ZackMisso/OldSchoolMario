@@ -9,6 +9,13 @@ import tilesAndGraphics.ImageCache;
 import java.awt.Color;
 import java.awt.Graphics2D;
 public class Block extends GameEntity{
+    public Block(){
+        // implement
+        setWidth(16);
+        setHeight(16);
+        setImage(ImageCache.block);
+    }
+
     public Block(double x,double y,int w,int h){
         setXpos(x);
         setYpos(y);
