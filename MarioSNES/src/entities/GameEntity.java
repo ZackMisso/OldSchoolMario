@@ -5,7 +5,8 @@
  */
 package entities;
 import core.GamePanel;
-import gameState.Level1State;
+import java.awt.Color;
+//import gameState.Level1State;
 import java.awt.image.BufferedImage;
 import java.awt.Rectangle;
 import java.awt.Graphics2D;
@@ -36,6 +37,7 @@ public abstract class GameEntity {
     private double jumpStart;
     private double stopJumpSpeed;
     private boolean onScreen; // used to save some computation
+    private boolean drawC; // used for debugging
     
     public boolean collidesWith(GameEntity other){
         Rectangle one=getRigidBody();
@@ -105,6 +107,10 @@ public abstract class GameEntity {
 
     public void draw(Graphics2D g){
         g.drawImage(image,(int)xpos,(int)ypos,null);
+        if(drawC){
+            g.setColor(Color.MAGENTA);
+            g.drawRect((int)cxpos,(int)cypos,cwidth,cheight);
+        }
     }
     
     // getter methods
@@ -162,4 +168,5 @@ public abstract class GameEntity {
     public void setJumpStart(double param){jumpStart=param;}
     public void setStopJumpSpeed(double param){stopJumpSpeed=param;}
     public void setOnScreen(boolean param){onScreen=param;}
+    public void setDrawC(boolean param){drawC=param;}
 }

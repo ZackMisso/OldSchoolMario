@@ -55,6 +55,7 @@ public class Mario extends GameEntity{
         setOnScreen(true);
         setFalling(true);
         //setDy(1);
+        setDrawC(true);
     }
     
     public void update(ArrayList<Block> list,Level1State state){
@@ -120,14 +121,17 @@ public class Mario extends GameEntity{
             double dx=list.get(i).getCCenterX()-getCenterX();
             double dy=list.get(i).getCCenterY()-getCenterY();
             if(Math.abs(dx)<=w&&Math.abs(dy)<=h){
+                System.out.println("COLLISION :: MARIO");
                 double wy=w*dy;
                 double hx=h*dx;
                 if(wy>hx){
                     if(wy>-hx){
                         // Collision is on the top
                         if(list.get(i).getKilledByTop())
-                            if(list.get(i).hit(state.getPlayerState(),this))
-                                list.remove(i--);
+                            if(list.get(i).hit(state.getPlayerState(),this)){
+                                //list.remove(i--);
+                                // should this do anything?
+                            }
                         else
                             hit();
                     }else{
@@ -250,6 +254,13 @@ public class Mario extends GameEntity{
 
     public void hit(){
         System.out.println("The Player Was Hit");
+        die();
+    }
+    
+    // what happens when the player dies
+    public void die(){
+        // implement
+        System.exit(0);
     }
     
     public void keyPressed(int k){
@@ -267,6 +278,8 @@ public class Mario extends GameEntity{
     public void draw(Graphics2D g){
         //g.drawImage(getImage(),(int)getXpos(),(int)getYpos(),null);
         super.draw(g);
+        g.setColor(Color.magenta);
+        g.drawRect((int)getXpos(),(int)getYpos(),getWidth(),getHeight());
         // the code below is for debugging purposes
         g.setColor(Color.BLACK);
         g.drawRect((int)rectx,(int)recty,rectw,recth);

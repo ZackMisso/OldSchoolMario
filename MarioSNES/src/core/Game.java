@@ -5,9 +5,10 @@
  */
 package core;
 import javax.swing.JFrame;
+import neuroevolution.MarioAI;
 import tilesAndGraphics.ImageCache;
 public class Game {
-    public static void main(String[] args){
+    public static void initMario(){
         JFrame window=new JFrame("Mario");
         ImageCache.initImages();
         window.setContentPane(new GamePanel());
@@ -15,5 +16,9 @@ public class Game {
         window.setResizable(false);
         window.pack();
         window.setVisible(true);
+    }
+    
+    public static void initMarioAI(MarioAI ai){
+        // implement
     }
 }

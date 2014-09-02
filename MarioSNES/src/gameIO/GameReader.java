@@ -27,12 +27,12 @@ public class GameReader {
     // TODO :: make more abstract method later
     private void loadLevel1(Level1State state){
         try{
-        	private boolean mario;
+        	boolean mario=false;
         	Scanner scanner=new Scanner(new File("testLevel.txt"));
         	while(scanner.hasNextLine()){
         		String string=scanner.nextLine();
         		if(string.equals("mario")&&!mario){
-        			readInMario();
+        			readInMario(state,scanner);
         			mario=true;
         		}
         		if(string.equals("floor"))
@@ -63,9 +63,9 @@ public class GameReader {
         do{
             string=scanner.next();
             if(string.equals("startX"))
-                mario.setXpos(string.nextInt());
+                mario.setXpos(scanner.nextInt());
             if(string.equals("startY"))
-                mario.setYpos(string.nextInt());
+                mario.setYpos(scanner.nextInt());
         }while(string.equals("End"));
         state.setPlayer(mario);
     }
@@ -76,9 +76,9 @@ public class GameReader {
         do{
             string=scanner.next();
             if(string.equals("startX"))
-                floor.setXpos(string.nextInt());
+                floor.setXpos(scanner.nextInt());
             if(string.equals("startY"))
-                floor.setYpos(string.nextInt());
+                floor.setYpos(scanner.nextInt());
         }while(string.equals("End"));
         floor.updateC();
         state.getBlocks().add(floor);
@@ -90,9 +90,9 @@ public class GameReader {
         do{
             string=scanner.next();
             if(string.equals("startX"))
-                block.setXpos(string.nextInt());
+                block.setXpos(scanner.nextInt());
             if(string.equals("startY"))
-                block.setYpos(string.nextInt());
+                block.setYpos(scanner.nextInt());
         }while(string.equals("End"));
         block.updateC();
         state.getBlocks().add(block);
@@ -104,9 +104,9 @@ public class GameReader {
         do{
             string=scanner.next();
             if(string.equals("startX"))
-                breakableBlock.setXpos(string.nextInt());
+                breakableBlock.setXpos(scanner.nextInt());
             if(string.equals("startY"))
-                breakableBlock.setYpos(string.nextInt());
+                breakableBlock.setYpos(scanner.nextInt());
         }while(string.equals("End"));
         breakableBlock.updateC();
         state.getBlocks().add(breakableBlock);
@@ -122,9 +122,9 @@ public class GameReader {
         do{
             string=scanner.next();
             if(string.equals("startX"))
-                goomba.setXpos(string.nextInt());
+                goomba.setXpos(scanner.nextInt());
             if(string.equals("startY"))
-                goomba.setYpos(string.nextInt());
+                goomba.setYpos(scanner.nextInt());
         }while(string.equals("End"));
         state.getEnemies().add(goomba);
     }
@@ -135,10 +135,11 @@ public class GameReader {
         do{
             string=scanner.next();
             if(string.equals("startX"))
-                koopa.setXpos(string.nextInt());
+                koopa.setXpos(scanner.nextInt());
             if(string.equals("startY"))
-                koopa.setYpos(string.nextInt());
+                koopa.setYpos(scanner.nextInt());
             if(string.equals("size")){
+                int size=scanner.nextInt();
                 if(size==2)
                     koopa.setFlying(true);
             }
@@ -156,9 +157,9 @@ public class GameReader {
         do{
             string=scanner.next();
             if(string.equals("startX"))
-                piranhaPlant.setXpos(string.nextInt());
+                piranhaPlant.setXpos(scanner.nextInt());
             if(string.equals("startY"))
-                piranhaPlant.setYpos(string.nextInt());
+                piranhaPlant.setYpos(scanner.nextInt());
         }while(string.equals("End"));
         state.getEnemies().add(piranhaPlant);
     }
@@ -169,9 +170,9 @@ public class GameReader {
         do{
             string=scanner.next();
             if(string.equals("startX"))
-                firePlant.setXpos(string.nextInt());
+                firePlant.setXpos(scanner.nextInt());
             if(string.equals("startY"))
-                firePlant.setYpos(string.nextInt());
+                firePlant.setYpos(scanner.nextInt());
         }while(string.equals("End"));
         state.getEnemies().add(firePlant);
     }

@@ -11,6 +11,7 @@ import entities.Mario;
 import entities.Block;
 import entities.Floor;
 import enemies.Enemy;
+import enemies.Goomba;
 import core.GamePanel;
 import collectables.Collectable;
 import projectiles.Projectile;
@@ -25,7 +26,7 @@ public class Level1State extends GameState{
     // TODO :: merge these four arraylists
     private ArrayList<Enemy> enemies;
     private ArrayList<Block> blocks;
-    private ArrayList<Projectile> projectiles;
+    //private ArrayList<Projectile> projectiles;
     private ArrayList<Collectable> collectables;
     private double xOffset;
     private double yOffset;
@@ -35,7 +36,7 @@ public class Level1State extends GameState{
         setGSM(param);
         blocks=new ArrayList<>();
         enemies=new ArrayList<>();
-        projectiles=new ArrayList<>();
+        //projectiles=new ArrayList<>();
         collectables=new ArrayList<>();
         init();
     }
@@ -95,14 +96,22 @@ public class Level1State extends GameState{
             blocks.add(new Block(i*16+x,208-7*16,16,16));
         }
     }
-
+    
+    // this is only used for testing
     private void initEnemies(){
-        // implement
+        System.out.println("Initializing Enemies");
+        Goomba goom=new Goomba(240.0,100.0);
+        goom.addEnemyToList(this);
+        //enemies.add(new Goomba(240.0,100.0));
     }
     
     public void update(){
         player.update(blocks,this);
         player.finalizeMovement(this);
+        //System.out.println(enemies.get(0).getXpos());
+        //System.out.println(enemies.get(0).getWidth());
+        //System.out.println(enemies.get(0).getHeight());
+        //System.out.println(enemies.get(0).getYpos());
         for(int i=0;i<blocks.size();i++){
             blocks.get(i).setXpos(blocks.get(i).getXpos()-xOffset);
             if(blocks.get(i).isOnScreen())
@@ -144,7 +153,8 @@ public class Level1State extends GameState{
     
     // getter methods
     public PlayerState getPlayerState(){return playerState;}
-    public ArrayList<Projectile> getProjectiles(){return projectiles;}
+    //public ArrayList<Projectile> getProjectiles(){return projectiles;} // implement projectiles later
+    public ArrayList<Block> getBlocks(){return blocks;}
     public ArrayList<Enemy> getEnemies(){return enemies;}
     public ArrayList<Collectable> getCollectables(){return collectables;}
     //public TileMap getTileMap(){return tileMap;}

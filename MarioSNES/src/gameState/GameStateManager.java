@@ -8,6 +8,7 @@ import gameState.Level1State;
 import java.util.ArrayList;
 import java.awt.Graphics2D;
 public class GameStateManager {
+    // THIS CLASS IS DEPRECIATED.... REMOVE IT SOON
     private ArrayList<GameState> gameStates;
     private int currentState;
     public static final int MENUSTATE=0;

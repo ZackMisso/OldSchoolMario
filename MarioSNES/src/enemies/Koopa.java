@@ -153,6 +153,11 @@ public class Koopa extends Enemy implements Projectile{
     public void killed(){
     	// IDK if I am going to use this method yet
     }
+    
+    public boolean hitByProjectile(Projectile projectile){
+        // implement
+        return false;
+    }
 
     // Projectile methods
 
@@ -163,12 +168,12 @@ public class Koopa extends Enemy implements Projectile{
     public void addProjectileToList(Level1State state){
         if(reference==null)
             reference=state;
-        state.getProjectiles().add(this);
+        //state.getProjectiles().add(this);
         state.getEnemies().remove(this); // update this later
     }
 
     public void removeProjectileFromList(Level1State state){
-        state.getProjectiles().remove(this);
+        //state.getProjectiles().remove(this);
     }
 
     public void enemyHit(Enemy enemy){
@@ -176,16 +181,16 @@ public class Koopa extends Enemy implements Projectile{
     }
 
     public void checkProjectileCollision(ArrayList<Projectile> list){
-        for(int i=0;i<list.size();i++){
-            double w=.5*(list.get(i).getCWidth()+getWidth());
-            double h=.5*(list.get(i).getCHeight()+getHeight());
-            double dx=list.get(i).getCCenterX()-getCenterX();
-            double dy=list.get(i).getCCenterY()-getCenterY();
-            if(Math.abs(dx)<=w&&Math.abs(dy)<=h){
-                projectileHit(projectile);
-                i--;
-            }
-        }
+    //    for(int i=0;i<list.size();i++){
+    //        double w=.5*(list.get(i).getCWidth()+getWidth());
+    ///        double h=.5*(list.get(i).getCHeight()+getHeight());
+    //       double dx=list.get(i).getCCenterX()-getCenterX();
+    ///        double dy=list.get(i).getCCenterY()-getCenterY();
+    //       if(Math.abs(dx)<=w&&Math.abs(dy)<=h){
+    //            projectileHit(projectile);
+    //            i--;
+    //        }
+    //    }
     }
 
     public void projectileHit(Projectile projectile){
@@ -197,4 +202,9 @@ public class Koopa extends Enemy implements Projectile{
     public boolean getPlayer(){return false;}
     // this projectile can always hurt the enemy
     public boolean getEnemy(){return false;}
+    
+    // getter methods
+    
+    // setter methods
+    public void setFlying(boolean param){flying=param;}
 }

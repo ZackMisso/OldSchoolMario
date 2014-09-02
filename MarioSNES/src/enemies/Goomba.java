@@ -7,26 +7,48 @@ package enemies;
 import entities.Block;
 import entities.Mario;
 import gameState.PlayerState;
+import projectiles.Projectile;
+import tilesAndGraphics.ImageCache;
 import java.util.ArrayList;
 public class Goomba extends Enemy{
     private boolean facingRight;
 
     public Goomba(){
+        this(0.0,0.0);
+    }
+    
+    public Goomba(double x,double y){
+        super();
         facingRight=false;
+        setImage(ImageCache.goomba);
+        setXpos(x);
+        setYpos(y);
+        setWidth(ImageCache.goomba.getWidth());
+        setHeight(ImageCache.goomba.getHeight());
+        updateC();
+        setDrawC(true);
+    }
+    
+    private void updateC(){ // TODO :: Test if this is even being called
+        setCXpos(getXpos()+2);
+        setCYpos(getYpos());
+        setCWidth(getWidth()-4);
+        setCHeight(getHeight()-1);
     }
 
     public void update(ArrayList<Block> blocks){
         if(getFalling())
             setDy(getDy()+.11);
         if(facingRight)
-            setDx(1);
+            setDx(.3);
         else
-            setDx(-1);
+            setDx(-.3);
         setXTemp(getXpos()+getDx());
         setYTemp(getYpos()+getDy());
         checkBlockCollision(blocks);
         setXpos(getXTemp());
         setYpos(getYTemp());
+        updateC();
     }
     
     public void turn(){
@@ -127,13 +149,14 @@ public class Goomba extends Enemy{
 
     public boolean hit(PlayerState state,Mario mario){
         mario.rebound();
-        state.addPoints(100);
+        //state.addPoints(100);
         killed();
         return true;
     }
 
     public boolean hitByProjectile(Projectile projectile){
         killed();
+        return true;
     }
     
     public void killed(){

@@ -5,3 +5,4 @@ Level1State :: 23 :: Figure out a way to merge the four arraylists
 ALL :: Make Mario apart of the PlayerState
 Enemy :: 13 :: Fix this class
 GameReader :: 22 :: Make a better Quiry system so the reader does not directly read the file.
+FIX ENEMY PROJECTILE MESS

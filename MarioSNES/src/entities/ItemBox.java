@@ -4,12 +4,13 @@
  *
  */
 package entities;
+import collectables.Collectable;
 public class ItemBox extends Block{
 	private Collectable contents;
 	private boolean empty;
 
     public ItemBox(double x,double y,int w,int h){
-    	super(x,t,w,h);
+    	super(x,y,w,h);
     	empty=true;
     }
 
