@@ -5,65 +5,50 @@ import java.util.ArrayList;
 import java.util.Random;
 public class EvolutionaryAlgorithm {
     private ArrayList<NeuralNetwork> networks;
-    private ArrayList<NeuralNetwork> bests;
+    private GamePanel game;
     
     public EvolutionaryAlgorithm(){
         networks=new ArrayList<>();
-        bests=new ArrayList<>();
         initializeFirstGeneration();
-        runXORExperiment();
     }
     
     // possibly change this to allow for different set-ups
     private void initializeFirstGeneration(){
         for(int i=0;i<GlobalController.individuals;i++)
-            networks.add(new NeuralNetwork());
+            networks.add(new NeuralNetwork(6,3));
     }
-    
-    private void runXORExperiment(){
-        System.out.println("Starting XOR Test\n\n");
+
+    public void runExperiment(){
+        System.out.println("Starting Experiment");
         NeuralNetwork totalBest=new NeuralNetwork();
-        XORTest test=tests.getXORTest();
         int f;
-        boolean chk=true;
-        for(int i=0;i<numberOfGenerations&&chk;i++){
+        for(int i=0;i<numberOfGenerations;i++){
             ArrayList<NeuralNetwork> newList=new ArrayList<>();
             for(f=0;f<networks.size();f++){
-                //System.out.println("DEBUG 3");
-                tests.runXORTests(networks.get(f));
-                //System.out.println("DEBUG 2");
+                runMarioGame(networks.get(f));
             }
-            //System.out.println("DEBUG 1");
             networks=sortNetworksByFitness(networks);
-            bests.add(networks.get(0));
-            if(networks.get(0).getFitness()==4.0){
-                chk=false;
-                totalBest=networks.get(0);
-            }
             if(networks.get(0).getFitness()>totalBest.getFitness())
                 totalBest=networks.get(0);
-            if(networks.get(0).getFitness()==test.getSolutionFitness())
-                System.out.println("Solution Found :: Generation "+i);
             for(f=0;f<networks.size()/2;f++){
                 networks.get(f).mutate();
                 newList.add(networks.get(f).copy());
+                networks.get(f).mutate();
                 newList.add(networks.get(f).copy());
-                //System.out.println(networks.get(f).getNeurons().size());
-                // Add in crossover functionality
             }
-            //for(f=0;f<networks.size();f++){
-            //    networks.get(f).mutate();
-            //    System.out.println(networks.get(f).getNeurons().size());
-            //    newList.add(networks.get(f));
-            //}
-            if(networks.size()!=newList.size())
-                System.out.println("Error :: Size Mismatch :: EvolutionaryAlgorithm");
+            // IMPLEMENT CROSSOVER !!!
             networks=newList;
             System.out.println("Generation "+i+" Over :: Best "+bests.get(bests.size()-1).getFitness());
-            // continue implementation
+            NetWriter.write(totalBest,"Generation"+i+"Best_"+totalBest.getFitness());
         }
-        new CMDTester(totalBest);
-        //System.out.println(totalBest);
+        NetWriter.write(totalBest,"bestRun_"+totalBest.getFitness());
+    }
+
+    private void runMarioGame(NeuralNetwork net){
+        MarioAI agent=new MarioAI();
+        agent.createAI(net);
+        Level1State state=(Level1State)(game.getGSM().getGameStates().get(1));
+        panel.controlledRun();
     }
     
     // this is going to be Merge Sort, possibly implement others later
@@ -96,10 +81,6 @@ public class EvolutionaryAlgorithm {
                     merged.add(one.remove(0));
                 else
                     merged.add(two.remove(0));
-                //if(one.get(0).size()>two.get(0).size())
-                    //merged.add(one.remove(0));
-                //else
-                    //merged.add(two.remove(0));
             }
         }
         while(!one.isEmpty())
@@ -111,17 +92,8 @@ public class EvolutionaryAlgorithm {
     
     // getter methods
     public ArrayList<NeuralNetwork> getNetworks(){return networks;}
-    public ArrayList<NeuralNetwork> getBests(){return bests;}
-    public TestCases getTests(){return tests;}
-    public DataRecorder getRecorder(){return recorder;}
-    public int getNumberOfGenerations(){return numberOfGenerations;}
-    public int getPopulationSize(){return populationSize;}
     
     // setter methods
     public void setNetworks(ArrayList<NeuralNetwork> param){networks=param;}
-    public void setBests(ArrayList<NeuralNetwork> param){bests=param;}
-    public void setTestCases(TestCases param){tests=param;}
-    public void setRecorder(DataRecorder param){recorder=param;}
-    public void setNumberOfGenerations(int param){numberOfGenerations=param;}
-    public void setPopulationSize(int param){populationSize=param;}
+    public void setGame(GamePanel param){game=param;}
 }

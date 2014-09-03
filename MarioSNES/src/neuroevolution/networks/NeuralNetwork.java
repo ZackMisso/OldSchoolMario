@@ -326,19 +326,19 @@ public class NeuralNetwork {
     
     // TODO :: Write a new run method
     public ArrayList<Double> run(){
-        //ArrayList<OutputNeuron> outputs=findOutputs();
-        //ArrayList<InputNeuron> inputs=findInputs();
-        //ArrayList<Double> results=new ArrayList<>();
+        ArrayList<OutputNeuron> outputs=findOutputs();
+        ArrayList<InputNeuron> inputs=findInputs();
+        ArrayList<Double> results=new ArrayList<>();
         //for(int i=0;i<param.getInputs().size();i++){
         //    inputs.get(i).setInput(param.getInputs().get(i));
         //}
-        //for(int i=0;i<outputs.size();i++){
-        //    outputs.get(i).evaluate();
-        //    results.add(outputs.get(i).getOutput());
-        //}
-        //nextGeneration();
-        //return results;
-        return null;
+        for(int i=0;i<outputs.size();i++){
+            outputs.get(i).evaluate();
+            results.add(outputs.get(i).getOutput());
+        }
+        nextGeneration();
+        return results;
+        //return null;
     }
 
     public NeuralNetwork copy(){

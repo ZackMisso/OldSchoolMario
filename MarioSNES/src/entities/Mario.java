@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 public class Mario extends GameEntity{
+    private Level1State reference; // this should be removed later
     private MarioAI ann; // this should be moved
     //private int health;
     private boolean dead;
@@ -299,4 +300,5 @@ public class Mario extends GameEntity{
     //public void setDead(boolean param){dead=param;}
     //public void setFlinching(boolean param){flinching=param;}
     //public void setFlinchTime(long param){flinchTime=param;}
+    public void setANN(MarioAI param){ann=param;}
 }

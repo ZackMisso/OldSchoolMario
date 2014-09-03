@@ -26,6 +26,7 @@ public class GamePanel extends JPanel implements Runnable,KeyListener{
     
     public GamePanel(){
         super();
+        gsm=new GameStateManager();
         setPreferredSize(new Dimension(WIDTH*SCALE,HEIGHT*SCALE));
         setFocusable(true);
         requestFocus();
@@ -33,24 +34,31 @@ public class GamePanel extends JPanel implements Runnable,KeyListener{
     
     public void addNotify(){
         super.addNotify();
-        if(thread==null){
+        if(thread==null&&GlobalController.gameRunning){
             thread=new Thread(this);
             addKeyListener(this);
             thread.start();
         }
     }
+
+    public void controlledRun(){
+        thread=new Thread(this);
+        addKeyListener(this);
+        thread.start();
+        thread.join();
+    }
     
     public void init(){
         image=new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
         g=(Graphics2D)image.getGraphics();
-        running=true;
-        gsm=new GameStateManager();
+        //running=true;
+        GlobalController.running=true;
     }
     
     public void run(){
         init();
         long start,elapsed,wait;
-        while(running){
+        while(GlobalController.running){
             start=System.nanoTime();
             update();
             draw();
@@ -91,4 +99,7 @@ public class GamePanel extends JPanel implements Runnable,KeyListener{
     public void keyReleased(KeyEvent event){
         gsm.keyReleased(event.getKeyCode());
     }
+
+    // getter methods
+    public GameStateManager getGSM(){return gsm;}
 }

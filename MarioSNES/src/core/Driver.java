@@ -9,13 +9,13 @@ public class Driver {
         GlobalController.init();
         if(GlobalController.evolving){
             System.out.println("This program is evolving an AI to play Mario");
-            // implement
+            new Game();
         }else if(GlobalController.aiRun){
             System.out.println("The game is playing in AI mode");
-            // implement
+            new Game();
         }else{
             System.out.println("The game is playing in player mode");
-            Game.initMario();
+            new Game();
         }
     }
 }

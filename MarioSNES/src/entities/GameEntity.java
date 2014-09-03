@@ -71,6 +71,14 @@ public abstract class GameEntity {
         dx=x;
         dy=y;
     }
+
+    public double getRelativeX(GameEntity other){
+        return getCenterX()-other.getCenterX();
+    }
+
+    public double getRelativeY(GameEntity other){
+        return getCenterY()-other.getCenterY();
+    }
     
     public double distanceBetweenCenters(GameEntity other){
         double x=getCenterX()-other.getCenterX();
@@ -78,6 +86,14 @@ public abstract class GameEntity {
         x*=x;
         y*=y;
         return Math.sqrt(x+y);
+    }
+
+    public double efficientDistanceBetween(GameEntity other){
+        double x=getCenterX()-other.getCenterX();
+        double y=getCenterY()-other.getCenterY();
+        x*=x;
+        y*=y;
+        return x+y;
     }
     
     public double getMaxDistance(GameEntity other){

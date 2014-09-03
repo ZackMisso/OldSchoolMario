@@ -8,7 +8,19 @@ import javax.swing.JFrame;
 import neuroevolution.MarioAI;
 import tilesAndGraphics.ImageCache;
 public class Game {
-    public static void initMario(){
+    private GamePanel panel;
+    private EvolutionaryAlgorithm evo;
+
+    public Game(){
+        if(GlobalController.gameRunning)
+            initNormalMario();
+        if(GlobalController.aiRun)
+            initMarioAI();
+        if(GlobalController.evolving)
+            initMarioEvo();
+    }
+
+    public void initNormalMario(){
         JFrame window=new JFrame("Mario");
         ImageCache.initImages();
         window.setContentPane(new GamePanel());
@@ -18,7 +30,15 @@ public class Game {
         window.setVisible(true);
     }
     
-    public static void initMarioAI(MarioAI ai){
-        // implement
+    public void initMarioAI(){
+        NeuralNetwork net=NetReader.readNetwork(GlobalController.aiFileName);
+        // implement the rest
+    }
+
+    public void initMarioEvo(){
+        evo=new EvolutionaryAlgorithm();
+        panel=new GamePanel();
+        evo.setGame(panel);
+        evo.runExperiment();
     }
 }

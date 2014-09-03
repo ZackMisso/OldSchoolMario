@@ -22,6 +22,7 @@ public class Level1State extends GameState{
     private PlayerState playerState; // this will probably be moved later
     //private TileMap tileMap;
     private Mario player;
+    private MarioAI ann;
     //private Background background;
     // TODO :: merge these four arraylists
     private ArrayList<Enemy> enemies;
@@ -47,12 +48,18 @@ public class Level1State extends GameState{
         // load the tile map
         //player=new Mario(tileMap);
         player=new Mario();
+        player.setReference(this);
         player.setPosition(100,100);
         totalPast=100;
         xOffset=0;
         yOffset=0;
         initBlocks();
         initEnemies();
+    }
+
+    public void replaceAI(MarioAI param){
+        ann=param;
+        player.setANN(param);
     }
     
     private void initBlocks(){
@@ -142,6 +149,27 @@ public class Level1State extends GameState{
         //tileMap.draw(g);
         player.draw(g);
     }
+
+    public void end(){
+        ann.getNet().setFitness(xOffset);
+        // implement more if needed
+        GlobalController.running=false;
+    }
+
+    public void reset(){
+        player=null;
+        enemies.clear();
+        blocks.clear();
+        collectables.clear();
+        player=new Mario();
+        player.setReference(this);
+        player.setPosition(100,100);
+        totalPast=100;
+        xOffset=0;
+        yOffset=0;
+        initBlocks();
+        initEnemies();
+    }
     
     public void keyPressed(int k){
         player.keyPressed(k);
@@ -166,6 +194,8 @@ public class Level1State extends GameState{
     
     // setter methods
     //public void setTileMap(TileMap param){tileMap=param;}
+    public void setReference(Level1State param){reference=param;}
+    public void setANN(MarioAI param){ann=param}
     public void setPlayer(Mario param){player=param;}
     //public void setBackground(Background param){background=param;}
     public void setXOffset(double param){xOffset=param;}

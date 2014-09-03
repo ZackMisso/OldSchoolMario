@@ -5,5 +5,7 @@
  */
 package neuroevolution.io;
 public class NetWriter {
-    // implement
+    public static void write(NeuralNetwork net,String fileName){
+    	// implement
+    }
 }
