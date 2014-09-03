@@ -20,7 +20,10 @@ public abstract class Neuron extends Node{
         setInnovationNum(-100);
         threshold=1.0;
         Random random=new Random();
+        double neg=random.nextDouble();
         bias=random.nextDouble();
+        if(neg>.5)
+            bias*=-1;
     }
     
     public abstract double evaluate();

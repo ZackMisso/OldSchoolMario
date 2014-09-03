@@ -4,6 +4,7 @@ import neuroevolution.networks.NeuralNetwork;
 import neuroevolution.Node;
 import neuroevolution.neurons.Neuron;
 import java.util.ArrayList;
+import java.util.Random;
 public class Connection extends Node{
     private Neuron giveNeuron;
     private Neuron recieveNeuron;
@@ -13,7 +14,11 @@ public class Connection extends Node{
     public Connection(){
         giveNeuron=null;
         recieveNeuron=null;
-        weight=0.0;
+        Random random=new Random();
+        double neg=random.nextDouble();
+        weight=random.nextDouble();
+        if(neg>.5)
+            weight*=-1;
         setInnovationNum(-1);
         active=false;
     }

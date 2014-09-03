@@ -4,6 +4,11 @@
  * 
  */
 package neuroevolution;
+import neuroevolution.networks.NeuralNetwork;
+import gameState.Level1State;
+import entities.Mario;
+import entities.Block;
+import java.util.ArrayList;
 public class MarioAI {
     private NeuralNetwork net;
     private ArrayList<Double> outputs;
@@ -37,8 +42,12 @@ public class MarioAI {
     		inputs.add(nearest.get(i).getRelativeY(state.getPlayer()));
     	}
     	// now propogate
+        //System.out.println(inputs.toString());
     	net.setInputs(inputs);
     	outputs=net.run();
+        //System.out.println(outputs.toString());
+        //System.out.println(net.getNeurons().size());
+        //System.out.println("THIS HAS RAN");
     }
 
     // The effitientcy of this could be greatly improved
@@ -47,12 +56,12 @@ public class MarioAI {
     	nearest.add(new Block(0,0,-100000,-1000000));
     	nearest.add(new Block(0,0,-100000,-1000000));
     	nearest.add(new Block(0,0,-100000,-1000000));
-    	double zero=10000000000;
-    	double one=10000000000;
-    	double two=10000000000;
+    	double zero=10000000000.0;
+    	double one=10000000000.0;
+    	double two=10000000000.0;
     	for(int i=0;i<blocks.size();i++){
     		Block blk=blocks.get(i);
-    		double dist=player.effitientDistanceBetween(blk);
+    		double dist=player.efficientDistanceBetween(blk);
     		if(dist<zero){
     			double temp=zero;
     			zero=dist;
@@ -74,6 +83,8 @@ public class MarioAI {
     			nearest.set(2,blk);
     		}
     	}
+        //System.out.println(zero+" :: closest distance to a block");
+        return nearest;
     }
     
     // getter methods

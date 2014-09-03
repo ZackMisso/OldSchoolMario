@@ -44,8 +44,11 @@ public class GamePanel extends JPanel implements Runnable,KeyListener{
     public void controlledRun(){
         thread=new Thread(this);
         addKeyListener(this);
+        init();
         thread.start();
-        thread.join();
+        try{
+            thread.join();
+        }catch (InterruptedException e){System.out.println("Thread Interupted... IDK");};
     }
     
     public void init(){
@@ -85,6 +88,8 @@ public class GamePanel extends JPanel implements Runnable,KeyListener{
     
     private void drawToScreen(){
         Graphics g2=getGraphics();
+        //if(image==null)
+        //    System.out.println(image.getHeight());
         g2.drawImage(image,0,0,WIDTH*SCALE,HEIGHT*SCALE,null);
         g2.dispose();
     }

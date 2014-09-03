@@ -7,8 +7,8 @@ package core;
 public class GlobalController {
     // TODO :: Implement functionality for some of these
     public static String aiFileName;
-    public static final double MAX_WEIGHT_VALUE=10;
-	public static final double MIN_WEIGHT_VALUE=-10;
+    public static final double MAX_WEIGHT_VALUE=5;
+	public static final double MIN_WEIGHT_VALUE=-5;
     public static final int MAX_NEURONS=200;
     public static final int MIN_NEURONS=9;
     public static final int MAX_CONNECTIONS=10000;
@@ -27,14 +27,14 @@ public class GlobalController {
     // set default values for global variables
     public static void init(){
         aiFileName="";
-        individuals=10;
-        generations=10;
-        evolving=false;
+        individuals=100;
+        generations=50;
+        evolving=true;
         aiRun=false;
         debug=false;
         headless=false;
         gameRunning=false;
-        running=false;
+        running=true;
     }
 
     // I dont think the two below are needed

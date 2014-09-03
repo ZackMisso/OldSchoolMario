@@ -11,10 +11,12 @@ import entities.Mario;
 import entities.Block;
 import entities.Floor;
 import enemies.Enemy;
-import enemies.Goomba;
+//import enemies.Goomba;
 import core.GamePanel;
+import core.GlobalController;
 import collectables.Collectable;
-import projectiles.Projectile;
+//import projectiles.Projectile; // implement later
+import neuroevolution.MarioAI;
 import java.awt.Graphics2D;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -32,6 +34,8 @@ public class Level1State extends GameState{
     private double xOffset;
     private double yOffset;
     private double totalPast;
+    private int timer; // temporary
+    private int timerMax; // also temporary
     
     public Level1State(GameStateManager param){
         setGSM(param);
@@ -43,7 +47,9 @@ public class Level1State extends GameState{
     }
     
     public void init(){
+        timer=0;
         //tileMap=ManualLevel.createMap();
+        timerMax=3000;
         //tileMap.setPosition(0,0);
         // load the tile map
         //player=new Mario(tileMap);
@@ -93,7 +99,7 @@ public class Level1State extends GameState{
             blocks.add(new Floor(i*16+x,y,16,16));
             blocks.add(new Floor(i*16+x,y+16,16,16));
         }
-        System.out.println(x+=10*16);
+        //System.out.println(x+=10*16);
         x=39*16;
         for(int i=0;i<4;i++){
             blocks.add(new Block(i*16+x,208-4*16,16,16));
@@ -106,13 +112,14 @@ public class Level1State extends GameState{
     
     // this is only used for testing
     private void initEnemies(){
-        System.out.println("Initializing Enemies");
-        Goomba goom=new Goomba(240.0,100.0);
-        goom.addEnemyToList(this);
+        //System.out.println("Initializing Enemies");
+        //Goomba goom=new Goomba(240.0,100.0);
+        //goom.addEnemyToList(this);
         //enemies.add(new Goomba(240.0,100.0));
     }
     
     public void update(){
+        timer++;
         player.update(blocks,this);
         player.finalizeMovement(this);
         //System.out.println(enemies.get(0).getXpos());
@@ -131,9 +138,18 @@ public class Level1State extends GameState{
         }
         player.checkCollisionsWithEnemies(enemies,this);
         totalPast+=xOffset;
-        if(totalPast>2320)
-            System.exit(0);
+        if(totalPast>2320){
+            end();
+        }
+        if(timer>=timerMax)
+            end();
         xOffset=0;
+    }
+    
+    public void makeTimer(int generation){
+        timerMax=100+40*generation;
+        if(timerMax>3000)
+            timerMax=3000;
     }
     
     public void draw(Graphics2D g){
@@ -151,9 +167,13 @@ public class Level1State extends GameState{
     }
 
     public void end(){
-        ann.getNet().setFitness(xOffset);
-        // implement more if needed
-        GlobalController.running=false;
+        if(GlobalController.aiRun||GlobalController.evolving){
+            ann.getNet().setFitness(totalPast);
+            reset();
+            GlobalController.running=false;
+        }else{
+            System.exit(0);
+        }
     }
 
     public void reset(){
@@ -167,6 +187,7 @@ public class Level1State extends GameState{
         totalPast=100;
         xOffset=0;
         yOffset=0;
+        timer=0;
         initBlocks();
         initEnemies();
     }
@@ -194,8 +215,7 @@ public class Level1State extends GameState{
     
     // setter methods
     //public void setTileMap(TileMap param){tileMap=param;}
-    public void setReference(Level1State param){reference=param;}
-    public void setANN(MarioAI param){ann=param}
+    public void setANN(MarioAI param){ann=param;}
     public void setPlayer(Mario param){player=param;}
     //public void setBackground(Background param){background=param;}
     public void setXOffset(double param){xOffset=param;}

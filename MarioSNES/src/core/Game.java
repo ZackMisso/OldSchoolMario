@@ -6,12 +6,16 @@
 package core;
 import javax.swing.JFrame;
 import neuroevolution.MarioAI;
+import neuroevolution.EvolutionaryAlgorithm;
+import neuroevolution.networks.NeuralNetwork;
+import neuroevolution.io.NetReader;
 import tilesAndGraphics.ImageCache;
 public class Game {
     private GamePanel panel;
     private EvolutionaryAlgorithm evo;
 
     public Game(){
+        ImageCache.initImages();
         if(GlobalController.gameRunning)
             initNormalMario();
         if(GlobalController.aiRun)
@@ -39,6 +43,13 @@ public class Game {
         evo=new EvolutionaryAlgorithm();
         panel=new GamePanel();
         evo.setGame(panel);
+        JFrame window=new JFrame("Mario");
+        ImageCache.initImages();
+        window.setContentPane(panel);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setResizable(false);
+        window.pack();
+        window.setVisible(true);
         evo.runExperiment();
     }
 }

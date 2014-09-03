@@ -16,8 +16,8 @@ public class NeuralNetwork {
     // TODO :: replace the bottom two with the one above
     private ArrayList<Neuron> neurons;
     private ArrayList<Connection> connections;
-    private ArrayList<Integer> inputs;
-    private ArrayList<Integer> outputs;
+    private ArrayList<Double> inputs;
+    private ArrayList<Double> outputs;
     private RandomNumberGenerator rng;
     private double fitness;
     private int nodeCnt; // this will be global soon
@@ -95,7 +95,7 @@ public class NeuralNetwork {
     // controls the mutation of the neural network
     public void mutate(){
         double chance=rng.simpleDouble();
-        if(chance>.9)
+        if(chance>.8)
             mutateTopography();
         else
             mutateWeights();
@@ -122,11 +122,13 @@ public class NeuralNetwork {
         Neuron neuron=neurons.get(nodeNum);
         double makeRandomConnection=rng.simpleDouble();
         double newNeuron=rng.simpleDouble();
-        if(makeRandomConnection>.55)
+        if(makeRandomConnection>.59)
             newRandomConnection(neuron);
         else if(neuron instanceof InputNeuron){
             ArrayList<Connection> outputs=neuron.getOutputs();
-            if(newNeuron>.8&&neurons.size()<GlobalController.MAX_NEURONS){
+            //System.out.println("WEEEEEEEEEEEEEEE");
+            if(newNeuron>.7&&neurons.size()<GlobalController.MAX_NEURONS){
+                //System.out.println("ADD NEURON WEEEEEEEE");
                 addNeuron(outputs,neuron);
             }else if(totalConnections()>GlobalController.MIN_CONNECTIONS){
                 turnOffConnection(outputs,neuron);
@@ -274,7 +276,7 @@ public class NeuralNetwork {
         // THIS SHOULD NEVER RUN
         if(connects.isEmpty()){
             mutate();
-            setFitness(-10.0);
+            setFitness(-10000.0);
             return;
         }
         //int connectionNum=random.nextInt(connects.size());
@@ -326,19 +328,29 @@ public class NeuralNetwork {
     
     // TODO :: Write a new run method
     public ArrayList<Double> run(){
-        ArrayList<OutputNeuron> outputs=findOutputs();
-        ArrayList<InputNeuron> inputs=findInputs();
+        ArrayList<OutputNeuron> outputNs=findOutputs();
+        //System.out.println(outputNs.size()+" :: Number of found output neurons");
+        ArrayList<InputNeuron> inpuNs=findInputs();
         ArrayList<Double> results=new ArrayList<>();
         //for(int i=0;i<param.getInputs().size();i++){
         //    inputs.get(i).setInput(param.getInputs().get(i));
         //}
-        for(int i=0;i<outputs.size();i++){
-            outputs.get(i).evaluate();
-            results.add(outputs.get(i).getOutput());
+        //System.out.println("DEBUG");
+        for(int i=0;i<outputNs.size();i++){
+            outputNs.get(i).evaluate();
+            results.add(outputNs.get(i).getOutput());
         }
+        //System.out.println(results.size()+" HADHFASDFA");
+        //System.out.println(results.toString());
         nextGeneration();
         return results;
         //return null;
+    }
+    
+    private void nextGeneration(){
+        outputs.clear();
+        inputs.clear();
+        fitness=0.0;
     }
 
     public NeuralNetwork copy(){
@@ -378,26 +390,26 @@ public class NeuralNetwork {
     }
 
     // THESE METHODS ARE USED FOR CMD TESTING
-    public Node getNode(int nodeNum){
-        for(int i=0;i<neurons.size();i++)
-            if(neurons.get(i).getInnovationNum()==nodeNum)
-                return neurons.get(i);
-        for(int i=0;i<connections.size();i++)
-            if(connections.get(i).getInnovationNum()==nodeNum)
-                return connections.get(i);
-        return null;
-    }
+    //public Node getNode(int nodeNum){
+    //    for(int i=0;i<neurons.size();i++)
+    //        if(neurons.get(i).getInnovationNum()==nodeNum)
+    //            return neurons.get(i);
+    //    for(int i=0;i<connections.size();i++)
+    //        if(connections.get(i).getInnovationNum()==nodeNum)
+    //            return connections.get(i);
+    //    return null;
+    //}
 
     // TODO :: Create a reference to the list of all nodes
 
-    public ArrayList<Node> getAllNodes(){
-        ArrayList<Node> nodes=new ArrayList<>();
-        for(int i=0;i<neurons.size();i++)
-            nodes.add(neurons.get(i));
-        for(int i=0;i<connections.size();i++)
-            nodes.add(connections.get(i));
-        return nodes;
-    }
+    //public ArrayList<Node> getAllNodes(){
+    //    ArrayList<Node> nodes=new ArrayList<>();
+    //    for(int i=0;i<neurons.size();i++)
+    //       nodes.add(neurons.get(i));
+    //    for(int i=0;i<connections.size();i++)
+    //        nodes.add(connections.get(i));
+    //    return nodes;
+    //}
     
     public void reset(){
         for(int i=0;i<neurons.size();i++)
@@ -419,16 +431,16 @@ public class NeuralNetwork {
     // getter methods
     public ArrayList<Neuron> getNeurons(){return neurons;}
     public ArrayList<Connection> getConnections(){return connections;}
-    public ArrayList<Integer> getInputs(){return inputs;}
-    public ArrayList<Integer> outputs(){return outputs;}
+    public ArrayList<Double> getInputs(){return inputs;}
+    public ArrayList<Double> getOutputs(){return outputs;}
     public double getFitness(){return fitness;}
     public int getNodeCnt(){return nodeCnt;}
     
     // setter methods
     public void setNeurons(ArrayList<Neuron> param){neurons=param;}
     public void setConnections(ArrayList<Connection> param){connections=param;}
-    public void setInputs(ArrayList<Integer> param){inputs=param;}
-    public void setOutputs(ArrayList<Integer> param){outputs=param;}
+    public void setInputs(ArrayList<Double> param){inputs=param;}
+    public void setOutputs(ArrayList<Double> param){outputs=param;}
     public void setRNG(RandomNumberGenerator param){rng=param;}
     public void setFitness(double param){fitness=param;}
     public void setNodeCnt(int param){nodeCnt=param;}

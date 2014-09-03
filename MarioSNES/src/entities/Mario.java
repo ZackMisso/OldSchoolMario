@@ -8,6 +8,7 @@ import gameState.Level1State;
 import tilesAndGraphics.ImageCache;
 import tilesAndGraphics.TileMap;
 import collectables.Collectable;
+import core.GlobalController;
 import enemies.Enemy;
 import projectiles.Projectile;
 import neuroevolution.MarioAI;
@@ -60,6 +61,12 @@ public class Mario extends GameEntity{
     }
     
     public void update(ArrayList<Block> list,Level1State state){
+        if(GlobalController.aiRun||GlobalController.evolving){
+            ann.propagate(reference);
+            setRight(ann.movesRight());
+            setLeft(ann.movesLeft());
+            setJumping(ann.jumps());
+        }
         // update position
         //getNextPosition();
         //checkTileMapCollision();
@@ -99,6 +106,13 @@ public class Mario extends GameEntity{
         }
         //setXTemp(getXpos()+getDx());
         //setYTemp(getYpos()+getDy());
+        if(GlobalController.aiRun||GlobalController.evolving){
+            //ann.propagate(reference);
+            //System.out.println("THIS SHOULD NOT BE RUNNING");
+            setRight(false);
+            setLeft(false);
+            setJumping(false);
+        }
     }
     
     public void finalizeMovement(Level1State state){
@@ -122,7 +136,7 @@ public class Mario extends GameEntity{
             double dx=list.get(i).getCCenterX()-getCenterX();
             double dy=list.get(i).getCCenterY()-getCenterY();
             if(Math.abs(dx)<=w&&Math.abs(dy)<=h){
-                System.out.println("COLLISION :: MARIO");
+                //System.out.println("COLLISION :: MARIO");
                 double wy=w*dy;
                 double hx=h*dx;
                 if(wy>hx){
@@ -265,15 +279,19 @@ public class Mario extends GameEntity{
     }
     
     public void keyPressed(int k){
-        if(k==KeyEvent.VK_D)setRight(true);
-        if(k==KeyEvent.VK_A)setLeft(true);
-        if(k==KeyEvent.VK_SPACE)setJumping(true);
+        if(GlobalController.gameRunning){
+            if(k==KeyEvent.VK_D)setRight(true);
+            if(k==KeyEvent.VK_A)setLeft(true);
+            if(k==KeyEvent.VK_SPACE)setJumping(true);
+        }
     }
     
     public void keyReleased(int k){
-        if(k==KeyEvent.VK_D)setRight(false);
-        if(k==KeyEvent.VK_A)setLeft(false);
-        if(k==KeyEvent.VK_SPACE)setJumping(false);
+        if(GlobalController.gameRunning){
+            if(k==KeyEvent.VK_D)setRight(false);
+            if(k==KeyEvent.VK_A)setLeft(false);
+            if(k==KeyEvent.VK_SPACE)setJumping(false);
+        }
     }
     
     public void draw(Graphics2D g){
@@ -301,4 +319,5 @@ public class Mario extends GameEntity{
     //public void setFlinching(boolean param){flinching=param;}
     //public void setFlinchTime(long param){flinchTime=param;}
     public void setANN(MarioAI param){ann=param;}
+    public void setReference(Level1State param){reference=param;}
 }
