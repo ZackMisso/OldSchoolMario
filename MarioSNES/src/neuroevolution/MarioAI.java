@@ -1,15 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-package neuroevolution;
-
 /**
  *
- * @author Zack Misso
+ * @author Zackary Misso
+ * 
  */
+package neuroevolution;
 public class MarioAI {
+    private NeuralNetwork net;
     
+    public MarioAI(){
+        net=null;
+    }
+    
+    // getter methods
+    public NeuralNetwork getNet(){return net;}
+    
+    // setter methods
+    public void setNet(NeuralNetwork param){net=param;}
 }
