@@ -17,7 +17,7 @@ public class GamePanel extends JPanel implements Runnable,KeyListener{
     public static final int HEIGHT=240;
     public static final int SCALE=2;
     private Thread thread;
-    private boolean running;
+    //private boolean running;
     private int FPS=60;
     private long targetTime=1000/FPS;
     private BufferedImage image;
@@ -34,7 +34,7 @@ public class GamePanel extends JPanel implements Runnable,KeyListener{
     
     public void addNotify(){
         super.addNotify();
-        if(thread==null&&GlobalController.gameRunning){
+        if(thread==null&&(GlobalController.gameRunning||GlobalController.aiRun)){
             thread=new Thread(this);
             addKeyListener(this);
             thread.start();

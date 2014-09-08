@@ -167,7 +167,7 @@ public class Level1State extends GameState{
     }
 
     public void end(){
-        if(GlobalController.aiRun||GlobalController.evolving){
+        if(GlobalController.evolving){
             ann.getNet().setFitness(totalPast);
             reset();
             GlobalController.running=false;

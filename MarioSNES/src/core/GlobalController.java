@@ -23,18 +23,20 @@ public class GlobalController {
     public static boolean running;
     public static boolean interupt; // an interupt that allows the evolution to stop early
     public static boolean waitingOn;
+    public static int hack; // this is not needed anymore
     
     // set default values for global variables
     public static void init(){
-        aiFileName="";
+        aiFileName="marioROBOT";
         individuals=100;
-        generations=50;
-        evolving=true;
-        aiRun=false;
+        generations=2;
+        evolving=false;
+        aiRun=true;
         debug=false;
         headless=false;
         gameRunning=false;
         running=true;
+        hack=1;
     }
 
     // I dont think the two below are needed
