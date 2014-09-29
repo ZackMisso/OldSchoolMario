@@ -1,0 +1,87 @@
+Tile
+0/n0/n12
+12
+1 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 
+1 1 1 1 1 1 1 1 1 1 1 0 
+0 0 0 0 0 0 0 0 0 0 0 0 
+block
+startX 160startY 160tileX 10
+tileY 10
+block 1
+End
+
+block
+startX 144startY 160tileX 9
+tileY 10
+block 1
+End
+
+block
+startX 128startY 160tileX 8
+tileY 10
+block 1
+End
+
+block
+startX 112startY 160tileX 7
+tileY 10
+block 1
+End
+
+block
+startX 96startY 160tileX 6
+tileY 10
+block 1
+End
+
+block
+startX 80startY 160tileX 5
+tileY 10
+block 1
+End
+
+block
+startX 64startY 160tileX 4
+tileY 10
+block 1
+End
+
+block
+startX 48startY 160tileX 3
+tileY 10
+block 1
+End
+
+block
+startX 32startY 160tileX 2
+tileY 10
+block 1
+End
+
+block
+startX 16startY 160tileX 1
+tileY 10
+block 1
+End
+
+block
+startX 0startY 160tileX 0
+tileY 10
+block 1
+End
+
+block
+startX 0startY 0tileX 0
+tileY 0
+block 1
+End
+

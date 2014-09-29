@@ -1,0 +1,48 @@
+This document is here for us to list everything we need to accomplish.
+This will also allow us to deviate who is working on what so we don't
+have any save collisions. Sub-projects will be indicated by tabs.
+
+Hardcoded Network
+    implement Horizontal and Vertical Network
+    implement the DistanceThresholdCheckerNeuron
+    implement the HorizontalCheckerNeuron
+    implement the VerticalCheckerNeuron
+
+Implementing Speciation
+    get XOR Test Working
+        sort the lists of neurons by depth
+        implement crossover
+        lots of testing
+        get the CMDTester to work with a species
+
+Level Editor
+    save the tile map for the level
+    fix the bug transition
+    add a block int
+    implement makeTileMap in the WorldWriter class
+
+TileMap Creation in the LevelEditor
+    implement boolean objects
+    implement global instance variable addition
+
+MarioSNES
+    get TilePhysics implemented
+        brainstorm algorithm before implementing
+        implement a tileMap
+        implement a tile class
+        try to get collisions working
+
+    get Koopa implemented
+        shell functionality
+
+    get Pipes implemented
+    
+    read Saved Levels from files
+
+CMDTester
+    implement dual network debugging
+    implement species debugging
+    create a Graphical Debugger
+
+Level Making
+    Create the first level

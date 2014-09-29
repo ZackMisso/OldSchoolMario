@@ -12,7 +12,7 @@ public abstract class Neuron extends Node{
     private double threshold;
     private double bias;
     
-    public Neuron(){
+    public Neuron(){ // default constructor
         inputs=new ArrayList<>();
         outputs=new ArrayList<>();
         initInput=null;
@@ -26,14 +26,17 @@ public abstract class Neuron extends Node{
             bias*=-1;
     }
     
+    // the method that all neurons need to decide if they fire
     public abstract double evaluate();
     
+    // checks if the neuron should fire
     public double checkThreshold(double value){
         if(value>=threshold)
             return 1.0;
         return 0.0;
     }
     
+    // I honestly dont think this is needed anymore
     public void checkInputs(){
         for(int i=0;i<inputs.size();i++)
             if(!inputs.get(i).getEvaluated()){
@@ -42,6 +45,7 @@ public abstract class Neuron extends Node{
             }
     }
     
+    // sets up the neuron for the next iteration
     public void deEvaluate(){
         for(int i=0;i<inputs.size();i++)
             inputs.get(i).setEvaluated(false);
@@ -49,10 +53,12 @@ public abstract class Neuron extends Node{
             outputs.get(i).setEvaluated(false);
     }
     
+    // return the total number of connections
     public int getNumberOfConnections(){
         return inputs.size()+outputs.size();
     }
     
+    // checks if there exists a connection with the other neuron
     public boolean existsConnection(Neuron other){
         for(int i=0;i<outputs.size();i++)
             if(outputs.get(i).getGiveNeuron()==other||outputs.get(i).getRecieveNeuron()==other)
@@ -63,10 +69,12 @@ public abstract class Neuron extends Node{
         return false;
     }
 
+    // mutates the bias for this neuron
     public void mutateBias(RandomNumberGenerator rng){
         bias=rng.changeDouble(bias,true);
     }
     
+    // returns the connection with the other neuron
     public Connection getConnectionWith(Neuron other){
         for(int i=0;i<outputs.size();i++)
             if(outputs.get(i).getGiveNeuron()==other||outputs.get(i).getRecieveNeuron()==other)
@@ -77,6 +85,7 @@ public abstract class Neuron extends Node{
         return null;
     }
     
+    // removes the connection with the other neuron
     public void removeConnectionWith(Neuron other){
         Connection connection=getConnectionWith(other);
         if(outputs.contains(connection))
@@ -85,6 +94,7 @@ public abstract class Neuron extends Node{
             inputs.remove(connection);
     }
     
+    // makes a copy of this neuron
     public Neuron makeCopy(){
         Neuron neuron;
         if(this instanceof InputNeuron){
@@ -105,6 +115,7 @@ public abstract class Neuron extends Node{
         return neuron;
     }
     
+    // checks if this is the same neuron (THIS IS WRONG)
     public boolean isSameNeuron(Neuron other){
         boolean outputs=false;
         boolean inputs=false;

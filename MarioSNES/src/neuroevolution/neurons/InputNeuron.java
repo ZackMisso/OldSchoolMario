@@ -11,6 +11,7 @@ public abstract class InputNeuron extends Neuron{
         inputID=-1;
     }
     
+    
     public String toString(){
         String data="InputNeuron\n";
         data+=super.toString();

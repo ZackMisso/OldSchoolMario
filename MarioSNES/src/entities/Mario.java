@@ -16,6 +16,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import testtools.CMDTester;
 public class Mario extends GameEntity{
     private Level1State reference; // this should be removed later
     private MarioAI ann; // this should be moved
@@ -57,15 +58,22 @@ public class Mario extends GameEntity{
         setOnScreen(true);
         setFalling(true);
         //setDy(1);
-        setDrawC(true);
+        //setDrawC(true);
     }
     
     public void update(ArrayList<Block> list,Level1State state){
-        if(GlobalController.aiRun||GlobalController.evolving){
-            ann.propagate(reference);
-            setRight(ann.movesRight());
-            setLeft(ann.movesLeft());
-            setJumping(ann.jumps());
+        outer: if((GlobalController.aiRun||GlobalController.evolving)&&ann.isReadytoPropogate()){
+            {
+                if(ann==null){
+                    System.out.println("ANN is null :: Mario 68");
+                    break outer;
+                }
+                ann.propogate(reference);
+                //System.out.println(""+ann.movesRight()+ann.movesLeft()+ann.jumps());
+                setRight(ann.movesRight());
+                setLeft(ann.movesLeft());
+                setJumping(ann.jumps());
+            }
         }
         // update position
         //getNextPosition();
@@ -95,6 +103,11 @@ public class Mario extends GameEntity{
         setXTemp(100+state.getXOffset()+getDx());
         //System.out.print(getXTemp()+" ");
         setYTemp(getYpos()+getDy());
+        //if(getTileMap()==null)
+            //System.out.println("Tile Map NULL :: Mario");
+        //if(GlobalController.tilePhysics)
+        //    checkMovementOnSurroundings();
+        //else
         checkCollisionsWithBlocks(list,state);
         //System.out.println(getXTemp());
         //System.out.println(getDx());
@@ -115,20 +128,80 @@ public class Mario extends GameEntity{
         }
     }
     
+    // THIS IS (WILL BE) THE DYSFUNCTIONAL PHYSICS
+    public void updateLols(ArrayList<Block> list,Level1State state){
+        if(ann!=null&&(GlobalController.aiRun||GlobalController.evolving)&&ann.isReadytoPropogate()){
+            {
+                ann.propogate(reference);
+                //System.out.println(""+ann.movesRight()+ann.movesLeft()+ann.jumps());
+                //CMDTester debug = new CMDTester(ann.getNet());
+                setRight(ann.movesRight());
+                setLeft(ann.movesLeft());
+                setJumping(ann.jumps());
+            }
+        }
+        if(getFalling())
+            setDy(getDy()+.11);
+        if(getRight()){
+            setDx(1);
+        }
+        else if(getLeft()){
+            setDx(-1);
+        }
+        else{
+            setDx(0);
+        }
+        setXTemp(100+state.getXOffset()+getDx());
+        setYTemp(getYpos()+getDy());
+        //if(GlobalController.tilePhysics){
+        //    if(GlobalController.lolsPhysics){
+        //        System.out.println("Checking Lols :: Mario");
+        //        lolsCheckMovementOnSurroundings();
+        //    }
+        //    else
+        //        checkMovementOnSurroundings();
+        //}else
+        checkCollisionsWithBlocks(list,state);
+        if(getJumping()&&!getFalling()){
+            setDy(getJumpStart());
+            setJumping(false);
+            setFalling(true);
+            setYTemp(getYpos()+getDy());
+        }
+        if(GlobalController.aiRun||GlobalController.evolving){
+            setRight(false);
+            setLeft(false);
+            setJumping(false);
+        }
+    }
+    
     public void finalizeMovement(Level1State state){
         //double changeX=getXTemp()-getXpos();
         //setXpos(getXTemp());
         state.setXOffset(getXTemp()-100);
         setYpos(getYTemp());
         //System.out.println(state.getXOffset());
-        if(getYpos()>330)
-            System.exit(0);
+        if(getYpos()>330){
+            //System.exit(0);
+            state.end();
+        }
     }
 
+    public void finalizeMovementNew(Level1State state){
+        //state.setXOffset(state.getXOffset()+getXTemp()-100);
+        state.setXOffset(state.getXOffset()+getDx());
+        // TODO :: 100 value will need to be changed to implement camera
+        setYpos(getYTemp());
+        if(getYpos()>330)
+            System.exit(0);  // TODO :: CHANGE THIS
+    }
+
+    // how the player jumps off things after landing on top of them
     public void rebound(){
         // implement
     }
-
+    
+    // This will be kept even when tile physics is implemented
     public void checkCollisionsWithEnemies(ArrayList<Enemy> list,Level1State state){
         for(int i=0;i<list.size();i++){
             double w=.5*(list.get(i).getCWidth()+getWidth());
@@ -174,18 +247,24 @@ public class Mario extends GameEntity{
         // implement
     }
     
+    // This will soon not be needed
     public void checkCollisionsWithBlocks(ArrayList<Block> list,Level1State state){
         setFalling(true);
         //System.out.print(getDx()+" ");
+        if(list == null) //safety check
+            return;
         double tempDx=getDx();
         double tempX=getXTemp();
         for(int i=0;i<list.size();i++){
+            Block b = list.get(i);
+            if(b==null)
+                continue;
             boolean rgt=false;
             boolean lft=false;
-            double w=.5*(list.get(i).getCWidth()+getWidth());
-            double h=.5*(list.get(i).getCHeight()+getHeight());
-            double dx=list.get(i).getCCenterX()-getCenterX();
-            double dy=list.get(i).getCCenterY()-getCenterY();
+            double w=.5*(b.getCWidth()+getWidth());
+            double h=.5*(b.getCHeight()+getHeight());
+            double dx=b.getCCenterX()-getCenterX();
+            double dy=b.getCCenterY()-getCenterY();
             if(Math.abs(dx)<=w&&Math.abs(dy)<=h){
                 double wy=w*dy;
                 double hx=h*dx;
@@ -194,7 +273,7 @@ public class Mario extends GameEntity{
                         // Collision from the top
                         if(getDy()>0)
                             setDy(0);
-                        setYTemp(list.get(i).getYpos()-getHeight());
+                        setYTemp(b.getYpos()-getHeight());
                         setFalling(false);
                         //System.out.println("TOP");
                     }else{
@@ -204,21 +283,21 @@ public class Mario extends GameEntity{
                             //setXTemp(list.get(i).getXpos()+getWidth()+1);
                             //System.out.println("BROKEN2");
                         }
-                        rectx2=list.get(i).getXpos();
-                        recty2=list.get(i).getYpos();
-                        rectw2=list.get(i).getWidth();
-                        recth2=list.get(i).getHeight();
+                        rectx2=b.getXpos();
+                        recty2=b.getYpos();
+                        rectw2=b.getWidth();
+                        recth2=b.getHeight();
                         //setXTemp(list.get(i).getXpos()+getWidth()+1);
-                        if(distanceBetweenCenters(list.get(i))>getMaxDistance(list.get(i))-2){
+                        if(distanceBetweenCenters(b)>getMaxDistance(b)-2){
                             //setXTemp(list.get(i).getXpos()+getWidth()+1);
                             //System.out.print(distanceBetweenCenters(list.get(i))+" ");
                             //System.out.println(getMaxDistance(list.get(i)));
                             setDx(tempDx);
                             setXTemp(tempX);
                         }else{
-                            setXTemp(list.get(i).getXpos()+getWidth());
-                            System.out.print(distanceBetweenCenters(list.get(i))+" ");
-                            System.out.println(getMaxDistance(list.get(i)));
+                            setXTemp(b.getXpos()+getWidth());
+                            System.out.print(distanceBetweenCenters(b)+" ");
+                            System.out.println(getMaxDistance(b));
                         }
                         lft=true;
                         //setXTemp(list.get(i).getXpos()+getWidth()+1);

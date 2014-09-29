@@ -22,6 +22,15 @@ public class Connection extends Node{
         setInnovationNum(-1);
         active=false;
     }
+    /*
+    Alternative Connection constructor that specifies input and output nodes at object creation.
+    @param source: a reference to the source node of the connection. target: the target node of the connection.
+    */
+    public Connection(Neuron source, Neuron target){
+        this();
+        setGiveNeuron(source);
+        setRecieveNeuron(target);
+    }
     
     public double calculateValue(){
         if(getEvaluated())

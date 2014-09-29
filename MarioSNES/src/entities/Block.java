@@ -19,6 +19,7 @@ public class Block extends GameEntity{
     public Block(double x,double y,int w,int h){
         setXpos(x);
         setYpos(y);
+        setStartX(x);
         setWidth(w);
         setHeight(h);
         setImage(ImageCache.block);
@@ -32,9 +33,10 @@ public class Block extends GameEntity{
         setCHeight(getHeight()-1);
     }
     
+    // Depreciated :: Zack :: Moved to GameEntity class
     public void draw(Graphics2D g,Level1State state){
-        g.drawImage(getImage(),(int)(getXpos()-state.getXOffset()),(int)getYpos(),null);
-        g.setColor(Color.black);
+        g.drawImage(getImage(),(int)(getStartX()-state.getXOffset()),(int)getYpos(),null);
+        //g.setColor(Color.black);
         //g.drawRect((int)(xpos-state.getXOffset()), (int)ypos, width, height);
     }
 }

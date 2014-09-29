@@ -3,6 +3,7 @@
  * @author Zackary Misso
  * 
  */
+// This class is depreciated
 package tilesAndGraphics;
 import java.awt.image.BufferedImage;
 public class Tile{

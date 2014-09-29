@@ -23,11 +23,13 @@ public class NetReader {
     	net.getOutputs().clear();
     	try{
     		Scanner scanner=new Scanner(new File(fileName));
-    		int num=scanner.nextInt();
-            if(num==10000001)
-                net.getNeurons().add(readNeuron(scanner));
-            if(num==90000009)
-                net.getConnections().add(readConnection(scanner,net.getNeurons()));
+            while(scanner.hasNextInt()){
+                int num=scanner.nextInt();
+                if(num==10000001)
+                    net.getNeurons().add(readNeuron(scanner));
+                if(num==90000009)
+                    net.getConnections().add(readConnection(scanner,net.getNeurons()));
+            }
     	}catch(IOException e){System.out.println("Could not read file :: NetReader");}
     	return net;
     }

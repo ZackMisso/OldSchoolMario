@@ -6,14 +6,16 @@
 package core;
 import gameState.Level1State;
 import javax.swing.JFrame;
+import java.util.*;
 import neuroevolution.MarioAI;
 import neuroevolution.EvolutionaryAlgorithm;
-import neuroevolution.networks.NeuralNetwork;
+import neuroevolution.networks.*;
 import neuroevolution.io.NetReader;
 import tilesAndGraphics.ImageCache;
 public class Game {
     private GamePanel panel;
     private EvolutionaryAlgorithm evo;
+    private ArrayList<HorizontalAndVerticalNetworkHardcoded> templist;  //mark added 21 Sep 14
 
     public Game(){
         ImageCache.initImages();
@@ -36,7 +38,8 @@ public class Game {
     
     public void initMarioAI(){
         //NeuralNetwork net=NetReader.readNetwork(GlobalController.aiFileName);
-        NeuralNetwork net=new NeuralNetwork(6,3);
+        //NeuralNetwork net=new NeuralNetwork(6,3);
+        NeuralNetwork net=NetReader.readNetwork("test/"+GlobalController.aiFileName);
         panel=new GamePanel();
         MarioAI agent=new MarioAI();
         agent.createAI(net);
@@ -53,8 +56,24 @@ public class Game {
     }
 
     public void initMarioEvo(){
-        evo=new EvolutionaryAlgorithm();
         panel=new GamePanel();
+        //////////////////ADDED 21 SEP 2014/////////////////////////////////////
+        templist = new ArrayList<>();
+        for(int i=0;i<GlobalController.individuals;i++)
+            {
+                if(panel == null){
+                    System.out.println("Panel is null :: Game");
+                }
+                if(panel.getGSM() == null){
+                    System.out.println("GSM is null :: Game");
+                }
+                if(panel.getGSM().getGameStates() == null){
+                    System.out.println("Panel is null :: Game");
+                }
+                templist.add(new HorizontalAndVerticalNetworkHardcoded(panel.getGSM().getGameStates().get(0)));
+            }
+        ////////////////////////////////////////////////////////////////////////
+        evo=new EvolutionaryAlgorithm(templist);
         evo.setGame(panel);
         JFrame window=new JFrame("Mario");
         window.setContentPane(panel);

@@ -7,12 +7,13 @@ package core;
 public class GlobalController {
     // TODO :: Implement functionality for some of these
     public static String aiFileName;
+    public static String levelFile;
     public static final double MAX_WEIGHT_VALUE=5;
-	public static final double MIN_WEIGHT_VALUE=-5;
+    public static final double MIN_WEIGHT_VALUE=-5;
     public static final int MAX_NEURONS=200;
-    public static final int MIN_NEURONS=9;
+    public static final int MIN_NEURONS=3;
     public static final int MAX_CONNECTIONS=10000;
-    public static final int MIN_CONNECTIONS=6;
+    public static final int MIN_CONNECTIONS=1;
     public static int individuals;
     public static int generations;
     public static boolean evolving; // if the player is playing or not
@@ -23,20 +24,30 @@ public class GlobalController {
     public static boolean running;
     public static boolean interupt; // an interupt that allows the evolution to stop early
     public static boolean waitingOn;
-    public static int hack; // this is not needed anymore
+    public static boolean testInput; // unit test TestInputLevel
+    // Depreciated :: Zack
+    //public static boolean tilePhysics; // if tile Physics are being used
+    //public static boolean lolsPhysics; // broken physics
+    //public static int hack; // this is not needed anymore
     
     // set default values for global variables
     public static void init(){
-        aiFileName="marioROBOT";
-        individuals=100;
-        generations=2;
-        evolving=false;
-        aiRun=true;
-        debug=false;
-        headless=false;
-        gameRunning=false;
-        running=true;
-        hack=1;
+        aiFileName="TOTALbestRun_546.0";
+        levelFile="fallingPhysicsTest.txt";
+        //levelFile = "firstLevel.txt";
+        individuals = 10;
+        generations = 100;
+        evolving = false;
+        aiRun = false;
+        debug = false; // currently causes the rects of objects to be drawn
+        headless = false;
+        gameRunning = true;
+        running = true;
+        testInput = false;
+        // Depreciated :: Zack
+        //tilePhysics = false;
+        //lolsPhysics = false; // LEAVE TRUE UNTIL ACTUAL PHYSICS RUNS (ALL HELL WILL BREAK LOOSE OTHERWISE)
+        //hack=1;
     }
 
     // I dont think the two below are needed
@@ -47,5 +58,5 @@ public class GlobalController {
     
     //public static void transferControlToEvolution(){
     //    // implement
-    //}
+    //} 
 }

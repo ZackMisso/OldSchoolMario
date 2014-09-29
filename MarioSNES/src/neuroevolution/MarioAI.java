@@ -10,8 +10,10 @@ import entities.Mario;
 import entities.Block;
 import java.util.ArrayList;
 public class MarioAI {
+    
     private NeuralNetwork net;
     private ArrayList<Double> outputs;
+    private boolean readyToPropogate = false;
     
     public MarioAI(){
         net=null;
@@ -19,6 +21,7 @@ public class MarioAI {
 
     public void createAI(NeuralNetwork param){
     	net=param;
+        readyToPropogate = true;
     }
 
     public boolean movesLeft(){
@@ -33,8 +36,8 @@ public class MarioAI {
     	return outputs.get(2)>=1.0;
     }
 
-    public void propagate(Level1State state){
-    	ArrayList<Double> inputs=new ArrayList<Double>();
+    public void propogate(Level1State state){
+    	ArrayList<Double> inputs=new ArrayList<>();
     	// sensor infor
     	ArrayList<Block> nearest=getNearestBlocks(state.getBlocks(),state.getPlayer());
     	for(int i=0;i<nearest.size();i++){
@@ -50,7 +53,7 @@ public class MarioAI {
         //System.out.println("THIS HAS RAN");
     }
 
-    // The effitientcy of this could be greatly improved
+    // The efficiency of this could be greatly improved
     private ArrayList<Block> getNearestBlocks(ArrayList<Block> blocks,Mario player){
     	ArrayList<Block> nearest=new ArrayList<>();
     	nearest.add(new Block(0,0,-100000,-1000000));
@@ -61,6 +64,8 @@ public class MarioAI {
     	double two=10000000000.0;
     	for(int i=0;i<blocks.size();i++){
     		Block blk=blocks.get(i);
+                if(blk==null)
+                    continue;
     		double dist=player.efficientDistanceBetween(blk);
     		if(dist<zero){
     			double temp=zero;
@@ -89,7 +94,9 @@ public class MarioAI {
     
     // getter methods
     public NeuralNetwork getNet(){return net;}
+    public boolean isReadytoPropogate(){return readyToPropogate;}
     
     // setter methods
-    public void setNet(NeuralNetwork param){net=param;}
+    public void setNet(NeuralNetwork param){net=param;} //21 Sep 14 mark changed from NN to H&VNHC
+
 }

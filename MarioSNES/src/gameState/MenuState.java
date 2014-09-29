@@ -4,7 +4,10 @@
  * 
  */
 package gameState;
+import entities.GameEntity;
+import entities.Mario;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 public class MenuState extends GameState{
     public MenuState(GameStateManager param){
         setGSM(param);
@@ -28,5 +31,13 @@ public class MenuState extends GameState{
     
     public void keyReleased(int k){
         
+    }
+    //quick hack to make code compile
+    public ArrayList<GameEntity> getAllEntities(){
+        return null;
+    }
+    
+    public Mario getPlayer(){
+        return null;
     }
 }

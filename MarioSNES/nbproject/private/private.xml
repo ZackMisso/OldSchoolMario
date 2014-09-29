@@ -3,41 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/neuroevolution/io/NetReader.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/neuroevolution/connections/Connection.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/neuroevolution/neurons/InputNeuron.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/neuroevolution/networks/NeuralNetwork.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/core/Driver.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/neuroevolution/neurons/OutputNeuron_Add.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/neuroevolution/Node.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/gameState/Level1State.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/documents/TODOTracker</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/entities/Block.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/core/GlobalController.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/core/Game.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/entities/Mario.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/entities/ItemBox.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/projectiles/Projectile.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/enemies/Goomba.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/tilesAndGraphics/ImageCache.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/neuroevolution/neurons/OutputNeuron.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/neuroevolution/EvolutionaryAlgorithm.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/enemies/FirePiranhaPlant.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/core/GamePanel.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/gameIO/GameReader.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/neuroevolution/neurons/Neuron_Add.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/neuroevolution/neurons/InputNeuron_Add.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/enemies/Koopa.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/neuroevolution/RandomNumberGenerator.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/enemies/Enemy.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/enemies/PiranhaPlant.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/neuroevolution/MarioAI.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/neuroevolution/neurons/Neuron.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/entities/BreakableBlock.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/entities/GameEntity.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/neuroevolution/io/NetWriter.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/entities/Floor.java</file>
-            <file>file:/Users/ZackMisso/Documents/Research/OldSchoolMario/MarioSNES/src/gameState/GameStateManager.java</file>
+            <file>file:/Users/ZackMisso/Dropbox/Research/OldSchoolMario/MarioSNES/src/datastructures/DoubleCoordinate.java</file>
+            <file>file:/Users/ZackMisso/Dropbox/Research/OldSchoolMario/MarioSNES/src/entities/Block.java</file>
+            <file>file:/Users/ZackMisso/Dropbox/Research/OldSchoolMario/MarioSNES/src/tilesAndGraphics/TileCoordinate.java</file>
+            <file>file:/Users/ZackMisso/Dropbox/Research/OldSchoolMario/MarioSNES/src/tilesAndGraphics/ImageCache.java</file>
+            <file>file:/Users/ZackMisso/Dropbox/Research/OldSchoolMario/MarioSNES/src/gameState/Level1State.java</file>
+            <file>file:/Users/ZackMisso/Dropbox/Research/OldSchoolMario/MarioSNES/src/entities/GameEntity.java</file>
+            <file>file:/Users/ZackMisso/Dropbox/Research/OldSchoolMario/MarioSNES/src/entities/Mario.java</file>
+            <file>file:/Users/ZackMisso/Dropbox/Research/OldSchoolMario/MarioSNES/src/tilesAndGraphics/ManualLevel.java</file>
+            <file>file:/Users/ZackMisso/Dropbox/Research/OldSchoolMario/MarioSNES/src/tilesAndGraphics/TileRect.java</file>
+            <file>file:/Users/ZackMisso/Dropbox/Research/OldSchoolMario/MarioSNES/src/tilesAndGraphics/TileMap.java</file>
+            <file>file:/Users/ZackMisso/Dropbox/Research/OldSchoolMario/MarioSNES/src/datastructures/IntCoordinate.java</file>
         </group>
     </open-files>
 </project-private>

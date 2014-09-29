@@ -11,16 +11,17 @@ import neuroevolution.connections.Connection;
 import core.GlobalController;
 import neuroevolution.RandomNumberGenerator;
 import java.util.ArrayList;
+import testtools.CMDTester;
 public class NeuralNetwork {
-    private ArrayList<Node> nodes; // reference to all the nodes
+    protected ArrayList<Node> nodes; // reference to all the nodes
     // TODO :: replace the bottom two with the one above
-    private ArrayList<Neuron> neurons;
-    private ArrayList<Connection> connections;
-    private ArrayList<Double> inputs;
-    private ArrayList<Double> outputs;
-    private RandomNumberGenerator rng;
-    private double fitness;
-    private int nodeCnt; // this will be global soon
+    protected ArrayList<Neuron> neurons;
+    protected ArrayList<Connection> connections;
+    protected ArrayList<Double> inputs;
+    protected ArrayList<Double> outputs;
+    protected RandomNumberGenerator rng;
+    protected double fitness;
+    protected int nodeCnt; // this will be global soon
     
     public NeuralNetwork(){
         this(2,1);
@@ -96,7 +97,7 @@ public class NeuralNetwork {
     public void mutate(){
         double chance=rng.simpleDouble();
         if(chance>.8)
-            mutateTopography();
+            mutateTopology();
         else
             mutateWeights();
     }
@@ -116,38 +117,60 @@ public class NeuralNetwork {
     }
     
     // mutates the topography of the neural network
-    public void mutateTopography(){
+    public void mutateTopology(){
         // TODO :: IMPROVE THIS METHOD
-        int nodeNum=rng.getInt(neurons.size(),null,false);
-        Neuron neuron=neurons.get(nodeNum);
-        double makeRandomConnection=rng.simpleDouble();
-        double newNeuron=rng.simpleDouble();
-        if(makeRandomConnection>.59)
-            newRandomConnection(neuron);
+        int nodeNum=rng.getInt(neurons.size(),null,false);  //select random index to modify
+        Neuron neuron=neurons.get(nodeNum);                 //get associated Neuron object
+        double makeRandomConnection=rng.simpleDouble();     //decides if new connection is made
+        double newNeuron=rng.simpleDouble();                //decides if new neuron is made
+        if(makeRandomConnection>.59)                        
+            newRandomConnection(neuron);                    //make connection among unconnecteds
+        
+        //inputs
         else if(neuron instanceof InputNeuron){
-            ArrayList<Connection> outputs=neuron.getOutputs();
-            //System.out.println("WEEEEEEEEEEEEEEE");
-            if(newNeuron>.7&&neurons.size()<GlobalController.MAX_NEURONS){
-                //System.out.println("ADD NEURON WEEEEEEEE");
-                addNeuron(outputs,neuron);
-            }else if(totalConnections()>GlobalController.MIN_CONNECTIONS){
-                turnOffConnection(outputs,neuron);
-            }else{
-                mutateTopography(); // TODO ::  need to rewrite to avoid this case
+            ArrayList<Connection> outputs=neuron.getOutputs(); //get list of connected outputs
+            if(outputs.size()==0){
+                mutateTopology();
                 return;
             }
+            if(newNeuron>.7&&neurons.size()<GlobalController.MAX_NEURONS) //if new neuron condition matched
+            {                                                             // and not max # neurons
+                addNeuron(outputs,neuron);                                // then add neuron among 
+            }                                                             // random connection
+            else if(totalConnections()>GlobalController.MIN_CONNECTIONS)
+            {
+                turnOffConnection(outputs,neuron);                        //otherwise try to turn off a connection
+            }
+            /*else
+            {
+                mutateTopology(); // 22 Sep 14 deprecated
+                return;
+            }*/
         }
+        
+        //outputs
         else if(neuron instanceof OutputNeuron){
             ArrayList<Connection> inputs=neuron.getInputs();
-            if(newNeuron>.5&&neurons.size()<GlobalController.MAX_NEURONS){
-                addNeuron(inputs,neuron);
-            }else if(totalConnections()>GlobalController.MIN_CONNECTIONS){
-                turnOffConnection(inputs,neuron);
-            }else{
-                mutateTopography();
+            if(inputs.size()==0){
+                mutateTopology();
                 return;
             }
-        }else{ // hidden neurons
+            if(newNeuron>.5&&neurons.size()<GlobalController.MAX_NEURONS)
+            {
+                addNeuron(inputs,neuron);
+            }
+            else if(totalConnections()>GlobalController.MIN_CONNECTIONS)
+            {
+                turnOffConnection(inputs,neuron);
+            }
+            /*else
+            {
+                mutateTopology(); 22 Sep 14 deprecated
+                return;
+            }*/
+        }
+        // hidden neurons
+        else{
             ArrayList<Connection> inputs=neuron.getInputs();
             ArrayList<Connection> outputs=neuron.getOutputs();
             double inorout=rng.simpleDouble();
@@ -157,7 +180,7 @@ public class NeuralNetwork {
                 }else if(totalConnections()>GlobalController.MIN_CONNECTIONS){
                     turnOffConnection(outputs,neuron);
                 }else{
-                    mutateTopography();
+                    mutateTopology();
                     return;
                 }
             }else{
@@ -166,7 +189,7 @@ public class NeuralNetwork {
                 }else if(totalConnections()>GlobalController.MIN_CONNECTIONS){
                     turnOffConnection(outputs,neuron);
                 }else{
-                    mutateTopography();
+                    mutateTopology();
                     return;
                 }
             }
@@ -275,14 +298,16 @@ public class NeuralNetwork {
     public void addNeuron(ArrayList<Connection> connects,Neuron neuron){
         // THIS SHOULD NEVER RUN
         if(connects.isEmpty()){
-            mutate();
-            setFitness(-10000.0);
-            return;
+            //CMDTester debug = new CMDTester(this);
+            throw new IllegalArgumentException("List of connections must be nonempty.");
+            //mutate();
+            //setFitness(-10000.0);
+            //return;
         }
         //int connectionNum=random.nextInt(connects.size());
         int connectionNum=rng.getInt(connects.size(),null,false);
         Connection connection=connects.get(connectionNum);
-        Neuron otherNeuron=null;
+        Neuron otherNeuron;
         if(connection.getGiveNeuron()==neuron)
             otherNeuron=connection.getRecieveNeuron();
         else
@@ -390,26 +415,26 @@ public class NeuralNetwork {
     }
 
     // THESE METHODS ARE USED FOR CMD TESTING
-    //public Node getNode(int nodeNum){
-    //    for(int i=0;i<neurons.size();i++)
-    //        if(neurons.get(i).getInnovationNum()==nodeNum)
-    //            return neurons.get(i);
-    //    for(int i=0;i<connections.size();i++)
-    //        if(connections.get(i).getInnovationNum()==nodeNum)
-    //            return connections.get(i);
-    //    return null;
-    //}
+    public Node getNode(int nodeNum){
+        for(int i=0;i<neurons.size();i++)
+            if(neurons.get(i).getInnovationNum()==nodeNum)
+                return neurons.get(i);
+        for(int i=0;i<connections.size();i++)
+            if(connections.get(i).getInnovationNum()==nodeNum)
+                return connections.get(i);
+        return null;
+    }
 
     // TODO :: Create a reference to the list of all nodes
 
-    //public ArrayList<Node> getAllNodes(){
-    //    ArrayList<Node> nodes=new ArrayList<>();
-    //    for(int i=0;i<neurons.size();i++)
-    //       nodes.add(neurons.get(i));
-    //    for(int i=0;i<connections.size();i++)
-    //        nodes.add(connections.get(i));
-    //    return nodes;
-    //}
+    public ArrayList<Node> getAllNodes(){
+        ArrayList<Node> nodes=new ArrayList<>();
+        for(int i=0;i<neurons.size();i++)
+           nodes.add(neurons.get(i));
+        for(int i=0;i<connections.size();i++)
+            nodes.add(connections.get(i));
+        return nodes;
+    }
     
     public void reset(){
         for(int i=0;i<neurons.size();i++)
@@ -433,6 +458,7 @@ public class NeuralNetwork {
     public ArrayList<Connection> getConnections(){return connections;}
     public ArrayList<Double> getInputs(){return inputs;}
     public ArrayList<Double> getOutputs(){return outputs;}
+    public RandomNumberGenerator getRNG(){return rng;}
     public double getFitness(){return fitness;}
     public int getNodeCnt(){return nodeCnt;}
     

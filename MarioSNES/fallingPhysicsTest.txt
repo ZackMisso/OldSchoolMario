@@ -1,0 +1,113 @@
+Tile
+0
+0
+12
+12
+1 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 
+1 1 1 1 1 1 1 1 1 1 1 0 
+0 0 0 0 0 0 0 0 0 0 0 0 
+block
+startX 160
+startY 160
+tileX 10
+tileY 10
+block 1
+End
+
+block
+startX 144
+startY 160
+tileX 9
+tileY 10
+block 1
+End
+
+block
+startX 128
+startY 160
+tileX 8
+tileY 10
+block 1
+End
+
+block
+startX 112
+startY 160
+tileX 7
+tileY 10
+block 1
+End
+
+block
+startX 96
+startY 160
+tileX 6
+tileY 10
+block 1
+End
+
+block
+startX 80
+startY 160
+tileX 5
+tileY 10
+block 1
+End
+
+block
+startX 64
+startY 160
+tileX 4
+tileY 10
+block 1
+End
+
+block
+startX 48
+startY 160
+tileX 3
+tileY 10
+block 1
+End
+
+block
+startX 32
+startY 160
+tileX 2
+tileY 10
+block 1
+End
+
+block
+startX 16
+startY 160
+tileX 1
+tileY 10
+block 1
+End
+
+block
+startX 0
+startY 160
+tileX 0
+tileY 10
+block 1
+End
+
+block
+startX 0
+startY 0
+tileX 0
+tileY 0
+block 1
+End
+
