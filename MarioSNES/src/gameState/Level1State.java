@@ -4,7 +4,7 @@
  * 
  */
 package gameState;
-import tilesAndGraphics.TileMap;
+//import tilesAndGraphics.TileMap;
 //import tilesAndGraphics.Background;
 //import tilesAndGraphics.ManualLevel;
 import entities.GameEntity;
@@ -12,7 +12,7 @@ import entities.Mario;
 import entities.Block;
 import entities.Floor;
 import enemies.Enemy;
-//import enemies.Goomba;
+import enemies.Goomba;
 import gameIO.GameReader;
 import core.GamePanel;
 import core.GlobalController;
@@ -24,7 +24,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 public class Level1State extends GameState{
     private PlayerState playerState; // this will probably be moved later
-    private TileMap tileMap;
+    //private TileMap tileMap;
     private Mario player;
     private MarioAI ann;
     //private Background background;
@@ -49,7 +49,6 @@ public class Level1State extends GameState{
     }
     
     public void init(){
-        
         timer=0;
         //tileMap=ManualLevel.createMap();
         timerMax=3000;
@@ -125,9 +124,9 @@ public class Level1State extends GameState{
     
     // this is only used for testing
     private void initEnemies(){
-        //System.out.println("Initializing Enemies");
-        //Goomba goom=new Goomba(240.0,100.0);
-        //goom.addEnemyToList(this);
+//        System.out.println("Initializing Enemies");
+        Goomba goom=new Goomba(240.0,100.0);
+        goom.addEnemyToList(this);
         //enemies.add(new Goomba(240.0,100.0));
     }
     
@@ -155,6 +154,8 @@ public class Level1State extends GameState{
     public void updateActual(){
         timer++;
         //System.out.println("Current X Offset :: "+xOffset+" :: Level1State");
+        if(player==null)
+            System.out.println("Player is null! :: Level1State");
         player.update(blocks,this);
         player.finalizeMovementNew(this);
         double dx=player.getDx();
@@ -162,6 +163,8 @@ public class Level1State extends GameState{
         //System.out.println("Block X :: "+blocks.get(0).getXpos()+" :: Level1State");
         for(int i=0;i<blocks.size();i++){
             // This line will not be needed once tile physics works
+            if(blocks.get(i)==null)
+                continue;
             blocks.get(i).setXpos(blocks.get(i).getStartX()-xOffset);
             if(blocks.get(i).isOnScreen())
                 blocks.get(i).updateC();
@@ -169,6 +172,7 @@ public class Level1State extends GameState{
         for(int i=0;i<enemies.size();i++){
             // Something will need to be added here
             //enemies.get(i).setXpos(enemies.get(i).getXpos()-xOffset);
+            enemies.get(i).setXpos(enemies.get(i).getXpos()-dx);
             if(enemies.get(i).isOnScreen())
                 enemies.get(i).update(blocks);
         }
@@ -176,47 +180,48 @@ public class Level1State extends GameState{
 
         // temporarily commented out for debugging
 
-        //totalPast+=xOffset;
+        totalPast+=xOffset;
         //if(totalPast>2320){ // About 53 seconds
         //    end();
         //}
-        //if(timer>=timerMax)
-        //    end();
+        if(timer>=timerMax)
+            end();
 
         //xOffset=0; // NOOOOOO!!!!
     }
     
-    public void updateLols(){
-        timer++;
-        if(player==null){
-            System.out.println("Player is null :: Level1State 192");
-            return;
-        }
-        player.updateLols(blocks,this);
-        player.finalizeMovement(this);
-        //System.out.println(enemies.get(0).getXpos());
-        //System.out.println(enemies.get(0).getWidth());
-        //System.out.println(enemies.get(0).getHeight());
-        //System.out.println(enemies.get(0).getYpos());
-        for(int i=0;i<blocks.size();i++){
-            blocks.get(i).setXpos(blocks.get(i).getXpos()-xOffset);
-            if(blocks.get(i).isOnScreen())
-                blocks.get(i).updateC();
-        }
-        for(int i=0;i<enemies.size();i++){
-            enemies.get(i).setXpos(enemies.get(i).getXpos()-xOffset);
-            if(enemies.get(i).isOnScreen())
-                enemies.get(i).update(blocks);
-        }
-        player.checkCollisionsWithEnemies(enemies,this);
-        totalPast+=xOffset;
-        if(totalPast>2320){ // About 53 seconds
-            end();
-        }
-        if(timer>=timerMax)
-            end();
-        xOffset=0;
-    }
+    // Depreciated :: Zack
+//    public void updateLols(){
+//        timer++;
+//        if(player==null){
+//            System.out.println("Player is null :: Level1State 192");
+//            return;
+//        }
+//        player.updateLols(blocks,this);
+//        player.finalizeMovement(this);
+//        //System.out.println(enemies.get(0).getXpos());
+//        //System.out.println(enemies.get(0).getWidth());
+//        //System.out.println(enemies.get(0).getHeight());
+//        //System.out.println(enemies.get(0).getYpos());
+//        for(int i=0;i<blocks.size();i++){
+//            blocks.get(i).setXpos(blocks.get(i).getXpos()-xOffset);
+//            if(blocks.get(i).isOnScreen())
+//                blocks.get(i).updateC();
+//        }
+//        for(int i=0;i<enemies.size();i++){
+//            enemies.get(i).setXpos(enemies.get(i).getXpos()-xOffset);
+//            if(enemies.get(i).isOnScreen())
+//                enemies.get(i).update(blocks);
+//        }
+//        player.checkCollisionsWithEnemies(enemies,this);
+//        totalPast+=xOffset;
+//        if(totalPast>2320){ // About 53 seconds
+//            end();
+//        }
+//        if(timer>=timerMax)
+//            end();
+//        xOffset=0;
+//    }
 
     // Depreciated :: Zack
     //public void makeTileMap(TileMap param){
@@ -228,9 +233,13 @@ public class Level1State extends GameState{
     
     // THIS METHOD IS USED FOR EVOLVING AGENTS
     public void makeTimer(int generation){
-        timerMax=100+40*generation;
-        if(timerMax>3000)
+        if(GlobalController.aiRun)
             timerMax=3000;
+        else{
+            timerMax=100+40*generation;
+            if(timerMax>3000)
+                timerMax=3000;
+        }
     }
     
     public void draw(Graphics2D g){
@@ -240,29 +249,31 @@ public class Level1State extends GameState{
         //    drawActual(g);
     }
     
-    public void drawActual(Graphics2D g){
-        g.setColor(Color.WHITE);
-        g.fillRect(0,0,GamePanel.WIDTH*GamePanel.SCALE,GamePanel.HEIGHT*GamePanel.SCALE);
-        //System.out.println(blocks.size());
-        g.setColor(Color.BLUE);
-        g.fillRect(0,160,GamePanel.WIDTH*GamePanel.SCALE,GamePanel.HEIGHT*GamePanel.SCALE);
-        //background.draw(g);
-        for(int i=0;i<blocks.size();i++)
-            if(blocks.get(i).getOnScreen())
-                blocks.get(i).draw(g,this);
-        for(int i=0;i<enemies.size();i++)
-            if(enemies.get(i).getOnScreen())
-                enemies.get(i).draw(g,this);
-        //tileMap.draw(g);
-        player.draw(g);
-    }
-    
+// Depreciated :: Zack
+//    public void drawActual(Graphics2D g){
+//        g.setColor(Color.WHITE);
+//        g.fillRect(0,0,GamePanel.WIDTH*GamePanel.SCALE,GamePanel.HEIGHT*GamePanel.SCALE);
+//        //System.out.println(blocks.size());
+//        //g.setColor(Color.BLUE);
+//        //g.fillRect(0,160,GamePanel.WIDTH*GamePanel.SCALE,GamePanel.HEIGHT*GamePanel.SCALE);
+//        //background.draw(g);
+//        for(int i=0;i<blocks.size();i++)
+//            if(blocks.get(i).getOnScreen())
+//                blocks.get(i).draw(g,this);
+//        for(int i=0;i<enemies.size();i++)
+//            if(enemies.get(i).getOnScreen())
+//                enemies.get(i).draw(g,this);
+//        //tileMap.draw(g);
+//        player.draw(g);
+//    }
+
     public void drawLols(Graphics2D g){
-        g.setColor(Color.WHITE);
-        g.fillRect(0,0,GamePanel.WIDTH*GamePanel.SCALE,GamePanel.HEIGHT*GamePanel.SCALE);
+        //System.out.println("DRAWN LOLS");
+        //g.setColor(Color.WHITE);
+        //g.fillRect(0,0,GamePanel.WIDTH*GamePanel.SCALE,GamePanel.HEIGHT*GamePanel.SCALE);
         //System.out.println(blocks.size());
         g.setColor(Color.BLUE);
-        g.fillRect(0,160,GamePanel.WIDTH*GamePanel.SCALE,GamePanel.HEIGHT*GamePanel.SCALE);
+        g.fillRect(0,0,GamePanel.WIDTH*GamePanel.SCALE,GamePanel.HEIGHT*GamePanel.SCALE);
         //background.draw(g);
         for(int i=0;i<blocks.size();i++)
             if(blocks.get(i).getOnScreen())
@@ -275,16 +286,21 @@ public class Level1State extends GameState{
     }
 
     public void end(){
-        if(GlobalController.evolving&&ann.isReadytoPropogate()){
+        //if(!ann.isReadytoPropogate())
+        //    System.out.println("This should not happen :: Level1State 286");
+        if(GlobalController.evolving&&ann!=null){
             if(ann==null)
                 System.out.println("ERROR 1");
             else if(ann.getNet()==null)
                 System.out.println("ERROR 2");
             ann.getNet().setFitness(totalPast);
             reset();
-            GlobalController.running=false;
+            //if(GlobalController.gameRunning)
+                GlobalController.running=false;
         }else{
-            System.exit(0);
+            //System.exit(0);
+            System.out.println("Fitness: " + totalPast + " :: Level1State 297");
+            GlobalController.running=false;
         }
     }
 

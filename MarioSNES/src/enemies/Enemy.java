@@ -27,6 +27,7 @@ public abstract class Enemy extends GameEntity{
     }
 
     public void removeEnemyFromList(){
+        //System.out.println("Removed enemy :: Enemy");
         reference.getEnemies().remove(this);
     }
 

@@ -8,8 +8,8 @@ public class GlobalController {
     // TODO :: Implement functionality for some of these
     public static String aiFileName;
     public static String levelFile;
-    public static final double MAX_WEIGHT_VALUE=5;
-    public static final double MIN_WEIGHT_VALUE=-5;
+    public static final double MAX_WEIGHT_VALUE=10;
+    public static final double MIN_WEIGHT_VALUE=-10;
     public static final int MAX_NEURONS=200;
     public static final int MIN_NEURONS=3;
     public static final int MAX_CONNECTIONS=10000;
@@ -32,10 +32,10 @@ public class GlobalController {
     
     // set default values for global variables
     public static void init(){
-        aiFileName="TOTALbestRun_546.0";
-        levelFile="fallingPhysicsTest.txt";
+        aiFileName="TOTALbestRun_280975.0";
+        levelFile="jumpingtest.txt";
         //levelFile = "firstLevel.txt";
-        individuals = 10;
+        individuals = 50;
         generations = 100;
         evolving = false;
         aiRun = false;
@@ -43,7 +43,7 @@ public class GlobalController {
         headless = false;
         gameRunning = true;
         running = true;
-        testInput = false;
+        testInput = true;
         // Depreciated :: Zack
         //tilePhysics = false;
         //lolsPhysics = false; // LEAVE TRUE UNTIL ACTUAL PHYSICS RUNS (ALL HELL WILL BREAK LOOSE OTHERWISE)

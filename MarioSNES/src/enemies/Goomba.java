@@ -86,11 +86,20 @@ public class Goomba extends Enemy{
                         //System.out.println("TOP");
                     }else{
                         // Collision is from the left side of this object 
-                        if(distanceBetweenCenters(list.get(i))>getMaxDistance(list.get(i))-2){
+                        //if(distanceBetweenCenters(list.get(i))>getMaxDistance(list.get(i))-2){
+                        //    setDx(tempDx);
+                        //    setXTemp(tempX);
+                        //}else{
+                        //    setXTemp(list.get(i).getXpos()+getWidth());
+                        //    turn();
+                        //}
+                        if(lengthDistance(list.get(i))>=16){
                             setDx(tempDx);
                             setXTemp(tempX);
                         }else{
                             setXTemp(list.get(i).getXpos()+getWidth());
+                            //System.out.println("Turned Left :: Goomba");
+                            //System.out.println("Left distance :: "+lengthDistance(list.get(i)));
                             turn();
                         }
                         lft=true;
@@ -100,11 +109,19 @@ public class Goomba extends Enemy{
                     if(wy>-hx){
                         // Collision is on the right side of this object
                         setXTemp(list.get(i).getXpos()-getWidth()-1);
-                        if(distanceBetweenCenters(list.get(i))>getMaxDistance(list.get(i))){
+                        //if(distanceBetweenCenters(list.get(i))>getMaxDistance(list.get(i))){
+                        //    setDx(tempDx);
+                        //    setXTemp(tempX);
+                        //}else
+                        //    turn();
+                        if(lengthDistance(list.get(i))>=16){
                             setDx(tempDx);
                             setXTemp(tempX);
-                        }else
+                        }else{
+                            //System.out.println("Turned Right :: Goomba");
+                            //System.out.println("Right distance :: "+lengthDistance(list.get(i)));
                             turn();
+                        }
                         rgt=true;
                         //System.out.println("RIGHT");
                     }else{
@@ -159,7 +176,7 @@ public class Goomba extends Enemy{
 
     // if the goomba is hit from the top
     public boolean hit(PlayerState state,Mario mario){
-        mario.rebound(); // mario should jump a little
+        //mario.rebound(); // mario should jump a little
         //state.addPoints(100);
         killed(); // this gets killed
         return true;

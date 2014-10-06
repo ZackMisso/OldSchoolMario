@@ -42,9 +42,11 @@ public class GamePanel extends JPanel implements Runnable,KeyListener{
     }
 
     public void controlledRun(){
+        //System.out.println("Thread is Starting");
         thread=new Thread(this);
+        //System.out.println("BLAH :: GamePanel");
         addKeyListener(this);
-        init();
+        //init();
         thread.start();
         try{
             thread.join();
@@ -61,6 +63,7 @@ public class GamePanel extends JPanel implements Runnable,KeyListener{
     public void run(){
         init();
         long start,elapsed,wait;
+        //System.out.println("Test :: GamePanel");
         while(GlobalController.running){
             if(GlobalController.headless){
                 update();
@@ -81,6 +84,7 @@ public class GamePanel extends JPanel implements Runnable,KeyListener{
                 }
             }
         }
+        //System.out.println("Thread is ending");
     }
     
     private void update(){

@@ -219,7 +219,10 @@ public class NeuralNetwork {
             return;
         }
         //int chosenNeuron=random.nextInt(indexes.size());
-        int chosenNeuron=rng.getInt(indexes.size(),false);
+        int chosenNeuron=neurons.indexOf(neuron);
+        while(chosenNeuron==neurons.indexOf(neuron)){
+            chosenNeuron = rng.getInt(indexes.size(),false);
+        }
         //double recogiv=random.nextDouble();
         double recogiv=rng.simpleDouble();
         int otherIndex=indexes.get(chosenNeuron);

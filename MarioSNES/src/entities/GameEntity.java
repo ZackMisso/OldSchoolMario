@@ -117,6 +117,16 @@ public abstract class GameEntity {
         y*=y;
         return Math.sqrt(x+y);
     }
+    
+    public double lengthDistance(GameEntity other){
+        double y=getCenterY()-other.getCCenterY();
+        return Math.abs(y);
+    }
+    
+    public double xLengthDistance(GameEntity other){
+        double x=getCenterX()-other.getCCenterX();
+        return Math.abs(x);
+    }
 
     // returns if the entity is in the view (needs to be drawn)
     public boolean isOnScreen(){

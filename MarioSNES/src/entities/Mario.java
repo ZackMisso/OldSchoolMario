@@ -62,17 +62,19 @@ public class Mario extends GameEntity{
     }
     
     public void update(ArrayList<Block> list,Level1State state){
-        outer: if((GlobalController.aiRun||GlobalController.evolving)&&ann.isReadytoPropogate()){
+        outer: if((GlobalController.aiRun||GlobalController.evolving)){
             {
                 if(ann==null){
-                    System.out.println("ANN is null :: Mario 68");
+                    //System.out.println("ANN is null :: Mario 68");
                     break outer;
                 }
-                ann.propogate(reference);
-                //System.out.println(""+ann.movesRight()+ann.movesLeft()+ann.jumps());
-                setRight(ann.movesRight());
-                setLeft(ann.movesLeft());
-                setJumping(ann.jumps());
+                else if (ann.isReadytoPropogate()){
+                    ann.propogate(reference);
+                    //System.out.println(""+ann.movesRight()+ann.movesLeft()+ann.jumps());
+                    setRight(ann.movesRight());
+                    setLeft(ann.movesLeft());
+                    setJumping(ann.jumps());
+                }
             }
         }
         // update position
@@ -193,7 +195,7 @@ public class Mario extends GameEntity{
         // TODO :: 100 value will need to be changed to implement camera
         setYpos(getYTemp());
         if(getYpos()>330)
-            System.exit(0);  // TODO :: CHANGE THIS
+            reference.end();  // TODO :: CHANGE THIS
     }
 
     // how the player jumps off things after landing on top of them
@@ -210,29 +212,46 @@ public class Mario extends GameEntity{
             double dy=list.get(i).getCCenterY()-getCenterY();
             if(Math.abs(dx)<=w&&Math.abs(dy)<=h){
                 //System.out.println("COLLISION :: MARIO");
+                //System.out.println("Enemies Size :: "+list.size()+" :: Mario");
+                boolean hack=false;
                 double wy=w*dy;
                 double hx=h*dx;
                 if(wy>hx){
                     if(wy>-hx){
                         // Collision is on the top
-                        if(list.get(i).getKilledByTop())
+                        //System.out.println("Hit on Top");
+                        if(list.get(i).getKilledByTop()){
+                            hack=true;
                             if(list.get(i).hit(state.getPlayerState(),this)){
                                 //list.remove(i--);
                                 // should this do anything?
+                                //System.out.println("Wat :: Mario");
                             }
-                        else
+                        }
+                        else{
+                            //System.out.println("GOOMBA IS INVINCIBLE :: Mario");
                             hit();
+                        }
                     }else{
                         // Collision is from the left
-                        hit();
+                        //System.out.println(hack);
+                        if(!hack){
+                            //System.out.println("Hit From Left :: Mario");
+                            hit();
+                        }
                     }
                 }else{
                     if(wy>-hx){
                         // Collision is on the right
-                        hit();
+                        if(!hack){
+                            //System.out.println("Hit From Right :: Mario");
+                            hit();
+                        }
                     }else{
                         // Collision is on the bottom
-                        hit();
+                        if(!hack){
+                            hit();
+                        }
                     }
                 }
             }
@@ -296,8 +315,8 @@ public class Mario extends GameEntity{
                             setXTemp(tempX);
                         }else{
                             setXTemp(b.getXpos()+getWidth());
-                            System.out.print(distanceBetweenCenters(b)+" ");
-                            System.out.println(getMaxDistance(b));
+                            //System.out.print(distanceBetweenCenters(b)+" ");
+                            //System.out.println(getMaxDistance(b));
                         }
                         lft=true;
                         //setXTemp(list.get(i).getXpos()+getWidth()+1);
@@ -347,14 +366,14 @@ public class Mario extends GameEntity{
     }
 
     public void hit(){
-        System.out.println("The Player Was Hit");
+        //System.out.println("The Player Was Hit");
         die();
     }
     
     // what happens when the player dies
     public void die(){
         // implement
-        System.exit(0);
+        reference.end();
     }
     
     public void keyPressed(int k){

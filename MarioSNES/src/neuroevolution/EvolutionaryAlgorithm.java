@@ -40,7 +40,7 @@ public class EvolutionaryAlgorithm {
             for(f=0;f<networks.size()/2;f++){
                 networks.get(f).mutate();
                 newList.add(networks.get(f).copy());
-                networks.get(f).mutate();
+                 networks.get(f).mutate();
                 newList.add(networks.get(f).copy());
             }
             //uncomment the bottom line for single individual generations
@@ -59,6 +59,7 @@ public class EvolutionaryAlgorithm {
 
     private void runMarioGame(NeuralNetwork net,int generation){
         //System.out.println("Starting Instance of Game");
+        GlobalController.running=true;
         MarioAI agent=new MarioAI();
         agent.createAI(net);
         Level1State state=(Level1State)(game.getGSM().getGameStates().get(1));
