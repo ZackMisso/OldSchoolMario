@@ -1,0 +1,4575 @@
+Tile
+0
+80
+285
+10
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+mario
+startX 0
+startY 176
+tileX 0
+tileY 11
+block 0
+End
+
+block
+startX 0
+startY 224
+tileX 0
+tileY 14
+block 0
+End
+
+block
+startX 0
+startY 208
+tileX 0
+tileY 13
+block 0
+End
+
+block
+startX 16
+startY 208
+tileX 1
+tileY 13
+block 0
+End
+
+block
+startX 16
+startY 224
+tileX 1
+tileY 14
+block 0
+End
+
+block
+startX 32
+startY 208
+tileX 2
+tileY 13
+block 0
+End
+
+block
+startX 48
+startY 224
+tileX 3
+tileY 14
+block 0
+End
+
+block
+startX 48
+startY 208
+tileX 3
+tileY 13
+block 0
+End
+
+block
+startX 32
+startY 224
+tileX 2
+tileY 14
+block 0
+End
+
+block
+startX 64
+startY 208
+tileX 4
+tileY 13
+block 0
+End
+
+block
+startX 80
+startY 208
+tileX 5
+tileY 13
+block 0
+End
+
+block
+startX 96
+startY 208
+tileX 6
+tileY 13
+block 0
+End
+
+block
+startX 112
+startY 208
+tileX 7
+tileY 13
+block 0
+End
+
+block
+startX 144
+startY 208
+tileX 9
+tileY 13
+block 0
+End
+
+block
+startX 128
+startY 208
+tileX 8
+tileY 13
+block 0
+End
+
+block
+startX 160
+startY 208
+tileX 10
+tileY 13
+block 0
+End
+
+block
+startX 176
+startY 208
+tileX 11
+tileY 13
+block 0
+End
+
+block
+startX 192
+startY 208
+tileX 12
+tileY 13
+block 0
+End
+
+block
+startX 208
+startY 208
+tileX 13
+tileY 13
+block 0
+End
+
+block
+startX 224
+startY 208
+tileX 14
+tileY 13
+block 0
+End
+
+block
+startX 240
+startY 208
+tileX 15
+tileY 13
+block 0
+End
+
+block
+startX 256
+startY 208
+tileX 16
+tileY 13
+block 0
+End
+
+block
+startX 272
+startY 208
+tileX 17
+tileY 13
+block 0
+End
+
+block
+startX 288
+startY 208
+tileX 18
+tileY 13
+block 0
+End
+
+block
+startX 304
+startY 208
+tileX 19
+tileY 13
+block 0
+End
+
+block
+startX 320
+startY 208
+tileX 20
+tileY 13
+block 0
+End
+
+block
+startX 336
+startY 208
+tileX 21
+tileY 13
+block 0
+End
+
+block
+startX 352
+startY 208
+tileX 22
+tileY 13
+block 0
+End
+
+block
+startX 368
+startY 208
+tileX 23
+tileY 13
+block 0
+End
+
+block
+startX 384
+startY 208
+tileX 24
+tileY 13
+block 0
+End
+
+block
+startX 400
+startY 208
+tileX 25
+tileY 13
+block 0
+End
+
+block
+startX 416
+startY 208
+tileX 26
+tileY 13
+block 0
+End
+
+block
+startX 432
+startY 208
+tileX 27
+tileY 13
+block 0
+End
+
+block
+startX 448
+startY 208
+tileX 28
+tileY 13
+block 0
+End
+
+block
+startX 464
+startY 208
+tileX 29
+tileY 13
+block 0
+End
+
+block
+startX 480
+startY 208
+tileX 30
+tileY 13
+block 0
+End
+
+block
+startX 496
+startY 208
+tileX 31
+tileY 13
+block 0
+End
+
+block
+startX 512
+startY 208
+tileX 32
+tileY 13
+block 0
+End
+
+block
+startX 528
+startY 208
+tileX 33
+tileY 13
+block 0
+End
+
+block
+startX 544
+startY 208
+tileX 34
+tileY 13
+block 0
+End
+
+block
+startX 560
+startY 208
+tileX 35
+tileY 13
+block 0
+End
+
+block
+startX 576
+startY 208
+tileX 36
+tileY 13
+block 0
+End
+
+block
+startX 592
+startY 208
+tileX 37
+tileY 13
+block 0
+End
+
+block
+startX 608
+startY 208
+tileX 38
+tileY 13
+block 0
+End
+
+block
+startX 624
+startY 208
+tileX 39
+tileY 13
+block 0
+End
+
+block
+startX 640
+startY 208
+tileX 40
+tileY 13
+block 0
+End
+
+block
+startX 656
+startY 208
+tileX 41
+tileY 13
+block 0
+End
+
+block
+startX 672
+startY 208
+tileX 42
+tileY 13
+block 0
+End
+
+block
+startX 688
+startY 208
+tileX 43
+tileY 13
+block 0
+End
+
+block
+startX 704
+startY 208
+tileX 44
+tileY 13
+block 0
+End
+
+block
+startX 720
+startY 208
+tileX 45
+tileY 13
+block 0
+End
+
+block
+startX 736
+startY 208
+tileX 46
+tileY 13
+block 0
+End
+
+block
+startX 752
+startY 208
+tileX 47
+tileY 13
+block 0
+End
+
+block
+startX 768
+startY 208
+tileX 48
+tileY 13
+block 0
+End
+
+block
+startX 784
+startY 208
+tileX 49
+tileY 13
+block 0
+End
+
+block
+startX 800
+startY 208
+tileX 50
+tileY 13
+block 0
+End
+
+block
+startX 816
+startY 208
+tileX 51
+tileY 13
+block 0
+End
+
+block
+startX 832
+startY 208
+tileX 52
+tileY 13
+block 0
+End
+
+block
+startX 848
+startY 208
+tileX 53
+tileY 13
+block 0
+End
+
+block
+startX 864
+startY 208
+tileX 54
+tileY 13
+block 0
+End
+
+block
+startX 880
+startY 208
+tileX 55
+tileY 13
+block 0
+End
+
+block
+startX 896
+startY 208
+tileX 56
+tileY 13
+block 0
+End
+
+block
+startX 912
+startY 208
+tileX 57
+tileY 13
+block 0
+End
+
+block
+startX 928
+startY 208
+tileX 58
+tileY 13
+block 0
+End
+
+block
+startX 944
+startY 208
+tileX 59
+tileY 13
+block 0
+End
+
+block
+startX 960
+startY 208
+tileX 60
+tileY 13
+block 0
+End
+
+block
+startX 976
+startY 208
+tileX 61
+tileY 13
+block 0
+End
+
+block
+startX 992
+startY 208
+tileX 62
+tileY 13
+block 0
+End
+
+block
+startX 1008
+startY 208
+tileX 63
+tileY 13
+block 0
+End
+
+block
+startX 1024
+startY 208
+tileX 64
+tileY 13
+block 0
+End
+
+block
+startX 1040
+startY 208
+tileX 65
+tileY 13
+block 0
+End
+
+block
+startX 1056
+startY 208
+tileX 66
+tileY 13
+block 0
+End
+
+block
+startX 1072
+startY 208
+tileX 67
+tileY 13
+block 0
+End
+
+block
+startX 1104
+startY 208
+tileX 69
+tileY 13
+block 0
+End
+
+block
+startX 1088
+startY 208
+tileX 68
+tileY 13
+block 0
+End
+
+block
+startX 1152
+startY 208
+tileX 72
+tileY 13
+block 0
+End
+
+block
+startX 1168
+startY 208
+tileX 73
+tileY 13
+block 0
+End
+
+block
+startX 1184
+startY 208
+tileX 74
+tileY 13
+block 0
+End
+
+block
+startX 1200
+startY 208
+tileX 75
+tileY 13
+block 0
+End
+
+block
+startX 1216
+startY 208
+tileX 76
+tileY 13
+block 0
+End
+
+block
+startX 1232
+startY 208
+tileX 77
+tileY 13
+block 0
+End
+
+block
+startX 1248
+startY 208
+tileX 78
+tileY 13
+block 0
+End
+
+block
+startX 1264
+startY 208
+tileX 79
+tileY 13
+block 0
+End
+
+block
+startX 1280
+startY 208
+tileX 80
+tileY 13
+block 0
+End
+
+block
+startX 1296
+startY 208
+tileX 81
+tileY 13
+block 0
+End
+
+block
+startX 1312
+startY 208
+tileX 82
+tileY 13
+block 0
+End
+
+block
+startX 1328
+startY 208
+tileX 83
+tileY 13
+block 0
+End
+
+block
+startX 1344
+startY 208
+tileX 84
+tileY 13
+block 0
+End
+
+block
+startX 1360
+startY 208
+tileX 85
+tileY 13
+block 0
+End
+
+block
+startX 1424
+startY 208
+tileX 89
+tileY 13
+block 0
+End
+
+block
+startX 1440
+startY 208
+tileX 90
+tileY 13
+block 0
+End
+
+block
+startX 1456
+startY 208
+tileX 91
+tileY 13
+block 0
+End
+
+block
+startX 1472
+startY 208
+tileX 92
+tileY 13
+block 0
+End
+
+block
+startX 1488
+startY 208
+tileX 93
+tileY 13
+block 0
+End
+
+block
+startX 1504
+startY 208
+tileX 94
+tileY 13
+block 0
+End
+
+block
+startX 1520
+startY 208
+tileX 95
+tileY 13
+block 0
+End
+
+block
+startX 1536
+startY 208
+tileX 96
+tileY 13
+block 0
+End
+
+block
+startX 1552
+startY 208
+tileX 97
+tileY 13
+block 0
+End
+
+block
+startX 1568
+startY 208
+tileX 98
+tileY 13
+block 0
+End
+
+block
+startX 1584
+startY 208
+tileX 99
+tileY 13
+block 0
+End
+
+block
+startX 1600
+startY 208
+tileX 100
+tileY 13
+block 0
+End
+
+block
+startX 1616
+startY 208
+tileX 101
+tileY 13
+block 0
+End
+
+block
+startX 1632
+startY 208
+tileX 102
+tileY 13
+block 0
+End
+
+block
+startX 1648
+startY 208
+tileX 103
+tileY 13
+block 0
+End
+
+block
+startX 1664
+startY 208
+tileX 104
+tileY 13
+block 0
+End
+
+block
+startX 1680
+startY 208
+tileX 105
+tileY 13
+block 0
+End
+
+block
+startX 1696
+startY 208
+tileX 106
+tileY 13
+block 0
+End
+
+block
+startX 1712
+startY 208
+tileX 107
+tileY 13
+block 0
+End
+
+block
+startX 1728
+startY 208
+tileX 108
+tileY 13
+block 0
+End
+
+block
+startX 1744
+startY 208
+tileX 109
+tileY 13
+block 0
+End
+
+block
+startX 1760
+startY 208
+tileX 110
+tileY 13
+block 0
+End
+
+block
+startX 1776
+startY 208
+tileX 111
+tileY 13
+block 0
+End
+
+block
+startX 1792
+startY 208
+tileX 112
+tileY 13
+block 0
+End
+
+block
+startX 1808
+startY 208
+tileX 113
+tileY 13
+block 0
+End
+
+block
+startX 1824
+startY 208
+tileX 114
+tileY 13
+block 0
+End
+
+block
+startX 1840
+startY 208
+tileX 115
+tileY 13
+block 0
+End
+
+block
+startX 1856
+startY 208
+tileX 116
+tileY 13
+block 0
+End
+
+block
+startX 1872
+startY 208
+tileX 117
+tileY 13
+block 0
+End
+
+block
+startX 1888
+startY 208
+tileX 118
+tileY 13
+block 0
+End
+
+block
+startX 1904
+startY 208
+tileX 119
+tileY 13
+block 0
+End
+
+block
+startX 1920
+startY 208
+tileX 120
+tileY 13
+block 0
+End
+
+block
+startX 1936
+startY 208
+tileX 121
+tileY 13
+block 0
+End
+
+block
+startX 1952
+startY 208
+tileX 122
+tileY 13
+block 0
+End
+
+block
+startX 1968
+startY 208
+tileX 123
+tileY 13
+block 0
+End
+
+block
+startX 1984
+startY 208
+tileX 124
+tileY 13
+block 0
+End
+
+block
+startX 2000
+startY 208
+tileX 125
+tileY 13
+block 0
+End
+
+block
+startX 2016
+startY 208
+tileX 126
+tileY 13
+block 0
+End
+
+block
+startX 2032
+startY 208
+tileX 127
+tileY 13
+block 0
+End
+
+block
+startX 2048
+startY 208
+tileX 128
+tileY 13
+block 0
+End
+
+block
+startX 2064
+startY 208
+tileX 129
+tileY 13
+block 0
+End
+
+block
+startX 2080
+startY 208
+tileX 130
+tileY 13
+block 0
+End
+
+block
+startX 2096
+startY 208
+tileX 131
+tileY 13
+block 0
+End
+
+block
+startX 2112
+startY 208
+tileX 132
+tileY 13
+block 0
+End
+
+block
+startX 2128
+startY 208
+tileX 133
+tileY 13
+block 0
+End
+
+block
+startX 2144
+startY 208
+tileX 134
+tileY 13
+block 0
+End
+
+block
+startX 2160
+startY 208
+tileX 135
+tileY 13
+block 0
+End
+
+block
+startX 2176
+startY 208
+tileX 136
+tileY 13
+block 0
+End
+
+block
+startX 2192
+startY 208
+tileX 137
+tileY 13
+block 0
+End
+
+block
+startX 2208
+startY 208
+tileX 138
+tileY 13
+block 0
+End
+
+block
+startX 2224
+startY 208
+tileX 139
+tileY 13
+block 0
+End
+
+block
+startX 2240
+startY 224
+tileX 140
+tileY 14
+block 0
+End
+
+block
+startX 2256
+startY 208
+tileX 141
+tileY 13
+block 0
+End
+
+block
+startX 2272
+startY 208
+tileX 142
+tileY 13
+block 0
+End
+
+block
+startX 2288
+startY 208
+tileX 143
+tileY 13
+block 0
+End
+
+block
+startX 2304
+startY 208
+tileX 144
+tileY 13
+block 0
+End
+
+block
+startX 2320
+startY 208
+tileX 145
+tileY 13
+block 0
+End
+
+block
+startX 2336
+startY 208
+tileX 146
+tileY 13
+block 0
+End
+
+block
+startX 2352
+startY 208
+tileX 147
+tileY 13
+block 0
+End
+
+block
+startX 2368
+startY 208
+tileX 148
+tileY 13
+block 0
+End
+
+block
+startX 2384
+startY 208
+tileX 149
+tileY 13
+block 0
+End
+
+block
+startX 2400
+startY 208
+tileX 150
+tileY 13
+block 0
+End
+
+block
+startX 2416
+startY 208
+tileX 151
+tileY 13
+block 0
+End
+
+block
+startX 2432
+startY 208
+tileX 152
+tileY 13
+block 0
+End
+
+block
+startX 2480
+startY 208
+tileX 155
+tileY 13
+block 0
+End
+
+block
+startX 2496
+startY 208
+tileX 156
+tileY 13
+block 0
+End
+
+block
+startX 2512
+startY 208
+tileX 157
+tileY 13
+block 0
+End
+
+block
+startX 2528
+startY 208
+tileX 158
+tileY 13
+block 0
+End
+
+block
+startX 2544
+startY 208
+tileX 159
+tileY 13
+block 0
+End
+
+block
+startX 2560
+startY 208
+tileX 160
+tileY 13
+block 0
+End
+
+block
+startX 2576
+startY 208
+tileX 161
+tileY 13
+block 0
+End
+
+block
+startX 2592
+startY 208
+tileX 162
+tileY 13
+block 0
+End
+
+block
+startX 2608
+startY 208
+tileX 163
+tileY 13
+block 0
+End
+
+block
+startX 2624
+startY 208
+tileX 164
+tileY 13
+block 0
+End
+
+block
+startX 2640
+startY 208
+tileX 165
+tileY 13
+block 0
+End
+
+block
+startX 2656
+startY 208
+tileX 166
+tileY 13
+block 0
+End
+
+block
+startX 2672
+startY 208
+tileX 167
+tileY 13
+block 0
+End
+
+block
+startX 2688
+startY 208
+tileX 168
+tileY 13
+block 0
+End
+
+block
+startX 2704
+startY 208
+tileX 169
+tileY 13
+block 0
+End
+
+block
+startX 2720
+startY 208
+tileX 170
+tileY 13
+block 0
+End
+
+block
+startX 2736
+startY 208
+tileX 171
+tileY 13
+block 0
+End
+
+block
+startX 2752
+startY 208
+tileX 172
+tileY 13
+block 0
+End
+
+block
+startX 2768
+startY 208
+tileX 173
+tileY 13
+block 0
+End
+
+block
+startX 2784
+startY 208
+tileX 174
+tileY 13
+block 0
+End
+
+block
+startX 2800
+startY 208
+tileX 175
+tileY 13
+block 0
+End
+
+block
+startX 2816
+startY 208
+tileX 176
+tileY 13
+block 0
+End
+
+block
+startX 2832
+startY 208
+tileX 177
+tileY 13
+block 0
+End
+
+block
+startX 2848
+startY 208
+tileX 178
+tileY 13
+block 0
+End
+
+block
+startX 2864
+startY 208
+tileX 179
+tileY 13
+block 0
+End
+
+block
+startX 2880
+startY 208
+tileX 180
+tileY 13
+block 0
+End
+
+block
+startX 2896
+startY 208
+tileX 181
+tileY 13
+block 0
+End
+
+block
+startX 2912
+startY 176
+tileX 182
+tileY 11
+block 0
+End
+
+block
+startX 2928
+startY 208
+tileX 183
+tileY 13
+block 0
+End
+
+block
+startX 2944
+startY 208
+tileX 184
+tileY 13
+block 0
+End
+
+block
+startX 2960
+startY 208
+tileX 185
+tileY 13
+block 0
+End
+
+block
+startX 2976
+startY 208
+tileX 186
+tileY 13
+block 0
+End
+
+block
+startX 2992
+startY 208
+tileX 187
+tileY 13
+block 0
+End
+
+block
+startX 3008
+startY 208
+tileX 188
+tileY 13
+block 0
+End
+
+block
+startX 3040
+startY 208
+tileX 190
+tileY 13
+block 0
+End
+
+block
+startX 3024
+startY 208
+tileX 189
+tileY 13
+block 0
+End
+
+block
+startX 3056
+startY 208
+tileX 191
+tileY 13
+block 0
+End
+
+block
+startX 3072
+startY 208
+tileX 192
+tileY 13
+block 0
+End
+
+block
+startX 3088
+startY 208
+tileX 193
+tileY 13
+block 0
+End
+
+block
+startX 3104
+startY 208
+tileX 194
+tileY 13
+block 0
+End
+
+block
+startX 3120
+startY 208
+tileX 195
+tileY 13
+block 0
+End
+
+block
+startX 3136
+startY 208
+tileX 196
+tileY 13
+block 0
+End
+
+block
+startX 3152
+startY 208
+tileX 197
+tileY 13
+block 0
+End
+
+block
+startX 3168
+startY 208
+tileX 198
+tileY 13
+block 0
+End
+
+block
+startX 3184
+startY 208
+tileX 199
+tileY 13
+block 0
+End
+
+block
+startX 3200
+startY 208
+tileX 200
+tileY 13
+block 0
+End
+
+block
+startX 3216
+startY 208
+tileX 201
+tileY 13
+block 0
+End
+
+block
+startX 3232
+startY 208
+tileX 202
+tileY 13
+block 0
+End
+
+block
+startX 3248
+startY 208
+tileX 203
+tileY 13
+block 0
+End
+
+block
+startX 3264
+startY 208
+tileX 204
+tileY 13
+block 0
+End
+
+block
+startX 3280
+startY 208
+tileX 205
+tileY 13
+block 0
+End
+
+block
+startX 3296
+startY 208
+tileX 206
+tileY 13
+block 0
+End
+
+block
+startX 3312
+startY 208
+tileX 207
+tileY 13
+block 0
+End
+
+block
+startX 64
+startY 224
+tileX 4
+tileY 14
+block 0
+End
+
+block
+startX 80
+startY 224
+tileX 5
+tileY 14
+block 0
+End
+
+block
+startX 96
+startY 224
+tileX 6
+tileY 14
+block 0
+End
+
+block
+startX 112
+startY 224
+tileX 7
+tileY 14
+block 0
+End
+
+block
+startX 128
+startY 224
+tileX 8
+tileY 14
+block 0
+End
+
+block
+startX 144
+startY 224
+tileX 9
+tileY 14
+block 0
+End
+
+block
+startX 160
+startY 224
+tileX 10
+tileY 14
+block 0
+End
+
+block
+startX 176
+startY 224
+tileX 11
+tileY 14
+block 0
+End
+
+block
+startX 192
+startY 224
+tileX 12
+tileY 14
+block 0
+End
+
+block
+startX 208
+startY 224
+tileX 13
+tileY 14
+block 0
+End
+
+block
+startX 224
+startY 224
+tileX 14
+tileY 14
+block 0
+End
+
+block
+startX 240
+startY 224
+tileX 15
+tileY 14
+block 0
+End
+
+block
+startX 256
+startY 224
+tileX 16
+tileY 14
+block 0
+End
+
+block
+startX 272
+startY 224
+tileX 17
+tileY 14
+block 0
+End
+
+block
+startX 288
+startY 224
+tileX 18
+tileY 14
+block 0
+End
+
+block
+startX 304
+startY 224
+tileX 19
+tileY 14
+block 0
+End
+
+block
+startX 320
+startY 224
+tileX 20
+tileY 14
+block 0
+End
+
+block
+startX 336
+startY 224
+tileX 21
+tileY 14
+block 0
+End
+
+block
+startX 352
+startY 224
+tileX 22
+tileY 14
+block 0
+End
+
+block
+startX 368
+startY 224
+tileX 23
+tileY 14
+block 0
+End
+
+block
+startX 384
+startY 224
+tileX 24
+tileY 14
+block 0
+End
+
+block
+startX 400
+startY 224
+tileX 25
+tileY 14
+block 0
+End
+
+block
+startX 416
+startY 224
+tileX 26
+tileY 14
+block 0
+End
+
+block
+startX 432
+startY 224
+tileX 27
+tileY 14
+block 0
+End
+
+block
+startX 448
+startY 224
+tileX 28
+tileY 14
+block 0
+End
+
+block
+startX 464
+startY 224
+tileX 29
+tileY 14
+block 0
+End
+
+block
+startX 480
+startY 224
+tileX 30
+tileY 14
+block 0
+End
+
+block
+startX 496
+startY 224
+tileX 31
+tileY 14
+block 0
+End
+
+block
+startX 512
+startY 224
+tileX 32
+tileY 14
+block 0
+End
+
+block
+startX 528
+startY 224
+tileX 33
+tileY 14
+block 0
+End
+
+block
+startX 544
+startY 224
+tileX 34
+tileY 14
+block 0
+End
+
+block
+startX 560
+startY 224
+tileX 35
+tileY 14
+block 0
+End
+
+block
+startX 576
+startY 224
+tileX 36
+tileY 14
+block 0
+End
+
+block
+startX 592
+startY 224
+tileX 37
+tileY 14
+block 0
+End
+
+block
+startX 608
+startY 224
+tileX 38
+tileY 14
+block 0
+End
+
+block
+startX 624
+startY 224
+tileX 39
+tileY 14
+block 0
+End
+
+block
+startX 640
+startY 224
+tileX 40
+tileY 14
+block 0
+End
+
+block
+startX 656
+startY 224
+tileX 41
+tileY 14
+block 0
+End
+
+block
+startX 672
+startY 224
+tileX 42
+tileY 14
+block 0
+End
+
+block
+startX 688
+startY 224
+tileX 43
+tileY 14
+block 0
+End
+
+block
+startX 704
+startY 224
+tileX 44
+tileY 14
+block 0
+End
+
+block
+startX 720
+startY 224
+tileX 45
+tileY 14
+block 0
+End
+
+block
+startX 736
+startY 224
+tileX 46
+tileY 14
+block 0
+End
+
+block
+startX 752
+startY 224
+tileX 47
+tileY 14
+block 0
+End
+
+block
+startX 768
+startY 224
+tileX 48
+tileY 14
+block 0
+End
+
+block
+startX 784
+startY 224
+tileX 49
+tileY 14
+block 0
+End
+
+block
+startX 800
+startY 224
+tileX 50
+tileY 14
+block 0
+End
+
+block
+startX 816
+startY 224
+tileX 51
+tileY 14
+block 0
+End
+
+block
+startX 832
+startY 224
+tileX 52
+tileY 14
+block 0
+End
+
+block
+startX 848
+startY 224
+tileX 53
+tileY 14
+block 0
+End
+
+block
+startX 864
+startY 224
+tileX 54
+tileY 14
+block 0
+End
+
+block
+startX 880
+startY 224
+tileX 55
+tileY 14
+block 0
+End
+
+block
+startX 896
+startY 224
+tileX 56
+tileY 14
+block 0
+End
+
+block
+startX 1008
+startY 224
+tileX 63
+tileY 14
+block 0
+End
+
+block
+startX 976
+startY 224
+tileX 61
+tileY 14
+block 0
+End
+
+block
+startX 960
+startY 224
+tileX 60
+tileY 14
+block 0
+End
+
+block
+startX 992
+startY 224
+tileX 62
+tileY 14
+block 0
+End
+
+block
+startX 944
+startY 224
+tileX 59
+tileY 14
+block 0
+End
+
+block
+startX 912
+startY 224
+tileX 57
+tileY 14
+block 0
+End
+
+block
+startX 928
+startY 224
+tileX 58
+tileY 14
+block 0
+End
+
+block
+startX 1024
+startY 224
+tileX 64
+tileY 14
+block 0
+End
+
+block
+startX 1040
+startY 224
+tileX 65
+tileY 14
+block 0
+End
+
+block
+startX 1056
+startY 224
+tileX 66
+tileY 14
+block 0
+End
+
+block
+startX 1072
+startY 224
+tileX 67
+tileY 14
+block 0
+End
+
+block
+startX 1088
+startY 224
+tileX 68
+tileY 14
+block 0
+End
+
+block
+startX 1104
+startY 224
+tileX 69
+tileY 14
+block 0
+End
+
+block
+startX 1152
+startY 224
+tileX 72
+tileY 14
+block 0
+End
+
+block
+startX 1168
+startY 224
+tileX 73
+tileY 14
+block 0
+End
+
+block
+startX 1184
+startY 224
+tileX 74
+tileY 14
+block 0
+End
+
+block
+startX 1200
+startY 224
+tileX 75
+tileY 14
+block 0
+End
+
+block
+startX 1216
+startY 224
+tileX 76
+tileY 14
+block 0
+End
+
+block
+startX 1232
+startY 224
+tileX 77
+tileY 14
+block 0
+End
+
+block
+startX 1248
+startY 224
+tileX 78
+tileY 14
+block 0
+End
+
+block
+startX 1264
+startY 224
+tileX 79
+tileY 14
+block 0
+End
+
+block
+startX 1296
+startY 224
+tileX 81
+tileY 14
+block 0
+End
+
+block
+startX 1280
+startY 224
+tileX 80
+tileY 14
+block 0
+End
+
+block
+startX 1312
+startY 224
+tileX 82
+tileY 14
+block 0
+End
+
+block
+startX 1328
+startY 224
+tileX 83
+tileY 14
+block 0
+End
+
+block
+startX 1344
+startY 224
+tileX 84
+tileY 14
+block 0
+End
+
+block
+startX 1360
+startY 224
+tileX 85
+tileY 14
+block 0
+End
+
+block
+startX 1424
+startY 224
+tileX 89
+tileY 14
+block 0
+End
+
+block
+startX 1440
+startY 224
+tileX 90
+tileY 14
+block 0
+End
+
+block
+startX 1456
+startY 224
+tileX 91
+tileY 14
+block 0
+End
+
+block
+startX 1472
+startY 224
+tileX 92
+tileY 14
+block 0
+End
+
+block
+startX 1488
+startY 224
+tileX 93
+tileY 14
+block 0
+End
+
+block
+startX 1504
+startY 224
+tileX 94
+tileY 14
+block 0
+End
+
+block
+startX 1520
+startY 224
+tileX 95
+tileY 14
+block 0
+End
+
+block
+startX 1536
+startY 224
+tileX 96
+tileY 14
+block 0
+End
+
+block
+startX 1552
+startY 224
+tileX 97
+tileY 14
+block 0
+End
+
+block
+startX 1568
+startY 224
+tileX 98
+tileY 14
+block 0
+End
+
+block
+startX 1584
+startY 224
+tileX 99
+tileY 14
+block 0
+End
+
+block
+startX 1600
+startY 224
+tileX 100
+tileY 14
+block 0
+End
+
+block
+startX 1616
+startY 224
+tileX 101
+tileY 14
+block 0
+End
+
+block
+startX 1632
+startY 224
+tileX 102
+tileY 14
+block 0
+End
+
+block
+startX 1648
+startY 224
+tileX 103
+tileY 14
+block 0
+End
+
+block
+startX 1664
+startY 224
+tileX 104
+tileY 14
+block 0
+End
+
+block
+startX 1680
+startY 224
+tileX 105
+tileY 14
+block 0
+End
+
+block
+startX 1696
+startY 224
+tileX 106
+tileY 14
+block 0
+End
+
+block
+startX 1712
+startY 224
+tileX 107
+tileY 14
+block 0
+End
+
+block
+startX 1728
+startY 224
+tileX 108
+tileY 14
+block 0
+End
+
+block
+startX 1744
+startY 224
+tileX 109
+tileY 14
+block 0
+End
+
+block
+startX 1760
+startY 224
+tileX 110
+tileY 14
+block 0
+End
+
+block
+startX 1776
+startY 224
+tileX 111
+tileY 14
+block 0
+End
+
+block
+startX 1792
+startY 224
+tileX 112
+tileY 14
+block 0
+End
+
+block
+startX 1808
+startY 224
+tileX 113
+tileY 14
+block 0
+End
+
+block
+startX 1840
+startY 224
+tileX 115
+tileY 14
+block 0
+End
+
+block
+startX 1824
+startY 224
+tileX 114
+tileY 14
+block 0
+End
+
+block
+startX 1856
+startY 224
+tileX 116
+tileY 14
+block 0
+End
+
+block
+startX 1872
+startY 224
+tileX 117
+tileY 14
+block 0
+End
+
+block
+startX 1888
+startY 224
+tileX 118
+tileY 14
+block 0
+End
+
+block
+startX 1904
+startY 224
+tileX 119
+tileY 14
+block 0
+End
+
+block
+startX 1920
+startY 224
+tileX 120
+tileY 14
+block 0
+End
+
+block
+startX 1936
+startY 224
+tileX 121
+tileY 14
+block 0
+End
+
+block
+startX 1952
+startY 224
+tileX 122
+tileY 14
+block 0
+End
+
+block
+startX 1968
+startY 224
+tileX 123
+tileY 14
+block 0
+End
+
+block
+startX 1984
+startY 224
+tileX 124
+tileY 14
+block 0
+End
+
+block
+startX 2000
+startY 224
+tileX 125
+tileY 14
+block 0
+End
+
+block
+startX 2016
+startY 224
+tileX 126
+tileY 14
+block 0
+End
+
+block
+startX 2032
+startY 224
+tileX 127
+tileY 14
+block 0
+End
+
+block
+startX 2048
+startY 224
+tileX 128
+tileY 14
+block 0
+End
+
+block
+startX 2064
+startY 224
+tileX 129
+tileY 14
+block 0
+End
+
+block
+startX 2080
+startY 224
+tileX 130
+tileY 14
+block 0
+End
+
+block
+startX 2096
+startY 224
+tileX 131
+tileY 14
+block 0
+End
+
+block
+startX 2112
+startY 224
+tileX 132
+tileY 14
+block 0
+End
+
+block
+startX 2128
+startY 224
+tileX 133
+tileY 14
+block 0
+End
+
+block
+startX 2144
+startY 224
+tileX 134
+tileY 14
+block 0
+End
+
+block
+startX 2160
+startY 224
+tileX 135
+tileY 14
+block 0
+End
+
+block
+startX 2176
+startY 224
+tileX 136
+tileY 14
+block 0
+End
+
+block
+startX 2192
+startY 224
+tileX 137
+tileY 14
+block 0
+End
+
+block
+startX 2208
+startY 224
+tileX 138
+tileY 14
+block 0
+End
+
+block
+startX 2224
+startY 224
+tileX 139
+tileY 14
+block 0
+End
+
+block
+startX 2240
+startY 208
+tileX 140
+tileY 13
+block 0
+End
+
+block
+startX 2256
+startY 224
+tileX 141
+tileY 14
+block 0
+End
+
+block
+startX 2272
+startY 224
+tileX 142
+tileY 14
+block 0
+End
+
+block
+startX 2288
+startY 224
+tileX 143
+tileY 14
+block 0
+End
+
+block
+startX 2304
+startY 224
+tileX 144
+tileY 14
+block 0
+End
+
+block
+startX 2320
+startY 224
+tileX 145
+tileY 14
+block 0
+End
+
+block
+startX 2336
+startY 224
+tileX 146
+tileY 14
+block 0
+End
+
+block
+startX 2352
+startY 224
+tileX 147
+tileY 14
+block 0
+End
+
+block
+startX 2368
+startY 224
+tileX 148
+tileY 14
+block 0
+End
+
+block
+startX 2384
+startY 224
+tileX 149
+tileY 14
+block 0
+End
+
+block
+startX 2400
+startY 224
+tileX 150
+tileY 14
+block 0
+End
+
+block
+startX 2416
+startY 224
+tileX 151
+tileY 14
+block 0
+End
+
+block
+startX 2432
+startY 224
+tileX 152
+tileY 14
+block 0
+End
+
+block
+startX 2480
+startY 224
+tileX 155
+tileY 14
+block 0
+End
+
+block
+startX 2496
+startY 224
+tileX 156
+tileY 14
+block 0
+End
+
+block
+startX 2512
+startY 224
+tileX 157
+tileY 14
+block 0
+End
+
+block
+startX 2528
+startY 224
+tileX 158
+tileY 14
+block 0
+End
+
+block
+startX 2544
+startY 224
+tileX 159
+tileY 14
+block 0
+End
+
+block
+startX 2560
+startY 224
+tileX 160
+tileY 14
+block 0
+End
+
+block
+startX 2576
+startY 224
+tileX 161
+tileY 14
+block 0
+End
+
+block
+startX 2592
+startY 224
+tileX 162
+tileY 14
+block 0
+End
+
+block
+startX 2608
+startY 224
+tileX 163
+tileY 14
+block 0
+End
+
+block
+startX 2624
+startY 224
+tileX 164
+tileY 14
+block 0
+End
+
+block
+startX 2640
+startY 224
+tileX 165
+tileY 14
+block 0
+End
+
+block
+startX 2656
+startY 224
+tileX 166
+tileY 14
+block 0
+End
+
+block
+startX 2672
+startY 224
+tileX 167
+tileY 14
+block 0
+End
+
+block
+startX 2688
+startY 224
+tileX 168
+tileY 14
+block 0
+End
+
+block
+startX 2704
+startY 224
+tileX 169
+tileY 14
+block 0
+End
+
+block
+startX 2720
+startY 224
+tileX 170
+tileY 14
+block 0
+End
+
+block
+startX 2736
+startY 224
+tileX 171
+tileY 14
+block 0
+End
+
+block
+startX 2752
+startY 224
+tileX 172
+tileY 14
+block 0
+End
+
+block
+startX 2768
+startY 224
+tileX 173
+tileY 14
+block 0
+End
+
+block
+startX 2784
+startY 224
+tileX 174
+tileY 14
+block 0
+End
+
+block
+startX 2800
+startY 224
+tileX 175
+tileY 14
+block 0
+End
+
+block
+startX 2816
+startY 224
+tileX 176
+tileY 14
+block 0
+End
+
+block
+startX 2832
+startY 224
+tileX 177
+tileY 14
+block 0
+End
+
+block
+startX 2848
+startY 224
+tileX 178
+tileY 14
+block 0
+End
+
+block
+startX 2864
+startY 224
+tileX 179
+tileY 14
+block 0
+End
+
+block
+startX 2880
+startY 224
+tileX 180
+tileY 14
+block 0
+End
+
+block
+startX 2896
+startY 224
+tileX 181
+tileY 14
+block 0
+End
+
+block
+startX 2912
+startY 224
+tileX 182
+tileY 14
+block 0
+End
+
+block
+startX 2928
+startY 224
+tileX 183
+tileY 14
+block 0
+End
+
+block
+startX 4544
+startY 224
+tileX 284
+tileY 14
+block 0
+End
+
+block
+startX 2944
+startY 224
+tileX 184
+tileY 14
+block 0
+End
+
+block
+startX 2960
+startY 224
+tileX 185
+tileY 14
+block 0
+End
+
+block
+startX 2976
+startY 224
+tileX 186
+tileY 14
+block 0
+End
+
+block
+startX 2992
+startY 224
+tileX 187
+tileY 14
+block 0
+End
+
+block
+startX 3008
+startY 224
+tileX 188
+tileY 14
+block 0
+End
+
+block
+startX 3024
+startY 224
+tileX 189
+tileY 14
+block 0
+End
+
+block
+startX 3040
+startY 224
+tileX 190
+tileY 14
+block 0
+End
+
+block
+startX 3056
+startY 224
+tileX 191
+tileY 14
+block 0
+End
+
+block
+startX 3072
+startY 224
+tileX 192
+tileY 14
+block 0
+End
+
+block
+startX 3088
+startY 224
+tileX 193
+tileY 14
+block 0
+End
+
+block
+startX 3104
+startY 224
+tileX 194
+tileY 14
+block 0
+End
+
+block
+startX 3120
+startY 224
+tileX 195
+tileY 14
+block 0
+End
+
+block
+startX 3136
+startY 224
+tileX 196
+tileY 14
+block 0
+End
+
+block
+startX 3152
+startY 224
+tileX 197
+tileY 14
+block 0
+End
+
+block
+startX 3168
+startY 224
+tileX 198
+tileY 14
+block 0
+End
+
+block
+startX 3184
+startY 224
+tileX 199
+tileY 14
+block 0
+End
+
+block
+startX 3200
+startY 224
+tileX 200
+tileY 14
+block 0
+End
+
+block
+startX 3216
+startY 224
+tileX 201
+tileY 14
+block 0
+End
+
+block
+startX 3232
+startY 224
+tileX 202
+tileY 14
+block 0
+End
+
+block
+startX 3248
+startY 224
+tileX 203
+tileY 14
+block 0
+End
+
+block
+startX 3280
+startY 224
+tileX 205
+tileY 14
+block 0
+End
+
+block
+startX 3264
+startY 224
+tileX 204
+tileY 14
+block 0
+End
+
+block
+startX 3296
+startY 224
+tileX 206
+tileY 14
+block 0
+End
+
+block
+startX 3312
+startY 224
+tileX 207
+tileY 14
+block 0
+End
+
+block
+startX 256
+startY 144
+tileX 16
+tileY 9
+block 0
+End
+
+block
+startX 320
+startY 144
+tileX 20
+tileY 9
+block 0
+End
+
+block
+startX 336
+startY 144
+tileX 21
+tileY 9
+block 0
+End
+
+block
+startX 352
+startY 144
+tileX 22
+tileY 9
+block 0
+End
+
+block
+startX 368
+startY 144
+tileX 23
+tileY 9
+block 0
+End
+
+block
+startX 384
+startY 144
+tileX 24
+tileY 9
+block 0
+End
+
+block
+startX 352
+startY 80
+tileX 22
+tileY 5
+block 0
+End
+
+block
+startX 448
+startY 176
+tileX 28
+tileY 11
+block 0
+End
+
+block
+startX 448
+startY 192
+tileX 28
+tileY 12
+block 0
+End
+
+block
+startX 464
+startY 176
+tileX 29
+tileY 11
+block 0
+End
+
+block
+startX 464
+startY 192
+tileX 29
+tileY 12
+block 0
+End
+
+block
+startX 608
+startY 176
+tileX 38
+tileY 11
+block 0
+End
+
+block
+startX 608
+startY 160
+tileX 38
+tileY 10
+block 0
+End
+
+block
+startX 608
+startY 192
+tileX 38
+tileY 12
+block 0
+End
+
+block
+startX 624
+startY 160
+tileX 39
+tileY 10
+block 0
+End
+
+block
+startX 624
+startY 176
+tileX 39
+tileY 11
+block 0
+End
+
+block
+startX 624
+startY 192
+tileX 39
+tileY 12
+block 0
+End
+
+block
+startX 736
+startY 160
+tileX 46
+tileY 10
+block 0
+End
+
+block
+startX 752
+startY 160
+tileX 47
+tileY 10
+block 0
+End
+
+block
+startX 736
+startY 144
+tileX 46
+tileY 9
+block 0
+End
+
+block
+startX 736
+startY 176
+tileX 46
+tileY 11
+block 0
+End
+
+block
+startX 752
+startY 192
+tileX 47
+tileY 12
+block 0
+End
+
+block
+startX 736
+startY 192
+tileX 46
+tileY 12
+block 0
+End
+
+block
+startX 752
+startY 144
+tileX 47
+tileY 9
+block 0
+End
+
+block
+startX 752
+startY 176
+tileX 47
+tileY 11
+block 0
+End
+
+block
+startX 912
+startY 144
+tileX 57
+tileY 9
+block 0
+End
+
+block
+startX 912
+startY 160
+tileX 57
+tileY 10
+block 0
+End
+
+block
+startX 928
+startY 160
+tileX 58
+tileY 10
+block 0
+End
+
+block
+startX 912
+startY 176
+tileX 57
+tileY 11
+block 0
+End
+
+block
+startX 912
+startY 192
+tileX 57
+tileY 12
+block 0
+End
+
+block
+startX 928
+startY 144
+tileX 58
+tileY 9
+block 0
+End
+
+block
+startX 928
+startY 176
+tileX 58
+tileY 11
+block 0
+End
+
+block
+startX 928
+startY 192
+tileX 58
+tileY 12
+block 0
+End
+
+block
+startX 1232
+startY 144
+tileX 77
+tileY 9
+block 0
+End
+
+block
+startX 1248
+startY 144
+tileX 78
+tileY 9
+block 0
+End
+
+block
+startX 1264
+startY 144
+tileX 79
+tileY 9
+block 0
+End
+
+block
+startX 1280
+startY 80
+tileX 80
+tileY 5
+block 0
+End
+
+block
+startX 1456
+startY 80
+tileX 91
+tileY 5
+block 0
+End
+
+block
+startX 1296
+startY 80
+tileX 81
+tileY 5
+block 0
+End
+
+block
+startX 1312
+startY 80
+tileX 82
+tileY 5
+block 0
+End
+
+block
+startX 1328
+startY 80
+tileX 83
+tileY 5
+block 0
+End
+
+block
+startX 1344
+startY 80
+tileX 84
+tileY 5
+block 0
+End
+
+block
+startX 1360
+startY 80
+tileX 85
+tileY 5
+block 0
+End
+
+block
+startX 1376
+startY 80
+tileX 86
+tileY 5
+block 0
+End
+
+block
+startX 1392
+startY 80
+tileX 87
+tileY 5
+block 0
+End
+
+block
+startX 1472
+startY 80
+tileX 92
+tileY 5
+block 0
+End
+
+block
+startX 1488
+startY 80
+tileX 93
+tileY 5
+block 0
+End
+
+block
+startX 1504
+startY 80
+tileX 94
+tileY 5
+block 0
+End
+
+block
+startX 1504
+startY 144
+tileX 94
+tileY 9
+block 0
+End
+
+block
+startX 1600
+startY 144
+tileX 100
+tileY 9
+block 0
+End
+
+block
+startX 1616
+startY 144
+tileX 101
+tileY 9
+block 0
+End
+
+block
+startX 1696
+startY 144
+tileX 106
+tileY 9
+block 0
+End
+
+block
+startX 1744
+startY 144
+tileX 109
+tileY 9
+block 0
+End
+
+block
+startX 1792
+startY 144
+tileX 112
+tileY 9
+block 0
+End
+
+block
+startX 1744
+startY 80
+tileX 109
+tileY 5
+block 0
+End
+
+block
+startX 1936
+startY 96
+tileX 121
+tileY 6
+block 0
+End
+
+block
+startX 1952
+startY 96
+tileX 122
+tileY 6
+block 0
+End
+
+block
+startX 1968
+startY 96
+tileX 123
+tileY 6
+block 0
+End
+
+block
+startX 2048
+startY 80
+tileX 128
+tileY 5
+block 0
+End
+
+block
+startX 2064
+startY 80
+tileX 129
+tileY 5
+block 0
+End
+
+block
+startX 2080
+startY 80
+tileX 130
+tileY 5
+block 0
+End
+
+block
+startX 2096
+startY 80
+tileX 131
+tileY 5
+block 0
+End
+
+block
+startX 2048
+startY 144
+tileX 128
+tileY 9
+block 0
+End
+
+block
+startX 2064
+startY 144
+tileX 129
+tileY 9
+block 0
+End
+
+block
+startX 2080
+startY 144
+tileX 130
+tileY 9
+block 0
+End
+
+block
+startX 2144
+startY 192
+tileX 134
+tileY 12
+block 0
+End
+
+block
+startX 2160
+startY 192
+tileX 135
+tileY 12
+block 0
+End
+
+block
+startX 2176
+startY 192
+tileX 136
+tileY 12
+block 0
+End
+
+block
+startX 2192
+startY 192
+tileX 137
+tileY 12
+block 0
+End
+
+block
+startX 2192
+startY 144
+tileX 137
+tileY 9
+block 0
+End
+
+block
+startX 2192
+startY 160
+tileX 137
+tileY 10
+block 0
+End
+
+block
+startX 2192
+startY 176
+tileX 137
+tileY 11
+block 0
+End
+
+block
+startX 2160
+startY 176
+tileX 135
+tileY 11
+block 0
+End
+
+block
+startX 2176
+startY 176
+tileX 136
+tileY 11
+block 0
+End
+
+block
+startX 2176
+startY 160
+tileX 136
+tileY 10
+block 0
+End
+
+block
+startX 2240
+startY 192
+tileX 140
+tileY 12
+block 0
+End
+
+block
+startX 2256
+startY 192
+tileX 141
+tileY 12
+block 0
+End
+
+block
+startX 2240
+startY 176
+tileX 140
+tileY 11
+block 0
+End
+
+block
+startX 2240
+startY 160
+tileX 140
+tileY 10
+block 0
+End
+
+block
+startX 2240
+startY 144
+tileX 140
+tileY 9
+block 0
+End
+
+block
+startX 2256
+startY 176
+tileX 141
+tileY 11
+block 0
+End
+
+block
+startX 2256
+startY 160
+tileX 141
+tileY 10
+block 0
+End
+
+block
+startX 2272
+startY 192
+tileX 142
+tileY 12
+block 0
+End
+
+block
+startX 2272
+startY 176
+tileX 142
+tileY 11
+block 0
+End
+
+block
+startX 2288
+startY 192
+tileX 143
+tileY 12
+block 0
+End
+
+block
+startX 2368
+startY 192
+tileX 148
+tileY 12
+block 0
+End
+
+block
+startX 2384
+startY 192
+tileX 149
+tileY 12
+block 0
+End
+
+block
+startX 2384
+startY 176
+tileX 149
+tileY 11
+block 0
+End
+
+block
+startX 2400
+startY 192
+tileX 150
+tileY 12
+block 0
+End
+
+block
+startX 2400
+startY 176
+tileX 150
+tileY 11
+block 0
+End
+
+block
+startX 2400
+startY 160
+tileX 150
+tileY 10
+block 0
+End
+
+block
+startX 2416
+startY 192
+tileX 151
+tileY 12
+block 0
+End
+
+block
+startX 2432
+startY 176
+tileX 152
+tileY 11
+block 0
+End
+
+block
+startX 2416
+startY 176
+tileX 151
+tileY 11
+block 0
+End
+
+block
+startX 2416
+startY 160
+tileX 151
+tileY 10
+block 0
+End
+
+block
+startX 2416
+startY 144
+tileX 151
+tileY 9
+block 0
+End
+
+block
+startX 2432
+startY 192
+tileX 152
+tileY 12
+block 0
+End
+
+block
+startX 2432
+startY 160
+tileX 152
+tileY 10
+block 0
+End
+
+block
+startX 2432
+startY 144
+tileX 152
+tileY 9
+block 0
+End
+
+block
+startX 2480
+startY 144
+tileX 155
+tileY 9
+block 0
+End
+
+block
+startX 2480
+startY 160
+tileX 155
+tileY 10
+block 0
+End
+
+block
+startX 2480
+startY 176
+tileX 155
+tileY 11
+block 0
+End
+
+block
+startX 2480
+startY 192
+tileX 155
+tileY 12
+block 0
+End
+
+block
+startX 2496
+startY 160
+tileX 156
+tileY 10
+block 0
+End
+
+block
+startX 2496
+startY 176
+tileX 156
+tileY 11
+block 0
+End
+
+block
+startX 2512
+startY 192
+tileX 157
+tileY 12
+block 0
+End
+
+block
+startX 2528
+startY 192
+tileX 158
+tileY 12
+block 0
+End
+
+block
+startX 2496
+startY 192
+tileX 156
+tileY 12
+block 0
+End
+
+block
+startX 2512
+startY 176
+tileX 157
+tileY 11
+block 0
+End
+
+block
+startX 2608
+startY 192
+tileX 163
+tileY 12
+block 0
+End
+
+block
+startX 2608
+startY 176
+tileX 163
+tileY 11
+block 0
+End
+
+block
+startX 2624
+startY 192
+tileX 164
+tileY 12
+block 0
+End
+
+block
+startX 2624
+startY 176
+tileX 164
+tileY 11
+block 0
+End
+
+block
+startX 2688
+startY 144
+tileX 168
+tileY 9
+block 0
+End
+
+block
+startX 2704
+startY 144
+tileX 169
+tileY 9
+block 0
+End
+
+block
+startX 2720
+startY 144
+tileX 170
+tileY 9
+block 0
+End
+
+block
+startX 2736
+startY 144
+tileX 171
+tileY 9
+block 0
+End
+
+block
+startX 2864
+startY 192
+tileX 179
+tileY 12
+block 0
+End
+
+block
+startX 2864
+startY 176
+tileX 179
+tileY 11
+block 0
+End
+
+block
+startX 2880
+startY 192
+tileX 180
+tileY 12
+block 0
+End
+
+block
+startX 2880
+startY 176
+tileX 180
+tileY 11
+block 0
+End
+
+block
+startX 2896
+startY 192
+tileX 181
+tileY 12
+block 0
+End
+
+block
+startX 2912
+startY 192
+tileX 182
+tileY 12
+block 0
+End
+
+block
+startX 2912
+startY 208
+tileX 182
+tileY 13
+block 0
+End
+
+block
+startX 2928
+startY 192
+tileX 183
+tileY 12
+block 0
+End
+
+block
+startX 2928
+startY 176
+tileX 183
+tileY 11
+block 0
+End
+
+block
+startX 2928
+startY 160
+tileX 183
+tileY 10
+block 0
+End
+
+block
+startX 2944
+startY 192
+tileX 184
+tileY 12
+block 0
+End
+
+block
+startX 2960
+startY 192
+tileX 185
+tileY 12
+block 0
+End
+
+block
+startX 2944
+startY 176
+tileX 184
+tileY 11
+block 0
+End
+
+block
+startX 2944
+startY 160
+tileX 184
+tileY 10
+block 0
+End
+
+block
+startX 2944
+startY 144
+tileX 184
+tileY 9
+block 0
+End
+
+block
+startX 2960
+startY 176
+tileX 185
+tileY 11
+block 0
+End
+
+block
+startX 2960
+startY 160
+tileX 185
+tileY 10
+block 0
+End
+
+block
+startX 2960
+startY 144
+tileX 185
+tileY 9
+block 0
+End
+
+block
+startX 2960
+startY 128
+tileX 185
+tileY 8
+block 0
+End
+
+block
+startX 2976
+startY 192
+tileX 186
+tileY 12
+block 0
+End
+
+block
+startX 2992
+startY 176
+tileX 187
+tileY 11
+block 0
+End
+
+block
+startX 2976
+startY 176
+tileX 186
+tileY 11
+block 0
+End
+
+block
+startX 2976
+startY 160
+tileX 186
+tileY 10
+block 0
+End
+
+block
+startX 2976
+startY 144
+tileX 186
+tileY 9
+block 0
+End
+
+block
+startX 2992
+startY 128
+tileX 187
+tileY 8
+block 0
+End
+
+block
+startX 2976
+startY 128
+tileX 186
+tileY 8
+block 0
+End
+
+block
+startX 2976
+startY 112
+tileX 186
+tileY 7
+block 0
+End
+
+block
+startX 2992
+startY 192
+tileX 187
+tileY 12
+block 0
+End
+
+block
+startX 2992
+startY 160
+tileX 187
+tileY 10
+block 0
+End
+
+block
+startX 2992
+startY 144
+tileX 187
+tileY 9
+block 0
+End
+
+block
+startX 2992
+startY 96
+tileX 187
+tileY 6
+block 0
+End
+
+block
+startX 2992
+startY 112
+tileX 187
+tileY 7
+block 0
+End
+
+block
+startX 3008
+startY 192
+tileX 188
+tileY 12
+block 0
+End
+
+block
+startX 3024
+startY 176
+tileX 189
+tileY 11
+block 0
+End
+
+block
+startX 3008
+startY 176
+tileX 188
+tileY 11
+block 0
+End
+
+block
+startX 3008
+startY 160
+tileX 188
+tileY 10
+block 0
+End
+
+block
+startX 3008
+startY 144
+tileX 188
+tileY 9
+block 0
+End
+
+block
+startX 3008
+startY 128
+tileX 188
+tileY 8
+block 0
+End
+
+block
+startX 3008
+startY 112
+tileX 188
+tileY 7
+block 0
+End
+
+block
+startX 3008
+startY 96
+tileX 188
+tileY 6
+block 0
+End
+
+block
+startX 3008
+startY 80
+tileX 188
+tileY 5
+block 0
+End
+
+block
+startX 3024
+startY 192
+tileX 189
+tileY 12
+block 0
+End
+
+block
+startX 3024
+startY 160
+tileX 189
+tileY 10
+block 0
+End
+
+block
+startX 3024
+startY 144
+tileX 189
+tileY 9
+block 0
+End
+
+block
+startX 3024
+startY 128
+tileX 189
+tileY 8
+block 0
+End
+
+block
+startX 3024
+startY 96
+tileX 189
+tileY 6
+block 0
+End
+
+block
+startX 3024
+startY 112
+tileX 189
+tileY 7
+block 0
+End
+
+block
+startX 3024
+startY 80
+tileX 189
+tileY 5
+block 0
+End
+
+block
+startX 3168
+startY 192
+tileX 198
+tileY 12
+block 0
+End
+

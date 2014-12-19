@@ -4,24 +4,35 @@
  * 
  */
 package entities;
-import gameState.Level1State;
-import tilesAndGraphics.ImageCache;
-import tilesAndGraphics.TileMap;
 import collectables.Collectable;
 import core.GlobalController;
 import enemies.Enemy;
-import projectiles.Projectile;
-import neuroevolution.MarioAI;
+import gameState.Level1State;
 import java.awt.Color;
-import java.util.ArrayList;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import neuroevolution.MarioAI;
+import neuroevolution.connections.Connection;
+import neuroevolution.networks.HVplusPit;
+import neuroevolution.networks.HorizontalAndVerticalNetworkHardcoded;
+import neuroevolution.networks.NeuralNetwork;
+import neuroevolution.neurons.Neuron;
+import neuroevolution.neurons.hardcoded.DistanceThresholdChecker;
+import neuroevolution.neurons.hardcoded.PitChecker;
+import projectiles.Projectile;
 import testtools.CMDTester;
+import tilesAndGraphics.ImageCache;
+import tilesAndGraphics.TileMap;
 public class Mario extends GameEntity{
     private Level1State reference; // this should be removed later
     private MarioAI ann; // this should be moved
     //private int health;
+    private boolean jumped = false;
+    private boolean spaceup = true;
+    private boolean facingright = true;
     private boolean dead;
+    private boolean onRight;
     //private boolean flinching;
     //private long flinchTime;
     private double rectx;
@@ -36,6 +47,7 @@ public class Mario extends GameEntity{
 
     public Mario(){
         this(null);
+        onRight=false;
     }
     
     public Mario(TileMap tm){
@@ -65,18 +77,28 @@ public class Mario extends GameEntity{
         outer: if((GlobalController.aiRun||GlobalController.evolving)){
             {
                 if(ann==null){
-                    //System.out.println("ANN is null :: Mario 68");
+                    System.out.println("ANN is null :: Mario 68");
                     break outer;
                 }
                 else if (ann.isReadytoPropogate()){
                     ann.propogate(reference);
                     //System.out.println(""+ann.movesRight()+ann.movesLeft()+ann.jumps());
-                    setRight(ann.movesRight());
+                    //try{
+                        setRight(ann.movesRight());
+                    //}
+                    //catch(IndexOutOfBoundsException e){
+                    //    System.out.println("There was an IndexOutOfBounds Exception :: Mario");
+                    //    new CMDTester(ann.getNet());
+                    //}
                     setLeft(ann.movesLeft());
                     setJumping(ann.jumps());
+                    spaceup = !ann.jumps();
+                    //if(!ann.jumps())
+                    //    System.out.println("Network not jumping.");
                 }
             }
         }
+        double tempppp=getXpos();
         // update position
         //getNextPosition();
         //checkTileMapCollision();
@@ -113,8 +135,9 @@ public class Mario extends GameEntity{
         checkCollisionsWithBlocks(list,state);
         //System.out.println(getXTemp());
         //System.out.println(getDx());
-        if(getJumping()&&!getFalling()){
+        if(getJumping()&&!getFalling()&&!jumped){
             setDy(getJumpStart());
+            jumped = true;
             setJumping(false);
             setFalling(true);
             setYTemp(getYpos()+getDy());
@@ -180,7 +203,10 @@ public class Mario extends GameEntity{
     public void finalizeMovement(Level1State state){
         //double changeX=getXTemp()-getXpos();
         //setXpos(getXTemp());
+        double temmppp=state.getXOffset();
         state.setXOffset(getXTemp()-100);
+        if(state.getXOffset()!=temmppp)
+            onRight=false;
         setYpos(getYTemp());
         //System.out.println(state.getXOffset());
         if(getYpos()>330){
@@ -294,6 +320,8 @@ public class Mario extends GameEntity{
                             setDy(0);
                         setYTemp(b.getYpos()-getHeight());
                         setFalling(false);
+                        if(spaceup)
+                            jumped = false;
                         //System.out.println("TOP");
                     }else{
                         // Collision from the left
@@ -328,6 +356,7 @@ public class Mario extends GameEntity{
                         if(getDx()>0){
                             //System.out.println("BROKEN");
                             //setXTemp(list.get(i).getXpos()-getWidth()-1);
+                            onRight=true;
                             setDx(0);
                         }
                         //System.out.println("MARIO :: "+getXpos()+" "+getYpos());
@@ -341,6 +370,8 @@ public class Mario extends GameEntity{
                             //setXTemp(list.get(i).getXpos()+getWidth()+1);
                             //System.out.print(distanceBetweenCenters(list.get(i))+" ");
                             //System.out.println(getMaxDistance(list.get(i)));
+                            //System.out.println("YEA");
+                            onRight=false;
                             setDx(tempDx);
                             setXTemp(tempX);
                         }
@@ -348,10 +379,14 @@ public class Mario extends GameEntity{
                         //System.out.println("RIGHT");
                     }else{
                         // Collision on the bottom
-                        if(getDy()<0){
+                        boolean num=xLengthDistance(list.get(i))<getMaxDistanceByX(list.get(i))-2;
+                        if(getDy()<0&&num){
+                            
                             setDy(0);
                         }
-                        setYTemp(list.get(i).getYpos()+list.get(i).getHeight()+1);
+                        if(num)
+                            setYTemp(list.get(i).getYpos()+list.get(i).getHeight()+1);
+                        
                         //System.out.println("BOT");
                     }
                 }
@@ -380,7 +415,10 @@ public class Mario extends GameEntity{
         if(GlobalController.gameRunning){
             if(k==KeyEvent.VK_D)setRight(true);
             if(k==KeyEvent.VK_A)setLeft(true);
-            if(k==KeyEvent.VK_SPACE)setJumping(true);
+            if(k==KeyEvent.VK_SPACE){
+                setJumping(true);
+                spaceup = false;
+            }
         }
     }
     
@@ -388,16 +426,44 @@ public class Mario extends GameEntity{
         if(GlobalController.gameRunning){
             if(k==KeyEvent.VK_D)setRight(false);
             if(k==KeyEvent.VK_A)setLeft(false);
-            if(k==KeyEvent.VK_SPACE)setJumping(false);
+            if(k==KeyEvent.VK_SPACE)
+            {
+                setJumping(false);
+                spaceup = true;
+            }
         }
     }
     
     public void draw(Graphics2D g){
+        //new CMDTester(ann.getNet());
         //g.drawImage(getImage(),(int)getXpos(),(int)getYpos(),null);
         super.draw(g);
         g.setColor(Color.magenta);
         g.drawRect((int)getXpos(),(int)getYpos(),getWidth(),getHeight());
+        //if(ann.jumps()){
+        //    System.out.println("The AI is jumping.");
+        //}
+        //else
+        //    System.out.println("The AI is not jumping.");
         // the code below is for debugging purposes
+        if(ann!=null){
+            for(Neuron n : ann.getNet().getNeurons()){
+                if(n instanceof DistanceThresholdChecker){
+                    double xoffset = ((DistanceThresholdChecker)n).evalHorizontal();
+                    double yoffset = ((DistanceThresholdChecker)n).evalVertical();
+                    //System.out.println(xoffset + " " + yoffset + " :: Mario 428");
+                    g.setColor(Color.WHITE);
+                    g.drawRect((int)(getXpos()+xoffset),(int)(getYpos()),rectw,recth);
+                    g.setColor(Color.BLUE);
+                    g.drawRect((int)(getXpos()),(int)(getYpos()+yoffset),rectw,recth);
+                }
+                else if(n instanceof PitChecker){
+                    g.setColor(Color.GREEN);
+                    //System.out.println(n.evaluate());
+                    g.drawRect((int)(getXpos()+n.evaluate()),(int)(getYpos()+getHeight()),rectw,recth);
+                }
+            }
+        }
         g.setColor(Color.BLACK);
         g.drawRect((int)rectx,(int)recty,rectw,recth);
         g.setColor(Color.YELLOW);

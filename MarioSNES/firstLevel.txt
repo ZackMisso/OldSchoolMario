@@ -13,26 +13,35 @@ Tile
 0 0 0 0 0 0 0 0 0 0 0 0 
 1 1 1 1 1 1 1 1 1 1 1 0 
 0 0 0 0 0 0 0 0 0 0 0 0 
+
 block
-startX 160startY 160tileX 10
+startX 160
+startY 160
+tileX 10
 tileY 10
 block 1
 End
 
 block
-startX 144startY 160tileX 9
+startX 144
+startY 160
+tileX 9
 tileY 10
 block 1
 End
 
 block
-startX 128startY 160tileX 8
+startX 128
+startY 160
+tileX 8
 tileY 10
 block 1
 End
 
 block
-startX 112startY 160tileX 7
+startX 112
+startY 160
+tileX 7
 tileY 10
 block 1
 End

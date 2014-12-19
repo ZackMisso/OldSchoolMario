@@ -1,7 +1,7 @@
 package neuroevolution.neurons;
 public abstract class OutputNeuron extends Neuron{
-    private double output;
-    private int outputID;
+    protected double output;
+    protected int outputID;
     
     public OutputNeuron(){
         output=0.0;

@@ -118,6 +118,15 @@ public abstract class GameEntity {
         return Math.sqrt(x+y);
     }
     
+    public double getMaxDistanceByY(GameEntity other){
+        double y=height/2+other.getHeight()/2;
+        return y;
+    }
+    
+    public double getMaxDistanceByX(GameEntity other){
+        return width/2+other.getWidth()/2;
+    }
+    
     public double lengthDistance(GameEntity other){
         double y=getCenterY()-other.getCCenterY();
         return Math.abs(y);

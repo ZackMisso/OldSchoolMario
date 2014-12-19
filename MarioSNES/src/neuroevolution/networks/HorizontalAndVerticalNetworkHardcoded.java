@@ -11,8 +11,9 @@ import java.util.*;
 import neuroevolution.connections.Connection;
 import neuroevolution.neurons.*;
 import neuroevolution.neurons.hardcoded.*;
+import neuroevolution.speciation.HistoricalTracker;
 
-public class HorizontalAndVerticalNetworkHardcoded extends NeuralNetwork {
+public class HorizontalAndVerticalNetworkHardcoded extends SpeciationNeuralNetwork {
     /* Inheirited fields:
     protected ArrayList<Neuron> neurons;
     protected ArrayList<Connection> connections;
@@ -24,14 +25,21 @@ public class HorizontalAndVerticalNetworkHardcoded extends NeuralNetwork {
     */
     private DistanceThresholdChecker DTC;
     
-    public HorizontalAndVerticalNetworkHardcoded(GameState ref){
-        super(0,3);                                 //Call NN constructor
+    public HorizontalAndVerticalNetworkHardcoded(HistoricalTracker param, GameState ref){
+        super(param,0,3);                                 //Call NN constructor
         DTC = new DistanceThresholdChecker(ref);    //Initialize input node
-        assert neurons.size()==3;                   //safety check: two output neurons, one hidden
-        neurons.add(DTC);                           //manually add neuron
-        makeConnection(DTC, neurons.get(3));        //plus connection
-        neurons.get(2).setBias(0.0);                //set left bias zero
+        DTC.setInnovationNum(3);
+        neurons.add(DTC);
+        makeConnection(DTC, neurons.get(2));
+        neurons.get(1).setBias(0.0);                //set left bias zero
     }
     
+    public double evalHorizontal(){
+        return DTC.evalHorizontal();
+    }
+    
+    public double evalVertical(){
+        return DTC.evalVertical();
+    }
     
 }

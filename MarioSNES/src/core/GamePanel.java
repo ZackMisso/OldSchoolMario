@@ -46,11 +46,11 @@ public class GamePanel extends JPanel implements Runnable,KeyListener{
         thread=new Thread(this);
         //System.out.println("BLAH :: GamePanel");
         addKeyListener(this);
-        //init();
+        init();
         thread.start();
         try{
             thread.join();
-        }catch (InterruptedException e){System.out.println("Thread Interupted... IDK");};
+        }catch (InterruptedException e){System.out.println("Thread Interupted... IDK");}
     }
     
     public void init(){
@@ -79,9 +79,7 @@ public class GamePanel extends JPanel implements Runnable,KeyListener{
                     wait=5;
                 try{
                     Thread.sleep(wait);
-                }catch(Exception e){
-                    e.printStackTrace();
-                }
+                }catch(InterruptedException e){}
             }
         }
         //System.out.println("Thread is ending");

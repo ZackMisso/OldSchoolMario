@@ -1,48 +1,35 @@
-This document is here for us to list everything we need to accomplish.
-This will also allow us to deviate who is working on what so we don't
-have any save collisions. Sub-projects will be indicated by tabs.
+Get Node To Node Working with the softcoded neurons
 
-Hardcoded Network
-    implement Horizontal and Vertical Network
-    implement the DistanceThresholdCheckerNeuron
-    implement the HorizontalCheckerNeuron
-    implement the VerticalCheckerNeuron
+Get crossover working with the softcoded neurons
 
-Implementing Speciation
-    get XOR Test Working
-        sort the lists of neurons by depth
-        implement crossover
-        lots of testing
-        get the CMDTester to work with a species
+Get recurrent connections working in the test project
 
-Level Editor
-    save the tile map for the level
-    fix the bug transition
-    add a block int
-    implement makeTileMap in the WorldWriter class
+Make the Level Editor reasonably useful.
 
-TileMap Creation in the LevelEditor
-    implement boolean objects
-    implement global instance variable addition
+Start Next Experiment
 
-MarioSNES
-    get TilePhysics implemented
-        brainstorm algorithm before implementing
-        implement a tileMap
-        implement a tile class
-        try to get collisions working
+Implement sigmoid function
 
-    get Koopa implemented
-        shell functionality
+Create a graphical debugger / creator
 
-    get Pipes implemented
-    
-    read Saved Levels from files
+Create a hand made solution to prove the AI is feasable
 
-CMDTester
-    implement dual network debugging
-    implement species debugging
-    create a Graphical Debugger
+Get the recurrent Network idea working
 
-Level Making
-    Create the first level
+Normalize function for inputs
+
+Get Koopas to work
+
+Get Items to work
+
+Very Ambitious :: Create C++ version
+
+Add score and time to levels
+
+Add multiple levels
+
+Dynamic physics
+
+Run button
+
+difference in jump height when button is held longer

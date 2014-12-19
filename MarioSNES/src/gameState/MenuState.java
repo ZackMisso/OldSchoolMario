@@ -2,7 +2,7 @@
  *
  * @author Zackary Misso
  * 
- */
+ *//*
 package gameState;
 import entities.GameEntity;
 import entities.Mario;
@@ -40,4 +40,4 @@ public class MenuState extends GameState{
     public Mario getPlayer(){
         return null;
     }
-}
+}*/

@@ -4,11 +4,14 @@
  * 
  */
 package neuroevolution;
-import neuroevolution.networks.NeuralNetwork;
-import gameState.Level1State;
-import entities.Mario;
+import core.GlobalController;
 import entities.Block;
+import entities.Mario;
+import gameState.Level1State;
 import java.util.ArrayList;
+import neuroevolution.networks.NeuralNetwork;
+import neuroevolution.networks.SpeciationNeuralNetwork;
+import testtools.CMDTester;
 public class MarioAI {
     
     private NeuralNetwork net;
@@ -25,29 +28,51 @@ public class MarioAI {
     }
 
     public boolean movesLeft(){
-    	return outputs.get(0)>=1.0;
+        //if(GlobalController.speciation) // temporary
+        //    return false;
+        return outputs.get(0)>=1.0;
+        //return false;
     }
 
     public boolean movesRight(){
+        //System.out.println("Moving right by SPECIATION");
+        //if(GlobalController.speciation)
+        //    return outputs.get(0)>=1.0;
     	return outputs.get(1)>=1.0;
     }
 
     public boolean jumps(){
+        //if(GlobalController.speciation) // temporary
+        //    return false;
     	return outputs.get(2)>=1.0;
     }
 
     public void propogate(Level1State state){
     	ArrayList<Double> inputs=new ArrayList<>();
     	// sensor infor
-    	ArrayList<Block> nearest=getNearestBlocks(state.getBlocks(),state.getPlayer());
-    	for(int i=0;i<nearest.size();i++){
-    		inputs.add(nearest.get(i).getRelativeX(state.getPlayer()));
-    		inputs.add(nearest.get(i).getRelativeY(state.getPlayer()));
-    	}
+    	//ArrayList<Block> nearest=getNearestBlocks(state.getBlocks(),state.getPlayer());
+    	//for(int i=0;i<nearest.size();i++){
+    	//	inputs.add(nearest.get(i).getRelativeX(state.getPlayer()));
+    	//	inputs.add(nearest.get(i).getRelativeY(state.getPlayer()));
+    	//}
     	// now propogate
         //System.out.println(inputs.toString());
     	net.setInputs(inputs);
-    	outputs=net.run();
+        try{outputs=net.run();}
+        catch(StackOverflowError e){
+            System.out.println("Recurrent connection found. Outputs set to default. :: MarioAI 52");
+            outputs = new ArrayList();
+            outputs.add(0.0);
+            outputs.add(0.0);
+            outputs.add(0.0);
+            //new CMDTester(net);
+            net.setFitness(Double.MIN_VALUE);
+            return;
+        }
+        //catch(NullPointerException e){
+        //    new CMDTester(net);
+        //}
+        
         //System.out.println(outputs.toString());
         //System.out.println(net.getNeurons().size());
         //System.out.println("THIS HAS RAN");
@@ -95,8 +120,7 @@ public class MarioAI {
     // getter methods
     public NeuralNetwork getNet(){return net;}
     public boolean isReadytoPropogate(){return readyToPropogate;}
-    
+    public ArrayList<Double> getOutputs(){return outputs;}
     // setter methods
-    public void setNet(NeuralNetwork param){net=param;} //21 Sep 14 mark changed from NN to H&VNHC
-
+    public void setNet(SpeciationNeuralNetwork param){net=param;} //21 Sep 14 mark changed from NN to H&VNHC
 }

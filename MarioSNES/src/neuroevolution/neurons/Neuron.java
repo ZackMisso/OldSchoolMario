@@ -4,26 +4,50 @@ import neuroevolution.connections.Connection;
 import neuroevolution.RandomNumberGenerator;
 import java.util.ArrayList;
 import java.util.Random;
+
 public abstract class Neuron extends Node{
     private ArrayList<Connection> inputs;
     private ArrayList<Connection> outputs;
-    private Neuron initInput;
-    private Neuron initOutput;
+    //protected Neuron initInput;
+    //protected Neuron initOutput;
     private double threshold;
     private double bias;
+    private int depth;
     
     public Neuron(){ // default constructor
         inputs=new ArrayList<>();
         outputs=new ArrayList<>();
-        initInput=null;
-        initOutput=null;
+        //initInput=null;
+        //initOutput=null;
         setInnovationNum(-100);
         threshold=1.0;
+        if(this instanceof InputNeuron)
+            depth=0;
+        else
+            depth=1;
         Random random=new Random();
         double neg=random.nextDouble();
         bias=random.nextDouble();
         if(neg>.5)
             bias*=-1;
+    }
+    
+    // finds the depth for the neuron and all of its inputs
+    public int findDepth(){
+        //try{// Debug try
+            int temp=depth;
+            if(inputs.isEmpty()&&!(this instanceof InputNeuron))
+                temp=1;
+            for(int i=0;i<inputs.size();i++)
+                if(inputs.get(i).getGiveNeuron().findDepth()>=temp)
+                    temp=inputs.get(i).getGiveNeuron().findDepth()+1;
+            depth=temp;
+            return depth;
+        //}catch(StackOverflowError e){
+        //    System.out.println("There was a stackoverflow while finding a neuron's depth");
+        //    System.exit(0);
+        //    return -10;
+        //}
     }
     
     // the method that all neurons need to decide if they fire
@@ -94,7 +118,7 @@ public abstract class Neuron extends Node{
             inputs.remove(connection);
     }
     
-    // makes a copy of this neuron
+    // Functionality for softcoded neurons will need to be implemented
     public Neuron makeCopy(){
         Neuron neuron;
         if(this instanceof InputNeuron){
@@ -114,43 +138,77 @@ public abstract class Neuron extends Node{
         neuron.setInnovationNum(getInnovationNum());
         return neuron;
     }
+        
     
     // checks if this is the same neuron (THIS IS WRONG)
+    // THIS NEEDS TO BE DELETED
     public boolean isSameNeuron(Neuron other){
-        boolean outputs=false;
-        boolean inputs=false;
-        if(initInput==null&&other.getInitInput()!=null)
-            return false;
-        if(initInput!=null&&other.getInitInput()==null)
-            return false;
-        if(initOutput==null&&other.getInitOutput()!=null)
-            return false;
-        if(initOutput!=null&&other.getInitOutput()==null)
-            return false;
-        if(initInput==null&&other.getInitInput()==null)
-            inputs=true;
-        if(initOutput==null&&other.getInitOutput()==null)
-            outputs=true;
-        if(!inputs&&initInput.getInnovationNum()==other.getInitInput().getInnovationNum())
-            inputs=true;
-        if(!outputs&&initOutput.getInnovationNum()==other.getInitOutput().getInnovationNum())
-            outputs=true;
-        return outputs&&inputs;
+        //boolean outputs=false;
+        //boolean inputs=false;
+        //if(initInput==null&&other.getInitInput()!=null)
+        //    return false;
+        //if(initInput!=null&&other.getInitInput()==null)
+        //    return false;
+        //if(initOutput==null&&other.getInitOutput()!=null)
+        //    return false;
+        //if(initOutput!=null&&other.getInitOutput()==null)
+        //    return false;
+        //if(initInput==null&&other.getInitInput()==null)
+        //    inputs=true;
+        //if(initOutput==null&&other.getInitOutput()==null)
+        ///    outputs=true;
+        //if(!inputs&&initInput.getInnovationNum()==other.getInitInput().getInnovationNum())
+        //    inputs=true;
+        //if(!outputs&&initOutput.getInnovationNum()==other.getInitOutput().getInnovationNum())
+        //    outputs=true;
+        //return outputs&&inputs;
+        return false;
+    }
+    
+    // sorts a list of neurons by their depths
+    public static ArrayList<Neuron> sortByDepth(ArrayList<Neuron> list){
+        if(list.size()==1)
+            return list;
+        ArrayList<Neuron> one=new ArrayList<>();
+        ArrayList<Neuron> two=new ArrayList<>();
+        for(int i=0;i<list.size()/2;i++)
+            one.add(list.get(i));
+        for(int i=list.size()/2;i<list.size();i++)
+            two.add(list.get(i));
+        return mergeByDepth(sortByDepth(one),sortByDepth(two));
+    }
+    
+    // merges two lists of neurons based on their depths
+    public static ArrayList<Neuron> mergeByDepth(ArrayList<Neuron> one,ArrayList<Neuron> two){
+        ArrayList<Neuron> list=new ArrayList<>();
+        while(!one.isEmpty()&&!two.isEmpty()){
+            if(one.get(0).getDepth()<two.get(0).getDepth())
+                list.add(one.remove(0));
+            else
+                list.add(two.remove(0));
+        }
+        while(!one.isEmpty())
+            list.add(one.remove(0));
+        while(!two.isEmpty())
+            list.add(two.remove(0));
+        return list;
     }
     
     // getter methods
     public ArrayList<Connection> getInputs(){return inputs;}
     public ArrayList<Connection> getOutputs(){return outputs;}
-    public Neuron getInitInput(){return initInput;}
-    public Neuron getInitOutput(){return initOutput;}
+    //public Neuron getInitInput(){return initInput;}
+    //public Neuron getInitOutput(){return initOutput;}
     public double getThreshold(){return threshold;}
     public double getBias(){return bias;}
+    public int getDepth(){return depth;}
     
     // setter methods
     public void setInputs(ArrayList<Connection> param){inputs=param;}
     public void setOutputs(ArrayList<Connection> param){outputs=param;}
-    public void setInitInput(Neuron param){initInput=param;}
-    public void getSetInitOutput(Neuron param){initOutput=param;}
+    //public void setInitInput(Neuron param){initInput=param;}
+    //public void getSetInitOutput(Neuron param){initOutput=param;}
     public void setThreshold(double param){threshold=param;}
     public void setBias(double param){bias=param;}
+    public void setDepth(int param){depth=param;}
 }

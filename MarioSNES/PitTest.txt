@@ -1,0 +1,197 @@
+Tile
+0
+0
+29
+17
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+block
+startX 0
+startY 0
+startX 0
+startY 0
+End
+
+block
+startX 0
+startY 224
+startX 0
+startY 224
+End
+
+block
+startX 16
+startY 224
+startX 16
+startY 224
+End
+
+block
+startX 32
+startY 224
+startX 32
+startY 224
+End
+
+block
+startX 48
+startY 224
+startX 48
+startY 224
+End
+
+block
+startX 64
+startY 224
+startX 64
+startY 224
+End
+
+block
+startX 80
+startY 224
+startX 80
+startY 224
+End
+
+block
+startX 96
+startY 224
+startX 96
+startY 224
+End
+
+block
+startX 112
+startY 224
+startX 112
+startY 224
+End
+
+block
+startX 144
+startY 224
+startX 144
+startY 224
+End
+
+block
+startX 160
+startY 224
+startX 160
+startY 224
+End
+
+block
+startX 176
+startY 224
+startX 176
+startY 224
+End
+
+block
+startX 208
+startY 224
+startX 208
+startY 224
+End
+
+block
+startX 256
+startY 224
+startX 256
+startY 224
+End
+
+block
+startX 272
+startY 224
+startX 272
+startY 224
+End
+
+block
+startX 288
+startY 224
+startX 288
+startY 224
+End
+
+block
+startX 192
+startY 224
+startX 192
+startY 224
+End
+
+block
+startX 304
+startY 224
+startX 304
+startY 224
+End
+
+block
+startX 320
+startY 224
+startX 320
+startY 224
+End
+
+block
+startX 400
+startY 224
+startX 400
+startY 224
+End
+
+block
+startX 416
+startY 224
+startX 416
+startY 224
+End
+
+block
+startX 384
+startY 224
+startX 384
+startY 224
+End
+
+block
+startX 432
+startY 224
+startX 432
+startY 224
+End
+
+block
+startX 448
+startY 224
+startX 448
+startY 224
+End
+
+mario
+startX 0
+startY 192
+startX 0
+startY 192
+End
+

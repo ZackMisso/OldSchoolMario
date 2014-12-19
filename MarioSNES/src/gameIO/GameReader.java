@@ -97,6 +97,7 @@ public class GameReader {
             if(string.equals("startY"))
                 mario.setYpos(scanner.nextInt());
         }while(!string.equals("End"));
+        mario.setXpos(-100);
         state.setPlayer(mario);
     }
 

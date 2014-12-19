@@ -5,17 +5,21 @@
  */
 package core;
 import gameState.Level1State;
-import javax.swing.JFrame;
 import java.util.*;
-import neuroevolution.MarioAI;
+import javax.swing.JFrame;
 import neuroevolution.EvolutionaryAlgorithm;
-import neuroevolution.networks.*;
+import neuroevolution.MarioAI;
+import neuroevolution.SpeciationEvolutionaryAlgorithm;
 import neuroevolution.io.NetReader;
+import neuroevolution.networks.*;
+import neuroevolution.speciation.HistoricalTracker;
+import testtools.CMDTester;
 import tilesAndGraphics.ImageCache;
 public class Game {
     private GamePanel panel;
     private EvolutionaryAlgorithm evo;
-    private ArrayList<HorizontalAndVerticalNetworkHardcoded> templist;  //mark added 21 Sep 14
+    private SpeciationEvolutionaryAlgorithm specEvo;
+    private ArrayList<HVplusPit> templist;  //mark added 21 Sep 14
 
     public Game(){
         ImageCache.initImages();
@@ -23,8 +27,12 @@ public class Game {
             initNormalMario();
         if(GlobalController.aiRun)
             initMarioAI();
-        if(GlobalController.evolving)
-            initMarioEvo();
+        if(GlobalController.evolving){
+            if(GlobalController.speciation)
+                initMarioEvoSpecies();
+            else
+                initMarioEvo();
+        }
     }
 
     public void initNormalMario(){
@@ -39,11 +47,13 @@ public class Game {
     public void initMarioAI(){
         //NeuralNetwork net=NetReader.readNetwork(GlobalController.aiFileName);
         //NeuralNetwork net=new NeuralNetwork(6,3);
-        NeuralNetwork net=NetReader.readNetwork("test/"+GlobalController.aiFileName);
         panel=new GamePanel();
+        Level1State state=(Level1State)(panel.getGSM().getGameStates().get(0));
+        HistoricalTracker HT = new HistoricalTracker();
+        SpeciationNeuralNetwork net=NetReader.readSpeciationNetwork(HT, "test/"+GlobalController.aiFileName, state);
+        //new CMDTester(net);
         MarioAI agent=new MarioAI();
         agent.createAI(net);
-        Level1State state=(Level1State)(panel.getGSM().getGameStates().get(1));
         state.setANN(agent);
         state.getPlayer().setANN(agent);
         JFrame window=new JFrame("Mario");
@@ -57,8 +67,8 @@ public class Game {
 
     public void initMarioEvo(){
         panel=new GamePanel();
-        //////////////////ADDED 21 SEP 2014/////////////////////////////////////
         templist = new ArrayList<>();
+        HistoricalTracker tracker = new HistoricalTracker();
         for(int i=0;i<GlobalController.individuals;i++)
             {
                 if(panel == null){
@@ -70,9 +80,8 @@ public class Game {
                 if(panel.getGSM().getGameStates() == null){
                     System.out.println("Panel is null :: Game");
                 }
-                templist.add(new HorizontalAndVerticalNetworkHardcoded(panel.getGSM().getGameStates().get(0)));
+                templist.add(new HVplusPit(tracker,panel.getGSM().getGameStates().get(0)));
             }
-        ////////////////////////////////////////////////////////////////////////
         evo=new EvolutionaryAlgorithm(templist);
         evo.setGame(panel);
         JFrame window=new JFrame("Mario");
@@ -82,5 +91,19 @@ public class Game {
         window.pack();
         window.setVisible(true);
         evo.runExperiment();
+    }
+    
+    // evolutionary algorithm using speciation
+    public void initMarioEvoSpecies(){
+        //System.out.println("Beginning speciation evolution");
+        panel=new GamePanel();
+        specEvo=new SpeciationEvolutionaryAlgorithm(panel);
+        JFrame window=new JFrame("Mario");
+        window.setContentPane(panel);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setResizable(false);
+        window.pack();
+        window.setVisible(true);
+        specEvo.runExperiment();
     }
 }

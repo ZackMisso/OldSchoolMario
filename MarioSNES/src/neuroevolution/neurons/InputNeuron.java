@@ -1,9 +1,9 @@
 package neuroevolution.neurons;
 import java.util.Random;
 public abstract class InputNeuron extends Neuron{
-    private double input;
-    private double weight;
-    private int inputID;
+    protected double input;
+    protected double weight;
+    protected int inputID;
     
     public InputNeuron(){
         input=0.0;

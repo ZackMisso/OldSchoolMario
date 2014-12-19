@@ -1,0 +1,428 @@
+Tile
+48
+144
+44
+7
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+block
+startX 48
+startY 224
+tileX 3
+tileY 14
+block 0
+End
+
+block
+startX 80
+startY 224
+tileX 5
+tileY 14
+block 0
+End
+
+mario
+startX 48
+startY 192
+tileX 3
+tileY 12
+block 0
+End
+
+block
+startX 64
+startY 224
+tileX 4
+tileY 14
+block 0
+End
+
+block
+startX 96
+startY 224
+tileX 6
+tileY 14
+block 0
+End
+
+block
+startX 112
+startY 224
+tileX 7
+tileY 14
+block 0
+End
+
+block
+startX 128
+startY 224
+tileX 8
+tileY 14
+block 0
+End
+
+block
+startX 144
+startY 224
+tileX 9
+tileY 14
+block 0
+End
+
+block
+startX 160
+startY 224
+tileX 10
+tileY 14
+block 0
+End
+
+block
+startX 176
+startY 224
+tileX 11
+tileY 14
+block 0
+End
+
+block
+startX 192
+startY 224
+tileX 12
+tileY 14
+block 0
+End
+
+block
+startX 208
+startY 224
+tileX 13
+tileY 14
+block 0
+End
+
+block
+startX 224
+startY 224
+tileX 14
+tileY 14
+block 0
+End
+
+block
+startX 240
+startY 224
+tileX 15
+tileY 14
+block 0
+End
+
+block
+startX 256
+startY 224
+tileX 16
+tileY 14
+block 0
+End
+
+block
+startX 304
+startY 224
+tileX 19
+tileY 14
+block 0
+End
+
+block
+startX 592
+startY 224
+tileX 37
+tileY 14
+block 0
+End
+
+block
+startX 320
+startY 224
+tileX 20
+tileY 14
+block 0
+End
+
+block
+startX 336
+startY 224
+tileX 21
+tileY 14
+block 0
+End
+
+block
+startX 352
+startY 224
+tileX 22
+tileY 14
+block 0
+End
+
+block
+startX 368
+startY 224
+tileX 23
+tileY 14
+block 0
+End
+
+block
+startX 384
+startY 224
+tileX 24
+tileY 14
+block 0
+End
+
+block
+startX 400
+startY 224
+tileX 25
+tileY 14
+block 0
+End
+
+block
+startX 448
+startY 224
+tileX 28
+tileY 14
+block 0
+End
+
+block
+startX 464
+startY 224
+tileX 29
+tileY 14
+block 0
+End
+
+block
+startX 480
+startY 224
+tileX 30
+tileY 14
+block 0
+End
+
+block
+startX 496
+startY 224
+tileX 31
+tileY 14
+block 0
+End
+
+block
+startX 160
+startY 208
+tileX 10
+tileY 13
+block 0
+End
+
+block
+startX 304
+startY 208
+tileX 19
+tileY 13
+block 0
+End
+
+block
+startX 592
+startY 208
+tileX 37
+tileY 13
+block 0
+End
+
+block
+startX 448
+startY 192
+tileX 28
+tileY 12
+block 0
+End
+
+block
+startX 448
+startY 176
+tileX 28
+tileY 11
+block 0
+End
+
+block
+startX 304
+startY 192
+tileX 19
+tileY 12
+block 0
+End
+
+block
+startX 448
+startY 208
+tileX 28
+tileY 13
+block 0
+End
+
+block
+startX 592
+startY 192
+tileX 37
+tileY 12
+block 0
+End
+
+block
+startX 592
+startY 176
+tileX 37
+tileY 11
+block 0
+End
+
+block
+startX 592
+startY 160
+tileX 37
+tileY 10
+block 0
+End
+
+block
+startX 512
+startY 224
+tileX 32
+tileY 14
+block 0
+End
+
+block
+startX 528
+startY 224
+tileX 33
+tileY 14
+block 0
+End
+
+block
+startX 544
+startY 224
+tileX 34
+tileY 14
+block 0
+End
+
+block
+startX 608
+startY 224
+tileX 38
+tileY 14
+block 0
+End
+
+block
+startX 624
+startY 224
+tileX 39
+tileY 14
+block 0
+End
+
+block
+startX 640
+startY 224
+tileX 40
+tileY 14
+block 0
+End
+
+block
+startX 656
+startY 224
+tileX 41
+tileY 14
+block 0
+End
+
+block
+startX 672
+startY 224
+tileX 42
+tileY 14
+block 0
+End
+
+block
+startX 736
+startY 224
+tileX 46
+tileY 14
+block 0
+End
+
+block
+startX 688
+startY 224
+tileX 43
+tileY 14
+block 0
+End
+
+block
+startX 736
+startY 208
+tileX 46
+tileY 13
+block 0
+End
+
+block
+startX 736
+startY 192
+tileX 46
+tileY 12
+block 0
+End
+
+block
+startX 736
+startY 176
+tileX 46
+tileY 11
+block 0
+End
+
+block
+startX 736
+startY 160
+tileX 46
+tileY 10
+block 0
+End
+
+block
+startX 736
+startY 144
+tileX 46
+tileY 9
+block 0
+End
+

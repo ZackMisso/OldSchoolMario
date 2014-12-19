@@ -12,6 +12,7 @@ import neuroevolution.connections.Connection;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import neuroevolution.neurons.hardcoded.NeuronType;
 public class NetWriter {
     public static void write(NeuralNetwork net,String fileName){
         String data="";
@@ -33,26 +34,22 @@ public class NetWriter {
     // innovation num
     // type (0==neuron;1==inputNeuron;2==outputNeuron)
     // bias
-    // num of inputs
-    // all input innovations
-    // num of outputs
-    // all output innovations
+    // num of inputs // depreciated
+    // all input innovations // depreciated
+    // num of outputs // depreciated
+    // all output innovations // depreciated
     public static String writeNeuron(Neuron neuron){
         String data="10000001 ";
         data+=neuron.getInnovationNum()+" ";
-        if(neuron instanceof InputNeuron)
-            data+=1+" ";
-        else if(neuron instanceof OutputNeuron)
-            data+=2+" ";
-        else
-            data+=0+" ";
-        data+=neuron.getBias()+" ";
-        data+=neuron.getInputs().size()+" ";
-        for(int i=0;i<neuron.getInputs().size();i++)
-            data+=neuron.getInputs().get(i).getInnovationNum()+" ";
-        data+=neuron.getOutputs().size();
-        for(int i=0;i<neuron.getOutputs().size();i++)
-            data+=neuron.getOutputs().get(i).getInnovationNum()+" ";
+        int i = NeuronType.getType(neuron);
+        data +=i+" ";
+        data +=neuron.getBias()+" ";
+        //data+=neuron.getInputs().size()+" ";
+        //for(int i=0;i<neuron.getInputs().size();i++)
+        //    data+=neuron.getInputs().get(i).getInnovationNum()+" ";
+        //data+=neuron.getOutputs().size();
+        //for(int i=0;i<neuron.getOutputs().size();i++)
+        //    data+=neuron.getOutputs().get(i).getInnovationNum()+" ";
         return data+"\n";
     }
     

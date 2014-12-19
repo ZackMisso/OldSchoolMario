@@ -38,7 +38,7 @@ public class Koopa extends Enemy implements Projectile{
         facingRight=!facingRight;
     }
 
-    public void checkBlockCollision(ArrayList<Block> list){
+    /*public void checkBlockCollision(ArrayList<Block> list){
         setFalling(true);
         double tempDx=getDx();
         double tempX=getXTemp();
@@ -71,8 +71,68 @@ public class Koopa extends Enemy implements Projectile{
                 }
             }
         }
+    }*/
+    
+    public void checkBlockCollision(ArrayList<Block> list){
+        setFalling(true);
+        double tempDx=getDx();
+        double tempX=getXTemp();
+        for(int i=0;i<list.size();i++){
+            boolean rgt=false;
+            boolean lft=false;
+            double w=.5*(list.get(i).getCWidth()+getWidth());
+            double h=.5*(list.get(i).getCHeight()+getHeight());
+            double dx=list.get(i).getCCenterX()-getCenterX();
+            double dy=list.get(i).getCCenterY()-getCenterY();
+            if(Math.abs(dx)<=w&&Math.abs(dy)<=h){
+                double wy=w*dy;
+                double hx=h*dx;
+                if(wy>hx){                                      
+                    if(wy>-hx){
+                        // Collision is on the bottom side of this object
+                        if(getDy()>0)
+                            setDy(0);
+                        setYTemp(list.get(i).getYpos()-getHeight());
+                        setFalling(false);
+                    }else{
+                        // Collision is from the left side of this object 
+                        if(lengthDistance(list.get(i))>=16){
+                            setDx(tempDx);
+                            setXTemp(tempX);
+                        }else{
+                            setXTemp(list.get(i).getXpos()+getWidth());
+                            turn();
+                        }
+                        lft=true;
+                    }
+                }else{
+                    if(wy>-hx){
+                        // Collision is on the right side of this object
+                        setXTemp(list.get(i).getXpos()-getWidth()-1);
+                        if(lengthDistance(list.get(i))>=16){
+                            setDx(tempDx);
+                            setXTemp(tempX);
+                        }else{
+                            turn();
+                        }
+                        rgt=true;
+                    }else{
+                        // Collision is on the top of this object
+                        // THIS SHOULD NEVER HAPPEN
+                        if(getDy()<0)
+                            setDy(0);
+                        setYTemp(list.get(i).getYpos()+list.get(i).getHeight()+1);
+                    }
+                }
+                if(rgt&&lft){
+                    setDx(tempDx);
+                    setXTemp(tempX);
+                }
+            }
+        }
     }
 
+    // are there even enemy collisions in the old mario game?
     public void checkEnemyCollision(ArrayList<Enemy> list){
         //setFalling(true);
         //double tempDx=getDx();

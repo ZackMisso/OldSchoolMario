@@ -7,21 +7,22 @@ package gameState;
 //import tilesAndGraphics.TileMap;
 //import tilesAndGraphics.Background;
 //import tilesAndGraphics.ManualLevel;
-import entities.GameEntity;
-import entities.Mario;
-import entities.Block;
-import entities.Floor;
-import enemies.Enemy;
-import enemies.Goomba;
-import gameIO.GameReader;
+import collectables.Collectable;
 import core.GamePanel;
 import core.GlobalController;
-import collectables.Collectable;
-//import projectiles.Projectile; // implement later
-import neuroevolution.MarioAI;
-import java.awt.Graphics2D;
+import enemies.Enemy;
+//import enemies.Goomba;
+import entities.Block;
+import entities.Floor;
+import entities.GameEntity;
+import entities.Mario;
+import gameIO.GameReader;
 import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import neuroevolution.MarioAI;
+import testtools.CMDTester;
 public class Level1State extends GameState{
     private PlayerState playerState; // this will probably be moved later
     //private TileMap tileMap;
@@ -31,6 +32,7 @@ public class Level1State extends GameState{
     // TODO :: merge these four arraylists
     private ArrayList<Enemy> enemies;
     private ArrayList<Block> blocks;
+    private ArrayList<Block> blksOnScreen;
     //private ArrayList<Projectile> projectiles;
     private ArrayList<Collectable> collectables;
     private double xOffset;
@@ -44,6 +46,7 @@ public class Level1State extends GameState{
         blocks=new ArrayList<>();
         enemies=new ArrayList<>();
         //projectiles=new ArrayList<>();
+        blksOnScreen=new ArrayList<>();
         collectables=new ArrayList<>();
         init();
     }
@@ -125,8 +128,9 @@ public class Level1State extends GameState{
     // this is only used for testing
     private void initEnemies(){
 //        System.out.println("Initializing Enemies");
-        Goomba goom=new Goomba(240.0,100.0);
-        goom.addEnemyToList(this);
+        // Temporarily commenting out
+        //Goomba goom=new Goomba(240.0,100.0);
+        //goom.addEnemyToList(this);
         //enemies.add(new Goomba(240.0,100.0));
     }
     
@@ -143,6 +147,7 @@ public class Level1State extends GameState{
     }
     
     public void update(){
+        //System.out.println("Update is running");
         //if(GlobalController.lolsPhysics){
         //    //System.out.println("Game State Updating Lols :: Level1State");
         //updateLols();
@@ -151,24 +156,42 @@ public class Level1State extends GameState{
         updateActual();
     }
     
+    public ArrayList<Block> getBlocksOnScreen(){
+        //ArrayList<Block> blks=new ArrayList<>();
+        if(!blksOnScreen.isEmpty())
+            return blksOnScreen;
+        for(int i=0;i<blocks.size();i++)
+            if(blocks.get(i).isOnScreen())
+                blksOnScreen.add(blocks.get(i));
+        if(blksOnScreen.isEmpty())
+            System.out.println("GETBLOCKSONSCREENNOTWORKING!!!");
+        return blksOnScreen;
+    }
+    
     public void updateActual(){
         timer++;
         //System.out.println("Current X Offset :: "+xOffset+" :: Level1State");
         if(player==null)
             System.out.println("Player is null! :: Level1State");
+        //System.out.println("Player is updating");
         player.update(blocks,this);
+        //System.out.println("Player is finalizing movements");
         player.finalizeMovementNew(this);
         double dx=player.getDx();
         //System.out.println("Player X :: "+player.getXpos()+" :: Level1State");
         //System.out.println("Block X :: "+blocks.get(0).getXpos()+" :: Level1State");
+        //System.out.println("Blocks are updating");
         for(int i=0;i<blocks.size();i++){
             // This line will not be needed once tile physics works
             if(blocks.get(i)==null)
                 continue;
             blocks.get(i).setXpos(blocks.get(i).getStartX()-xOffset);
-            if(blocks.get(i).isOnScreen())
+            if(blocks.get(i).isOnScreen()){
+                //blksOnScreen.add(blocks.get(i));
                 blocks.get(i).updateC();
+            }
         }
+        //System.out.println("Enemies are updating");
         for(int i=0;i<enemies.size();i++){
             // Something will need to be added here
             //enemies.get(i).setXpos(enemies.get(i).getXpos()-xOffset);
@@ -176,18 +199,26 @@ public class Level1State extends GameState{
             if(enemies.get(i).isOnScreen())
                 enemies.get(i).update(blocks);
         }
+        //System.out.println("Player is checking collisions with enemies");
         player.checkCollisionsWithEnemies(enemies,this);
 
         // temporarily commented out for debugging
 
-        totalPast+=xOffset;
-        //if(totalPast>2320){ // About 53 seconds
-        //    end();
-        //}
-        if(timer>=timerMax)
+        //totalPast=xOffset;
+        if(xOffset>3176){ // flagpole
             end();
-
+        }
+        //System.out.println("Timer :: "+timer+" TimerMax :: "+timerMax+" :: Level1State");
+        if(timer>=timerMax&&!GlobalController.gameRunning){
+            //System.out.println("End Is Called From Here :: Level1State");
+            end();
+        }
+        resetBlocksOnScreen();
         //xOffset=0; // NOOOOOO!!!!
+    }
+    
+    private void resetBlocksOnScreen(){
+        blksOnScreen.clear();
     }
     
     // Depreciated :: Zack
@@ -236,9 +267,9 @@ public class Level1State extends GameState{
         if(GlobalController.aiRun)
             timerMax=3000;
         else{
-            timerMax=100+40*generation;
-            if(timerMax>3000)
-                timerMax=3000;
+            //timerMax=100+80*generation;
+            //if(timerMax>3000)
+            timerMax=3000;
         }
     }
     
@@ -286,20 +317,25 @@ public class Level1State extends GameState{
     }
 
     public void end(){
+        //System.out.println("Game is ending WHY?");
         //if(!ann.isReadytoPropogate())
         //    System.out.println("This should not happen :: Level1State 286");
+        if(GlobalController.aiRun&&ann!=null){
+            System.out.println("This AI's score was "+xOffset);
+            new CMDTester(ann.getNet());
+        }
         if(GlobalController.evolving&&ann!=null){
             if(ann==null)
                 System.out.println("ERROR 1");
             else if(ann.getNet()==null)
                 System.out.println("ERROR 2");
-            ann.getNet().setFitness(totalPast);
+            ann.getNet().setFitness(xOffset);
             reset();
             //if(GlobalController.gameRunning)
                 GlobalController.running=false;
         }else{
             //System.exit(0);
-            System.out.println("Fitness: " + totalPast + " :: Level1State 297");
+            System.out.println("Fitness: " + xOffset + " :: Level1State 297");
             GlobalController.running=false;
         }
     }
@@ -316,11 +352,13 @@ public class Level1State extends GameState{
         xOffset=0;
         yOffset=0;
         timer=0;
-        initBlocks();
-        initEnemies();
+        init();
     }
     
     public void keyPressed(int k){
+        if(k==KeyEvent.VK_SPACE)
+            if(GlobalController.aiRun)
+                end();
         if(player!=null)
             player.keyPressed(k);
     }

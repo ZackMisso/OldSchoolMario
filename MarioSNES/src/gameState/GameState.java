@@ -4,6 +4,7 @@
  * 
  */
 package gameState;
+import entities.Block;
 import entities.GameEntity;
 import entities.Mario;
 import java.awt.Graphics2D;
@@ -19,7 +20,7 @@ public abstract class GameState {
     public abstract void keyReleased(int k);
     public abstract ArrayList<GameEntity> getAllEntities();
     public abstract Mario getPlayer();
-    
+    public abstract ArrayList<Block> getBlocks();
     // getter methods
     public GameStateManager getGSM(){return gsm;}
     

@@ -25,7 +25,7 @@ public class EvolutionaryAlgorithm {
     */
     
     public void runExperiment(){
-        System.out.println("Starting Experiment :: EvolutionaryAlgorithm 29");
+        System.out.println("Starting Experiment :: EvolutionaryAlgorithm 28");
         NeuralNetwork totalBest=new NeuralNetwork();
         int f;
         for(int i=0;i<GlobalController.generations;i++){
@@ -40,7 +40,7 @@ public class EvolutionaryAlgorithm {
             for(f=0;f<networks.size()/2;f++){
                 networks.get(f).mutate();
                 newList.add(networks.get(f).copy());
-                 networks.get(f).mutate();
+                networks.get(f).mutate();
                 newList.add(networks.get(f).copy());
             }
             //uncomment the bottom line for single individual generations
@@ -62,7 +62,7 @@ public class EvolutionaryAlgorithm {
         GlobalController.running=true;
         MarioAI agent=new MarioAI();
         agent.createAI(net);
-        Level1State state=(Level1State)(game.getGSM().getGameStates().get(1));
+        Level1State state=(Level1State)(game.getGSM().getGameStates().get(0));
         state.setANN(agent);
         state.getPlayer().setANN(agent);
         //if(agent==null) System.out.println("ERROR A :: EvolutionaryAlgorithm 67");
