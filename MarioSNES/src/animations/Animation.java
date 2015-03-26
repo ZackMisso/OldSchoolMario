@@ -22,8 +22,4 @@ public class Animation {
         cnt=quantum;
         index=0;
     }
-    
-    // getter methods
-    
-    // setter methods
 }

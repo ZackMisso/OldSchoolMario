@@ -1,15 +1,11 @@
 /**
  *
- * @author Zack and Mark
+ * @author Mark
  * 
  */
-
 //first hardcoded network without recurrent connections
 package neuroevolution.networks;
 import gameState.*;
-import java.util.*;
-import neuroevolution.connections.Connection;
-import neuroevolution.neurons.*;
 import neuroevolution.neurons.hardcoded.*;
 import neuroevolution.speciation.HistoricalTracker;
 
@@ -40,6 +36,5 @@ public class HorizontalAndVerticalNetworkHardcoded extends SpeciationNeuralNetwo
     
     public double evalVertical(){
         return DTC.evalVertical();
-    }
-    
+    }   
 }

@@ -99,11 +99,8 @@ public class NodeToNode {
         else
             newNeuron=new Neuron_Add();
         // set up bias
-        //Random random=new Random();
-        //double test=random.nextDouble();
         newNeuron.setBias((oneN.getBias()+twoN.getBias())/2);
         // inputs
-        //test=random.nextDouble();
         newNeuron.setInputs(oneN.getInputs());
         newNeuron.setOutputs(oneN.getOutputs());
         return newNeuron;

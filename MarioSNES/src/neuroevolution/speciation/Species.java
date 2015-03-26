@@ -42,34 +42,22 @@ public class Species{
         // mutate every one
         Random random=new Random();
         for(int i=1;i<nets.size();i++){
-            //System.out.println("mutating "+ i);
             ArrayList<OutputNeuron> outputs=nets.get(i).findOutputs();
             for(int f=0;f<outputs.size();f++){
-                //System.out.println("starting");
                 try{
                     outputs.get(f).findDepth();
-                    
                 }
-                //System.out.println("THis point was reached");
                 catch(Exception e){
                     new CMDTester(nets.get(i));
                     System.out.println("Encountered a stack overflow due to find depth. Setting this network's fitness low.");
                     nets.get(i).setFitness(Double.MIN_VALUE);
                 }
-                //System.out.println("THis point was reached");
             }
-            //System.out.println("This point was reached");
             double mORc=random.nextDouble();
-            if(mORc>.8){ // possibly make this global
-                //System.out.println("Crossing over");
+            if(mORc>.8) // possibly make this global
                 crossover(nets.get(i),random);
-            }
-            else{
-                //System.out.println("Copying and mutating");
+            else
                 nets.set(i,nets.get(i).copyAndMutate());
-                //System.out.println("Finished Copying and Mutating");
-            }
-            //System.out.println("Finished");
         }
     }
     
@@ -97,10 +85,8 @@ public class Species{
     }
     
     public void initFromStart(GameState level){
-        //System.out.println("MAX ALLOWED :: "+maxAllowed);
         for(int i=0;i<maxAllowed;i++)
             nets.add(new HVplusPit(tracker,level));
-        //System.out.println("Begin Size "+nets.size());
     }
     
     public void calculateAverageFitness(){

@@ -16,15 +16,4 @@ public class OutputNeuron_Add extends OutputNeuron{
         setCache(activation);
         return activation;
     }
-
-    //@Override
-    //public Neuron makeCopy() {
-    //    OutputNeuron_Add newneuron = new OutputNeuron_Add();
-    //    newneuron.setBias(getBias());
-    //    newneuron.setInnovationNum(getInnovationNum());
-    //    newneuron.setOutput(output);
-    //    newneuron.setOutputID(outputID);
-    //    newneuron.setInputs(getInputs());
-    //    return newneuron;
-    //}
 }

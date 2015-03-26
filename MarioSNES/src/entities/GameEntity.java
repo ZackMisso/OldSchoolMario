@@ -6,13 +6,11 @@
 package entities;
 import core.GamePanel;
 import core.GlobalController;
-import datastructures.IntCoordinate;
 import datastructures.DoubleCoordinate;
 import gameState.Level1State;
 import tilesAndGraphics.TileMap;
 import tilesAndGraphics.TileRect;
 import java.awt.Color;
-//import gameState.Level1State;
 import java.awt.image.BufferedImage;
 import java.awt.Rectangle;
 import java.awt.Graphics2D;
@@ -56,7 +54,6 @@ public abstract class GameEntity {
     }
     
     public double getCenterX(){
-        //System.out.println("asdfasdfasd "+xpos);
         return xpos+width/2;
     }
     
@@ -150,21 +147,6 @@ public abstract class GameEntity {
         onScreen=true;
         return true;
     }
-
-    // Depreciated
-    // isOnScreen using Offsets. (Used for TilePhysics)
-//    public boolean isOnScreen(Level1State state){
-//        if(xpos+width-state.getXOffset()<0||xpos-state.getXOffset()>GamePanel.WIDTH){
-//            onScreen=false;
-//            return false;
-//        }
-//        if(ypos+height-state.getYOffset()<0||ypos-state.getYOffset()>GamePanel.HEIGHT){
-//            onScreen=false;
-//            return false;
-//        }
-//        onScreen=true;
-//        return true;
-//    }
     
     public Rectangle getRigidBody(){
         return new Rectangle((int)xpos-cwidth,(int)ypos-cheight,cwidth,cheight);
@@ -172,10 +154,10 @@ public abstract class GameEntity {
 
     ///////////////// TILE PHYSICS METHODS /////////////////////
 
-    // gets the tiles around the entity
-    public TileRect getSurroundings(){
-        // instantiate the needed variables
-        boolean exactX = false;
+    /*// gets the tiles around the entity
+    //public TileRect getSurroundings(){
+    //    // instantiate the needed variables
+    //    boolean exactX = false;
         boolean exactY = false;
         int heightInTiles; // to be removed
         int widthInTiles; // to be removed
@@ -217,10 +199,10 @@ public abstract class GameEntity {
         rectYpos--;
         // create rect object
         return new TileRect(map,rectXpos,rectYpos,rectWidth,rectHeight);
-    }
+    }*/
     
     // demo for class
-    public void lolsCheckMovementOnSurroundings(){
+    /*public void lolsCheckMovementOnSurroundings(){
         // debugging
         //System.out.print("Before :: "+ytemp+" After :: ");
         // get the Surrounding blocks
@@ -268,295 +250,14 @@ public abstract class GameEntity {
         }
         // debugging
         //System.out.println(ytemp);
-    }
-
-    // checks for collisions
-    public void checkMovementOnSurroundings(){
-        // debugging
-        //System.out.print("Before :: "+ytemp+" After :: ");
-        // get the Surrounding blocks
-        /*TileRect surroundings=getSurroundings();
-        // new coordinate location on map for first vertex
-        int newX=(int)(xpos+dx)/map.getTileSize();
-        int newY=(int)(ypos+dy)/map.getTileSize();
-        // previous coordinate location on map
-        int curX=(int)xpos/map.getTileSize();
-        int curY=(int)ypos/map.getTileSize();
-        // if the x coordinate changes
-        if(curX!=newX){
-            if(dx>0){
-                // checks for a block on the right
-                System.out.println("There is a block to the right");
-                if(surroundings.isBlock(newX,curY))
-                    xtemp=newX*map.getTileSize();
-                dx=0;
-            }else{
-                // checks for a block on the left
-                System.out.println("There is a block to the left");
-                if(surroundings.isBlock(newX,curY))
-                    xtemp=(newX+1)*map.getTileSize();
-                dx=0;
-            }
-        }
-        // if the y coordinate changes
-        if(curY!=newY){
-            if(dy>0){
-                // checks for a block below
-                System.out.println("There is a block below");
-                if(surroundings.isBlock(curX,newY)){
-                    System.out.println("THIS IS RAN :: GameEntity");
-                    ytemp=(curY-2)*map.getTileSize();
-                    falling=false;            
-                }
-                dy=0;
-            }else{
-                // checks for a block above
-                System.out.println("There is a block above");
-                if(surroundings.isBlock(curX,newY))
-                    xtemp=(newY+1)*map.getTileSize();
-                dy=0;
-            }
-        }*/
-        // debugging
-        //System.out.println(ytemp);
-        
-        // VERSION 2
-        
-        // declare needed variables
-        TileRect surroundings;
-        // vertex one
-        Corners one=Corners.NONE;
-        DoubleCoordinate newOneD;
-        DoubleCoordinate curOneD;
-        //int newXone;
-        //int newYone;
-        //int curXone;
-        //int curYone;
-        // vertex two
-        Corners two=Corners.NONE;
-        DoubleCoordinate newTwoD;
-        DoubleCoordinate curTwoD;
-        //int newXtwo;
-        //int newYtwo;
-        //int curXtwo;
-        //int curYtwo;
-        // vertex three (maybe needed)
-        Corners three=Corners.NONE;
-        DoubleCoordinate newThreeD;
-        DoubleCoordinate curThreeD;
-        //int newXthree;
-        //int newYthree;
-        //int curXthree;
-        //int curYthree;
-        boolean oneChange=false;
-        boolean twoChange=false;
-        boolean threeChange=false;
-        
-        // find one and two
-        
-        // going down and to the right
-        if(dx>0&&dy>0){
-            one=Corners.BOTTOMLEFT;
-            two=Corners.BOTTOMRIGHT;
-            three=Corners.TOPRIGHT;
-        }
-        // going down and to the left
-        else if(dx<0&&dy>0){
-            one=Corners.BOTTOMLEFT;
-            two=Corners.BOTTOMRIGHT;
-            three=Corners.TOPLEFT;
-        }
-        // going up and to the right
-        else if(dx>0&&dy<0){
-            one=Corners.TOPLEFT;
-            two=Corners.TOPRIGHT;
-            three=Corners.TOPRIGHT;
-        }
-        // going up and to the left
-        else if(dx<0&&dy<0){
-            one=Corners.TOPLEFT;
-            two=Corners.TOPRIGHT;
-            three=Corners.TOPLEFT;
-        }
-        // going up
-        else if(dy<0){
-            one=Corners.TOPLEFT;
-            two=Corners.TOPRIGHT;
-        }
-        // going down
-        else if(dy>0){
-            one=Corners.BOTTOMLEFT;
-            two=Corners.BOTTOMRIGHT;
-        }
-        // going right
-        else if(dx>0){
-            one=Corners.TOPRIGHT;
-            two=Corners.BOTTOMRIGHT;
-        }
-        // going left
-        else if(dx<0){
-            one=Corners.TOPLEFT;
-            two=Corners.BOTTOMLEFT;
-        }else{
-            return;
-        }
-        // initialize surroundings
-        surroundings=getSurroundings();
-        // initialize coordinates
-        curOneD=findCorner(one);
-        curTwoD=findCorner(two);
-        curThreeD=findCorner(three);
-        // create new coordinates
-        newOneD=curOneD.add(dx,dy);
-        newTwoD=curTwoD.add(dx,dy);
-        newThreeD=curThreeD.add(dx,dy);
-        // check for changes
-        // Is this really Worth it to compute?
-        if(!curOneD.tilify(map.getTileSize()).equals(newOneD.tilify(map.getTileSize())))
-            oneChange=true;
-        if(!curOneD.tilify(map.getTileSize()).equals(newOneD.tilify(map.getTileSize())))
-            twoChange=true;
-        if(three!=Corners.NONE)
-            if(!curOneD.tilify(map.getTileSize()).equals(newOneD.tilify(map.getTileSize())))
-                threeChange=true;
-        
-        // now collision check
-        
-        //handleCollision(TileRect,DoubleCoordinate cur,DoubleCoordinate new,Corners corner)
-        
-        //handleCollision(surroundings,curOneD,newOneD,one);
-        
-        // one
-        if(oneChange){
-            DoubleCoordinate changes=handleCollision(surroundings,curOneD,newOneD,one);
-            updateCorners(changes,curTwoD,curThreeD);
-            updateCorners(changes,newTwoD,newThreeD);
-        }
-        
-        // two
-        if(twoChange){
-            DoubleCoordinate changes=handleCollision(surroundings,curTwoD,newTwoD,two);
-            updateCorners(changes,curOneD,curThreeD);
-            updateCorners(changes,newOneD,newThreeD);
-        }
-        
-        // three
-        if(three!=Corners.NONE && threeChange){
-            DoubleCoordinate changes=handleCollision(surroundings,curThreeD,newThreeD,three);
-            updateCorners(changes,curOneD,curTwoD);
-            updateCorners(changes,newOneD,newTwoD);
-        }
-        
-        // COLLISIONS ARE DONE !!!!
-        
-        // Collision check for one
-        /*int newX=(int)(newOneD.getXpos())/map.getTileSize();
-        int newY=(int)(newOneD.getYpos())/map.getTileSize();
-        int curX=(int)curOneD.getXpos()/map.getTileSize();
-        int curY=(int)curOneD.getYpos()/map.getTileSize();
-        if(surroundings.isBlock(newX,curY)){
-            if(one==Corners.BOTTOMLEFT){
-                // moves the block right
-                double temp=xtemp;
-                xtemp=curX*map.getTileSize();
-                dx=0;
-            }
-            if(one==Corners.BOTTOMRIGHT){
-                // moves the block left
-                double temp=xtemp;
-                xtemp=curX*map.getTileSize();
-                dx=0;
-            }
-            if(one==Corners.TOPLEFT){
-                // moves the block right
-                double temp=xtemp;
-                xtemp=curX*map.getTileSize();
-                dx=0;
-                
-            }
-            if(one==Corners.TOPRIGHT){
-                // moves the block left
-                double temp=xtemp;
-                xtemp=curX*map.getTileSize();
-                dx=0;
-            }
-        }
-        if(surroundings.isBlock(curX,newY)){
-            if(one==Corners.BOTTOMLEFT){
-                // moves the block right
-                double temp=ytemp;
-                ytemp=curY*map.getTileSize();
-                dy=0;
-            }
-            if(one==Corners.BOTTOMRIGHT){
-                // moves the block left
-                double temp=ytemp;
-                ytemp=curY*map.getTileSize();
-                dx=0;
-            }
-            if(one==Corners.TOPLEFT){
-                // moves the block right
-                double temp=ytemp;
-                ytemp=curY*map.getTileSize();
-                dy=0;
-                
-            }
-            if(one==Corners.TOPRIGHT){
-                // moves the block left
-                double temp=ytemp;
-                ytemp=curY*map.getTileSize();
-                dy=0;
-            }
-            // TODO :: Calculate difference
-        }
-        
-        //surroundings=getSurroundings();
-        //int newX=(int)(xpos+dx)/map.getTileSize();
-        //int newY=(int)(ypos+dy)/map.getTileSize();
-        //int curX=(int)xpos/map.getTileSize();
-        //int curY=(int)ypos/map.getTileSize();
-        if(curX!=newX){
-            if(dx>0){
-                // checks for a block on the right
-                System.out.println("There is a block to the right");
-                if(surroundings.isBlock(newX,curY))
-                    xtemp=newX*map.getTileSize();
-                dx=0;
-            }else{
-                // checks for a block on the left
-                System.out.println("There is a block to the left");
-                if(surroundings.isBlock(newX,curY))
-                    xtemp=(newX+1)*map.getTileSize();
-                dx=0;
-            }
-        }
-        // if the y coordinate changes
-        if(curY!=newY){
-            if(dy>0){
-                // checks for a block below
-                System.out.println("There is a block below");
-                if(surroundings.isBlock(curX,newY)){
-                    System.out.println("THIS IS RAN :: GameEntity");
-                    ytemp=(curY-2)*map.getTileSize();
-                    falling=false;            
-                }
-                dy=0;
-            }else{
-                // checks for a block above
-                System.out.println("There is a block above");
-                if(surroundings.isBlock(curX,newY))
-                    xtemp=(newY+1)*map.getTileSize();
-                dy=0;
-            }
-        }*/
-    }
+    }*/
     
-    private void updateCorners(DoubleCoordinate change,DoubleCoordinate one,DoubleCoordinate two){
+    /*private void updateCorners(DoubleCoordinate change,DoubleCoordinate one,DoubleCoordinate two){
         one.addTo(change);
         two.addTo(change);
-    }
+    }*/
     
-    private DoubleCoordinate handleCollision(TileRect surroundings,DoubleCoordinate curC,DoubleCoordinate newC,Corners corner){
+    /*private DoubleCoordinate handleCollision(TileRect surroundings,DoubleCoordinate curC,DoubleCoordinate newC,Corners corner){
         int newX=(int)(curC.getXpos())/map.getTileSize();
         int newY=(int)(curC.getYpos())/map.getTileSize();
         int curX=(int)curC.getXpos()/map.getTileSize();
@@ -622,9 +323,9 @@ public abstract class GameEntity {
             return new DoubleCoordinate(diffX,diffY);
         }
         return null;
-    }
+    }*/
     
-    private DoubleCoordinate findCorner(Corners corner){
+    /*private DoubleCoordinate findCorner(Corners corner){
         DoubleCoordinate coordinate=new DoubleCoordinate();
         if(corner==Corners.BOTTOMLEFT){
             coordinate.setXpos(xpos);
@@ -645,7 +346,7 @@ public abstract class GameEntity {
         }else{
             return new DoubleCoordinate(-100000,-100000);
         }
-    }
+    }*/
 
 
     ////////////////////////////////////////////////////////////
@@ -665,7 +366,6 @@ public abstract class GameEntity {
         g.drawImage(image,(int)x,(int)y,null);
         if(GlobalController.debug){
             g.setColor(Color.MAGENTA);
-            //g.drawRect((int)cxpos,(int)cypos,cwidth,cheight);
             g.drawRect((int)xpos,(int)ypos,width,height);
         }
     }

@@ -8,8 +8,6 @@ import java.util.Random;
 public abstract class Neuron extends Node{
     private ArrayList<Connection> inputs;
     private ArrayList<Connection> outputs;
-    //protected Neuron initInput;
-    //protected Neuron initOutput;
     private double threshold;
     private double bias;
     private int depth;
@@ -17,8 +15,6 @@ public abstract class Neuron extends Node{
     public Neuron(){ // default constructor
         inputs=new ArrayList<>();
         outputs=new ArrayList<>();
-        //initInput=null;
-        //initOutput=null;
         setInnovationNum(-100);
         threshold=1.0;
         if(this instanceof InputNeuron)
@@ -34,20 +30,14 @@ public abstract class Neuron extends Node{
     
     // finds the depth for the neuron and all of its inputs
     public int findDepth(){
-        //try{// Debug try
-            int temp=depth;
-            if(inputs.isEmpty()&&!(this instanceof InputNeuron))
-                temp=1;
-            for(int i=0;i<inputs.size();i++)
-                if(inputs.get(i).getGiveNeuron().findDepth()>=temp)
-                    temp=inputs.get(i).getGiveNeuron().findDepth()+1;
-            depth=temp;
-            return depth;
-        //}catch(StackOverflowError e){
-        //    System.out.println("There was a stackoverflow while finding a neuron's depth");
-        //    System.exit(0);
-        //    return -10;
-        //}
+        int temp=depth;
+        if(inputs.isEmpty()&&!(this instanceof InputNeuron))
+            temp=1;
+        for(int i=0;i<inputs.size();i++)
+            if(inputs.get(i).getGiveNeuron().findDepth()>=temp)
+                temp=inputs.get(i).getGiveNeuron().findDepth()+1;
+        depth=temp;
+        return depth;
     }
     
     // the method that all neurons need to decide if they fire
@@ -138,32 +128,6 @@ public abstract class Neuron extends Node{
         neuron.setInnovationNum(getInnovationNum());
         return neuron;
     }
-        
-    
-    // checks if this is the same neuron (THIS IS WRONG)
-    // THIS NEEDS TO BE DELETED
-    public boolean isSameNeuron(Neuron other){
-        //boolean outputs=false;
-        //boolean inputs=false;
-        //if(initInput==null&&other.getInitInput()!=null)
-        //    return false;
-        //if(initInput!=null&&other.getInitInput()==null)
-        //    return false;
-        //if(initOutput==null&&other.getInitOutput()!=null)
-        //    return false;
-        //if(initOutput!=null&&other.getInitOutput()==null)
-        //    return false;
-        //if(initInput==null&&other.getInitInput()==null)
-        //    inputs=true;
-        //if(initOutput==null&&other.getInitOutput()==null)
-        ///    outputs=true;
-        //if(!inputs&&initInput.getInnovationNum()==other.getInitInput().getInnovationNum())
-        //    inputs=true;
-        //if(!outputs&&initOutput.getInnovationNum()==other.getInitOutput().getInnovationNum())
-        //    outputs=true;
-        //return outputs&&inputs;
-        return false;
-    }
     
     // sorts a list of neurons by their depths
     public static ArrayList<Neuron> sortByDepth(ArrayList<Neuron> list){
@@ -197,8 +161,6 @@ public abstract class Neuron extends Node{
     // getter methods
     public ArrayList<Connection> getInputs(){return inputs;}
     public ArrayList<Connection> getOutputs(){return outputs;}
-    //public Neuron getInitInput(){return initInput;}
-    //public Neuron getInitOutput(){return initOutput;}
     public double getThreshold(){return threshold;}
     public double getBias(){return bias;}
     public int getDepth(){return depth;}
@@ -206,8 +168,6 @@ public abstract class Neuron extends Node{
     // setter methods
     public void setInputs(ArrayList<Connection> param){inputs=param;}
     public void setOutputs(ArrayList<Connection> param){outputs=param;}
-    //public void setInitInput(Neuron param){initInput=param;}
-    //public void getSetInitOutput(Neuron param){initOutput=param;}
     public void setThreshold(double param){threshold=param;}
     public void setBias(double param){bias=param;}
     public void setDepth(int param){depth=param;}

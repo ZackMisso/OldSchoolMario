@@ -9,7 +9,6 @@ import neuroevolution.RandomNumberGenerator;
 import neuroevolution.connections.Connection;
 import neuroevolution.neurons.*;
 import neuroevolution.speciation.SpeciationFunctions;
-import testtools.CMDTester;
 public class NeuralNetwork {
     protected ArrayList<Node> nodes; // reference to all the nodes
     // TODO :: replace the bottom two with the one above
@@ -108,16 +107,14 @@ public class NeuralNetwork {
     
     // mutates the weights of the neural network
     public void mutateWeights(){
-        //int nodeNum=random.nextInt(neurons.size()+connections.size());
         int nodeNum=rng.getInt(neurons.size(),null,false);
         if(nodeNum>=connections.size()){
             // change a random bias
             nodeNum-=connections.size();
             neurons.get(nodeNum).mutateBias(rng);
-        }else{
+        }else
             // change a random connection
             connections.get(nodeNum).mutateWeight(rng);
-        }
     }
     
     // mutates the topology of the neural network
@@ -129,8 +126,6 @@ public class NeuralNetwork {
         double newNeuron=rng.simpleDouble();                //decides if new neuron is made
         if(makeRandomConnection>.59)                        
             newRandomConnection(neuron);                    //make connection among unconnecteds
-        
-        //inputs
         else if(neuron instanceof InputNeuron){
             ArrayList<Connection> outputs=neuron.getOutputs(); //get list of connected outputs
             if(outputs.size()==0){
@@ -145,11 +140,6 @@ public class NeuralNetwork {
             {
                 turnOffConnection(outputs,neuron);                        //otherwise try to turn off a connection
             }
-            /*else
-            {
-                mutateTopology(); // 22 Sep 14 deprecated
-                return;
-            }*/
         }
         
         //outputs
@@ -167,11 +157,6 @@ public class NeuralNetwork {
             {
                 turnOffConnection(inputs,neuron);
             }
-            /*else
-            {
-                mutateTopology(); 22 Sep 14 deprecated
-                return;
-            }*/
         }
         // hidden neurons
         else{
@@ -219,78 +204,47 @@ public class NeuralNetwork {
         for(int i=0;i<neurons.size();i++)
             if(!connected.contains(neurons.get(i)))
                 indexes.add(i);
-        //if(connected.size()==neurons.size()-1){
-        //    System.out.println("This is So Freaking Stupid");
-        //    return;
-        //}
-        //Random random=new Random();
-        if(indexes.size()==0){
-            //System.out.println("This is causing the error");
+        if(indexes.size()==0)
             return;
-        }
-        //int chosenNeuron=random.nextInt(indexes.size());
         int chosenNeuron=neurons.indexOf(neuron);
         while(chosenNeuron==neurons.indexOf(neuron)){
             chosenNeuron = rng.getInt(indexes.size(),false);
         }
-        //double recogiv=random.nextDouble();
         double recogiv=rng.simpleDouble();
         int otherIndex=indexes.get(chosenNeuron);
         Neuron otherNeuron=neurons.get(otherIndex);
-        if(otherNeuron==null){
-            //System.out.println("Major Error :: Other Null");
+        if(otherNeuron==null)
             return;
-        }
-        if(otherNeuron instanceof InputNeuron&&neuron instanceof InputNeuron){
+        if(otherNeuron instanceof InputNeuron&&neuron instanceof InputNeuron)
             mutate();
-            //System.out.println("Input-Input");
-        }
-        else if(otherNeuron instanceof OutputNeuron&&neuron instanceof OutputNeuron){
+        else if(otherNeuron instanceof OutputNeuron&&neuron instanceof OutputNeuron)
             mutate();
-            //System.out.println("Output-Output");
-        }
-        else if(otherNeuron instanceof InputNeuron&&neuron instanceof OutputNeuron){
+        else if(otherNeuron instanceof InputNeuron&&neuron instanceof OutputNeuron)
             makeConnection(otherNeuron,neuron);
-            //System.out.println("Input-Output");
-        }
-        else if(otherNeuron instanceof OutputNeuron&&neuron instanceof InputNeuron){
+        else if(otherNeuron instanceof OutputNeuron&&neuron instanceof InputNeuron)
             makeConnection(neuron,otherNeuron);
-            //System.out.println("Output-Input");
-        }
-        else if(otherNeuron instanceof InputNeuron){
+        else if(otherNeuron instanceof InputNeuron)
             makeConnection(otherNeuron,neuron);
-            //System.out.println("Other Input");
-        }
-        else if(otherNeuron instanceof OutputNeuron){
+        else if(otherNeuron instanceof OutputNeuron)
             makeConnection(neuron,otherNeuron);
-            //System.out.println("Other Output");
-        }
-        else if(neuron instanceof InputNeuron){
+        else if(neuron instanceof InputNeuron)
             makeConnection(neuron,otherNeuron);
-            //System.out.println("This Input");
-        }
-        else if(neuron instanceof OutputNeuron){
+        else if(neuron instanceof OutputNeuron)
             makeConnection(otherNeuron,neuron);
-            //System.out.println("This Output");
-        }
         else if(neuron==otherNeuron){
             //System.out.println("ARE YOU FING KIDDING ME");
         }
         else{ // connection between two hidden neurons
-            if(recogiv>.5){
-                //System.out.println("This Should Not Happen");
+            if(recogiv>.5)
                 makeConnection(neuron,otherNeuron);
-            }else{
-                //System.out.println("this should not happen");
+            else
                 makeConnection(otherNeuron,neuron);
-            }
         }
     }
 
     // creates a new connection between two neurons
     // TODO :: EDIT THIS
     public Connection makeConnection(Neuron give,Neuron recieve){
-        //Random random=new Random();
         if(give==null || recieve == null){
             System.out.println("Critical Error:: NeuralNetwork 296");
         }
@@ -301,7 +255,6 @@ public class NeuralNetwork {
         connection.setRecieveNeuron(recieve);
         give.getOutputs().add(connection);
         recieve.getInputs().add(connection);
-        //recieve.getWeights().add(random.nextDouble());
         connection.setInnovationNum(nodeCnt++);
         connection.setWeight(rng.simpleDouble());
         connections.add(connection);
@@ -314,14 +267,8 @@ public class NeuralNetwork {
     public void addNeuron(ArrayList<Connection> connects,Neuron neuron){
         // THIS SHOULD NEVER RUN
         System.out.println("Adding a new neuron");
-        if(connects.isEmpty()){
-            //CMDTester debug = new CMDTester(this);
+        if(connects.isEmpty())
             throw new IllegalArgumentException("List of connections must be nonempty.");
-            //mutate();
-            //setFitness(-10000.0);
-            //return;
-        }
-        //int connectionNum=random.nextInt(connects.size());
         int connectionNum=rng.getInt(connects.size(),null,false);
         Connection connection=connects.get(connectionNum);
         Neuron otherNeuron;
@@ -341,7 +288,6 @@ public class NeuralNetwork {
             makeConnection(otherNeuron,newNeuron);
             makeConnection(newNeuron,neuron);
         }
-        //newNeuron.setInnovationNum(nodeCnt++);
         neurons.add(newNeuron);
         nodes.add(newNeuron);
         // CHANGE
@@ -353,7 +299,6 @@ public class NeuralNetwork {
             mutate();
             return;
         }
-        //int connectionNum=random.nextInt(connects.size());
         int connectionNum=rng.getInt(connects.size(),null,false);
         Connection connection=connects.get(connectionNum);
         Neuron other=null;
@@ -440,23 +385,16 @@ public class NeuralNetwork {
             }
         }
         ArrayList<OutputNeuron> outputNs=findOutputs();
-        //System.out.println(outputNs.size()+" :: Number of found output neurons");
         ArrayList<InputNeuron> inpuNs=findInputs();
         ArrayList<Double> results=new ArrayList<>();
-        for(int i=0;i<inpuNs.size();i++){
-            //inputs.get(i).setInput(param.getInputs().get(i));
+        for(int i=0;i<inpuNs.size();i++)
             inputs.set(i,1.0); // debuging
-        }
-        //System.out.println("DEBUG");
         for(int i=0;i<outputNs.size();i++){
             outputNs.get(i).evaluate();
             results.add(outputNs.get(i).getOutput());
         }
-        //System.out.println(results.size()+" HADHFASDFA");
-        //System.out.println(results.toString());
         nextGeneration();
         return results;
-        //return null;
     }
     
     private void nextGeneration(){

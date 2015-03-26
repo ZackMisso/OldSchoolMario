@@ -27,13 +27,10 @@ public abstract class Enemy extends GameEntity{
     }
 
     public void removeEnemyFromList(){
-        //System.out.println("Removed enemy :: Enemy");
         reference.getEnemies().remove(this);
     }
 
 	// TODO :: FIX THIS CLASS
-    //public abstract void addEnemyToList(Level1State state);
-    //public abstract void removeEnemyFromList(Level1State state);
     public abstract void update(ArrayList<Block> blocks);
     public abstract void turn();
     public abstract void checkBlockCollision(ArrayList<Block> list);

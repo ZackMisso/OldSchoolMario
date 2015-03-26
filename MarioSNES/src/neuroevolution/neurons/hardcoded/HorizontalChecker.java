@@ -1,6 +1,6 @@
 /**
  *
- * @author Zack and Mark
+ * @author Mark
  * 
  */
 package neuroevolution.neurons.hardcoded;
@@ -15,16 +15,12 @@ public class HorizontalChecker extends InputNeuron{
     
     @Override
     public double evaluate(){
-        //if(level instanceof MenuState)
-        //    return 0.0;
         ArrayList<Block> entities = level.getBlocksOnScreen();
-        
         double mindistance = Double.MAX_VALUE;
         for(GameEntity ent : entities)
         {
             double tempdistance = ent.getRelativeX(player);
             if(ent.getCYpos() + ent.getCHeight()/2 > player.getCYpos() && ent.getCYpos() - ent.getCHeight()/2 < player.getCYpos())
-                
                 if(mindistance < tempdistance)
                     tempdistance = mindistance;
         }
@@ -36,18 +32,6 @@ public class HorizontalChecker extends InputNeuron{
         level = (Level1State)ref;
         player = level.getPlayer();
     }
-
-    //@Override
-    //public Neuron makeCopy() {
-    //    HorizontalChecker newHC = new HorizontalChecker(level);
-    //    newHC.setInputs(getInputs());
-    //    newHC.setOutputs(getOutputs());
-    //    newHC.setBias(getBias());
-    //    newHC.setInnovationNum(innovationNum);
-    //    newHC.setWeight(weight);
-    //    
-    //    return newHC;
-    //}
     
     public Neuron makeCopy(){
         HorizontalChecker newHC = new HorizontalChecker(level);

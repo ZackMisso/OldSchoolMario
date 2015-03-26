@@ -13,15 +13,4 @@ public class InputNeuron_Add extends InputNeuron{
         setEvaluated(true);
         return activation;
     }
-
-    //public Neuron makeCopy() {
-    //    InputNeuron_Add newneuron = new InputNeuron_Add();
-    //    newneuron.setBias(getBias());
-    ///    newneuron.setInnovationNum(getInnovationNum());
-    //    newneuron.setInput(input);
-    //    newneuron.setWeight(weight);
-    //    newneuron.setInputID(inputID);
-    //    newneuron.setOutputs(getOutputs());
-    //    return newneuron;
-    //}
 }

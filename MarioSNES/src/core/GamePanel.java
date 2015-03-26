@@ -17,7 +17,6 @@ public class GamePanel extends JPanel implements Runnable,KeyListener{
     public static final int HEIGHT=240;
     public static final int SCALE=2;
     private Thread thread;
-    //private boolean running;
     private int FPS=60;
     private long targetTime=1000/FPS;
     private BufferedImage image;
@@ -42,9 +41,7 @@ public class GamePanel extends JPanel implements Runnable,KeyListener{
     }
 
     public void controlledRun(){
-        //System.out.println("Thread is Starting");
         thread=new Thread(this);
-        //System.out.println("BLAH :: GamePanel");
         addKeyListener(this);
         init();
         thread.start();
@@ -56,14 +53,12 @@ public class GamePanel extends JPanel implements Runnable,KeyListener{
     public void init(){
         image=new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
         g=(Graphics2D)image.getGraphics();
-        //running=true;
         GlobalController.running=true;
     }
     
     public void run(){
         init();
         long start,elapsed,wait;
-        //System.out.println("Test :: GamePanel");
         while(GlobalController.running){
             if(GlobalController.headless){
                 update();
@@ -82,7 +77,6 @@ public class GamePanel extends JPanel implements Runnable,KeyListener{
                 }catch(InterruptedException e){}
             }
         }
-        //System.out.println("Thread is ending");
     }
     
     private void update(){
@@ -95,8 +89,6 @@ public class GamePanel extends JPanel implements Runnable,KeyListener{
     
     private void drawToScreen(){
         Graphics g2=getGraphics();
-        //if(image==null)
-        //    System.out.println(image.getHeight());
         g2.drawImage(image,0,0,WIDTH*SCALE,HEIGHT*SCALE,null);
         g2.dispose();
     }
@@ -105,7 +97,6 @@ public class GamePanel extends JPanel implements Runnable,KeyListener{
     
     public void keyPressed(KeyEvent event){
         gsm.keyPressed(event.getKeyCode());
-        //System.out.println("ASDFASDFAds");
     }
     
     public void keyReleased(KeyEvent event){

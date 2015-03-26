@@ -6,11 +6,9 @@
 package entities;
 import gameState.Level1State;
 import tilesAndGraphics.ImageCache;
-import java.awt.Color;
 import java.awt.Graphics2D;
 public class Block extends GameEntity{
     public Block(){
-        // implement
         setWidth(16);
         setHeight(16);
         setImage(ImageCache.block);
@@ -36,7 +34,5 @@ public class Block extends GameEntity{
     // Depreciated :: Zack :: Moved to GameEntity class
     public void draw(Graphics2D g,Level1State state){
         g.drawImage(getImage(),(int)(getStartX()-state.getXOffset()),(int)getYpos(),null);
-        //g.setColor(Color.black);
-        //g.drawRect((int)(xpos-state.getXOffset()), (int)ypos, width, height);
     }
 }

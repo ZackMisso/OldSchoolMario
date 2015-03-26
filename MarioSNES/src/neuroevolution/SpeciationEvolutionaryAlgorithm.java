@@ -8,7 +8,6 @@ import neuroevolution.io.NetWriter;
 import core.GlobalController;
 import core.GamePanel;
 import gameState.Level1State;
-import testtools.CMDTester;
 import java.util.ArrayList;
 import java.util.Random;
 public class SpeciationEvolutionaryAlgorithm {
@@ -18,8 +17,6 @@ public class SpeciationEvolutionaryAlgorithm {
     private ArrayList<Species> species; // the current species
     private ArrayList<SpeciationNeuralNetwork> networks; // the current networks (will be removed soon)
     private ArrayList<SpeciationNeuralNetwork> bests; // the list of best networks
-    //private int numberOfGenerations; // number of generations (should be global)
-    //private int populationSize; // population size (should be global)
     
     public SpeciationEvolutionaryAlgorithm(GamePanel panel){ // default constructor
         history=new HistoricalTracker();
@@ -27,8 +24,6 @@ public class SpeciationEvolutionaryAlgorithm {
         species=new ArrayList<>();
         networks=new ArrayList<>();
         bests=new ArrayList<>();
-        //numberOfGenerations=600;
-        //populationSize=500;
         setGame(panel);
         initializeFirstGeneration();
     }
@@ -41,24 +36,17 @@ public class SpeciationEvolutionaryAlgorithm {
     }
 
     public void runExperiment(){
-        //System.out.println("Experiment beginning");
         SpeciationNeuralNetwork totalBest=new SpeciationNeuralNetwork(history); // best neural network
-        //XORTest test=tests.getXORTest(); // contains the test cases
         for(int i=0;i<GlobalController.generations;i++){ // for each generation
             System.out.println("Starting generation :: "+i);
             // Create temporary lists to hold any new species and deviated nets
             ArrayList<SpeciationNeuralNetwork> deviated=new ArrayList<>();
             ArrayList<Species> newSpecies=new ArrayList<>();
             // for each species
-            
-            //System.out.println("Beginning to run the game for each individual");
             for(int f=0;f<species.size();f++){
                 // run the tests to get each individuals fitness
-                //System.out.println("Hey Listen");
-                for(int g=0;g<species.get(f).getIndividuals().size();g++){
-                    //System.out.println("Running Individual "+g);
+                for(int g=0;g<species.get(f).getIndividuals().size();g++)
                     runMarioGame(species.get(f).getIndividuals().get(g),i);
-                }
                 // gets the list of individuals who no longer belong to this species
                 ArrayList<SpeciationNeuralNetwork> temp=species.get(f).checkDeviation();
                 // add those individuals to the deviated list
@@ -97,7 +85,6 @@ public class SpeciationEvolutionaryAlgorithm {
                 sum+=species.get(f).getAverageFitness();
             }
             // sort species list by average fitness
-            //sortSpeciesByAverageFitness(species);
             Species.sort(species);
             species.get(0).setIndividuals(sortNetworksByFitness(species.get(0).getIndividuals()));
             totalBest = species.get(0).getIndividuals().get(0);
@@ -134,8 +121,6 @@ public class SpeciationEvolutionaryAlgorithm {
             for(int g=0;g<species.size();g++)
                 totalInd+=species.get(g).getIndividuals().size();
             System.out.println("Total Individuals :: "+totalInd);
-            
-            
         }
         species=Species.sort(species);
         System.out.println("Total Species :: "+species.size());
@@ -147,8 +132,6 @@ public class SpeciationEvolutionaryAlgorithm {
         // Final test (need to implement functionality)
         System.out.println("Total Individuals :: "+totalInd);
         NetWriter.write(totalBest,"test/TOTALbestRun_"+totalBest.getFitness());
-
-        //new CMDTester(species.get(0));
     }
     
     private void sortSpeciesByAverageFitness(ArrayList<Species> specieslist){
@@ -167,19 +150,14 @@ public class SpeciationEvolutionaryAlgorithm {
     }
     
     private void runMarioGame(NeuralNetwork net,int generation){
-        //System.out.println("Running the game");
         GlobalController.running=true;
-        //System.out.println("Creating the agent");
         MarioAI agent=new MarioAI();
         agent.createAI(net);
-        //System.out.println("agent created");
         Level1State state=(Level1State)(game.getGSM().getGameStates().get(0));
         state.setANN(agent);
         state.getPlayer().setANN(agent);
         state.makeTimer(generation);
-        //System.out.println("Beginning Controlled run");
         game.controlledRun();
-        //System.out.println("Controlled run end");
     }
     
     // MergeSort
@@ -224,13 +202,9 @@ public class SpeciationEvolutionaryAlgorithm {
     // getter methods
     public ArrayList<SpeciationNeuralNetwork> getNetworks(){return networks;}
     public ArrayList<SpeciationNeuralNetwork> getBests(){return bests;}
-    //public int getNumberOfGenerations(){return numberOfGenerations;}
-    //public int getPopulationSize(){return populationSize;}
     
     // setter methods
     public void setGame(GamePanel param){game=param;}
     public void setNetworks(ArrayList<SpeciationNeuralNetwork> param){networks=param;}
     public void setBests(ArrayList<SpeciationNeuralNetwork> param){bests=param;}
-    //public void setNumberOfGenerations(int param){numberOfGenerations=param;}
-    //public void setPopulationSize(int param){populationSize=param;}
 }

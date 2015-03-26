@@ -1,7 +1,6 @@
 package neuroevolution;
 import core.GlobalController;
 import core.GamePanel;
-import entities.Mario;
 import neuroevolution.networks.NeuralNetwork;
 //import neuroevolution.io.NetReader; // will need later
 import neuroevolution.io.NetWriter;
@@ -14,15 +13,7 @@ public class EvolutionaryAlgorithm {
     
     public <T extends NeuralNetwork> EvolutionaryAlgorithm(ArrayList<T> list){
         networks=list;
-        //initializeFirstGeneration();
     }
-    
-    /* DEPRECATED by Mark 21 Sep 14
-    private void initializeFirstGeneration(){
-        for(int i=0;i<GlobalController.individuals;i++)
-            networks.add(new HorizontalAndVerticalNetworkHardcoded((Level1State)game.getGSM().getGameStates().get(0)));
-    }
-    */
     
     public void runExperiment(){
         System.out.println("Starting Experiment :: EvolutionaryAlgorithm 28");
@@ -30,10 +21,8 @@ public class EvolutionaryAlgorithm {
         int f;
         for(int i=0;i<GlobalController.generations;i++){
             ArrayList<NeuralNetwork> newList=new ArrayList<>();
-            for(f=0;f<networks.size();f++){
+            for(f=0;f<networks.size();f++)
                 runMarioGame(networks.get(f),i);
-                //System.out.println("Individual "+ f +" finished.");
-            }
             networks=sortNetworksByFitness(networks);
             if(networks.get(0).getFitness()>totalBest.getFitness())
                 totalBest=networks.get(0);
@@ -48,7 +37,6 @@ public class EvolutionaryAlgorithm {
             //newList.add(networks.get(f).copy());
             // IMPLEMENT CROSSOVER !!!
             networks=newList;
-            //System.out.println("Generation "+i+" Over :: Best "+bests.get(bests.size()-1).getFitness());
             System.out.println("Generation " + i + " finished.");
             NetWriter.write(totalBest,"test/Generation"+(i+1)+"Best_"+totalBest.getFitness());
         }
@@ -58,24 +46,18 @@ public class EvolutionaryAlgorithm {
     }
 
     private void runMarioGame(NeuralNetwork net,int generation){
-        //System.out.println("Starting Instance of Game");
         GlobalController.running=true;
         MarioAI agent=new MarioAI();
         agent.createAI(net);
         Level1State state=(Level1State)(game.getGSM().getGameStates().get(0));
         state.setANN(agent);
         state.getPlayer().setANN(agent);
-        //if(agent==null) System.out.println("ERROR A :: EvolutionaryAlgorithm 67");
-        //if(net==null) System.out.println("ERROR B :: EvolutionaryAlgorithm 68");
-        //System.out.println("THIS HAS HAPPENED :: EvolutionaryAlgorithm 69");
         state.makeTimer(generation);
         game.controlledRun();
     }
     
     // this is going to be Merge Sort, possibly implement others later
     private <T extends NeuralNetwork> ArrayList<T> sortNetworksByFitness(ArrayList<T> nets){
-        //System.out.println("WHYYYYY");
-        //System.out.println(nets.size());
         if(nets.size()==1)
             return nets;
         ArrayList<T> one=new ArrayList<>();

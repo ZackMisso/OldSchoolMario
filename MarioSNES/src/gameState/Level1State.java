@@ -114,7 +114,6 @@ public class Level1State extends GameState{
             blocks.add(new Floor(i*16+x,y,16,16));
             blocks.add(new Floor(i*16+x,y+16,16,16));
         }
-        //System.out.println(x+=10*16);
         x=39*16;
         for(int i=0;i<4;i++){
             blocks.add(new Block(i*16+x,208-4*16,16,16));
@@ -147,17 +146,10 @@ public class Level1State extends GameState{
     }
     
     public void update(){
-        //System.out.println("Update is running");
-        //if(GlobalController.lolsPhysics){
-        //    //System.out.println("Game State Updating Lols :: Level1State");
-        //updateLols();
-        //}
-        //else
         updateActual();
     }
     
     public ArrayList<Block> getBlocksOnScreen(){
-        //ArrayList<Block> blks=new ArrayList<>();
         if(!blksOnScreen.isEmpty())
             return blksOnScreen;
         for(int i=0;i<blocks.size();i++)
@@ -170,89 +162,37 @@ public class Level1State extends GameState{
     
     public void updateActual(){
         timer++;
-        //System.out.println("Current X Offset :: "+xOffset+" :: Level1State");
         if(player==null)
             System.out.println("Player is null! :: Level1State");
-        //System.out.println("Player is updating");
         player.update(blocks,this);
-        //System.out.println("Player is finalizing movements");
         player.finalizeMovementNew(this);
         double dx=player.getDx();
-        //System.out.println("Player X :: "+player.getXpos()+" :: Level1State");
-        //System.out.println("Block X :: "+blocks.get(0).getXpos()+" :: Level1State");
-        //System.out.println("Blocks are updating");
         for(int i=0;i<blocks.size();i++){
             // This line will not be needed once tile physics works
             if(blocks.get(i)==null)
                 continue;
             blocks.get(i).setXpos(blocks.get(i).getStartX()-xOffset);
-            if(blocks.get(i).isOnScreen()){
-                //blksOnScreen.add(blocks.get(i));
+            if(blocks.get(i).isOnScreen())
                 blocks.get(i).updateC();
-            }
         }
-        //System.out.println("Enemies are updating");
         for(int i=0;i<enemies.size();i++){
             // Something will need to be added here
-            //enemies.get(i).setXpos(enemies.get(i).getXpos()-xOffset);
             enemies.get(i).setXpos(enemies.get(i).getXpos()-dx);
             if(enemies.get(i).isOnScreen())
                 enemies.get(i).update(blocks);
         }
-        //System.out.println("Player is checking collisions with enemies");
         player.checkCollisionsWithEnemies(enemies,this);
-
         // temporarily commented out for debugging
-
-        //totalPast=xOffset;
-        if(xOffset>3176){ // flagpole
+        if(xOffset>3176) // flagpole
             end();
-        }
-        //System.out.println("Timer :: "+timer+" TimerMax :: "+timerMax+" :: Level1State");
-        if(timer>=timerMax&&!GlobalController.gameRunning){
-            //System.out.println("End Is Called From Here :: Level1State");
+        if(timer>=timerMax&&!GlobalController.gameRunning)
             end();
-        }
         resetBlocksOnScreen();
-        //xOffset=0; // NOOOOOO!!!!
     }
     
     private void resetBlocksOnScreen(){
         blksOnScreen.clear();
     }
-    
-    // Depreciated :: Zack
-//    public void updateLols(){
-//        timer++;
-//        if(player==null){
-//            System.out.println("Player is null :: Level1State 192");
-//            return;
-//        }
-//        player.updateLols(blocks,this);
-//        player.finalizeMovement(this);
-//        //System.out.println(enemies.get(0).getXpos());
-//        //System.out.println(enemies.get(0).getWidth());
-//        //System.out.println(enemies.get(0).getHeight());
-//        //System.out.println(enemies.get(0).getYpos());
-//        for(int i=0;i<blocks.size();i++){
-//            blocks.get(i).setXpos(blocks.get(i).getXpos()-xOffset);
-//            if(blocks.get(i).isOnScreen())
-//                blocks.get(i).updateC();
-//        }
-//        for(int i=0;i<enemies.size();i++){
-//            enemies.get(i).setXpos(enemies.get(i).getXpos()-xOffset);
-//            if(enemies.get(i).isOnScreen())
-//                enemies.get(i).update(blocks);
-//        }
-//        player.checkCollisionsWithEnemies(enemies,this);
-//        totalPast+=xOffset;
-//        if(totalPast>2320){ // About 53 seconds
-//            end();
-//        }
-//        if(timer>=timerMax)
-//            end();
-//        xOffset=0;
-//    }
 
     // Depreciated :: Zack
     //public void makeTileMap(TileMap param){
@@ -264,62 +204,26 @@ public class Level1State extends GameState{
     
     // THIS METHOD IS USED FOR EVOLVING AGENTS
     public void makeTimer(int generation){
-        if(GlobalController.aiRun)
-            timerMax=3000;
-        else{
-            //timerMax=100+80*generation;
-            //if(timerMax>3000)
-            timerMax=3000;
-        }
+        timerMax=3000;
     }
     
     public void draw(Graphics2D g){
-        //if(GlobalController.lolsPhysics)
-            drawLols(g);
-        //else
-        //    drawActual(g);
+        drawLols(g);
     }
-    
-// Depreciated :: Zack
-//    public void drawActual(Graphics2D g){
-//        g.setColor(Color.WHITE);
-//        g.fillRect(0,0,GamePanel.WIDTH*GamePanel.SCALE,GamePanel.HEIGHT*GamePanel.SCALE);
-//        //System.out.println(blocks.size());
-//        //g.setColor(Color.BLUE);
-//        //g.fillRect(0,160,GamePanel.WIDTH*GamePanel.SCALE,GamePanel.HEIGHT*GamePanel.SCALE);
-//        //background.draw(g);
-//        for(int i=0;i<blocks.size();i++)
-//            if(blocks.get(i).getOnScreen())
-//                blocks.get(i).draw(g,this);
-//        for(int i=0;i<enemies.size();i++)
-//            if(enemies.get(i).getOnScreen())
-//                enemies.get(i).draw(g,this);
-//        //tileMap.draw(g);
-//        player.draw(g);
-//    }
 
     public void drawLols(Graphics2D g){
-        //System.out.println("DRAWN LOLS");
-        //g.setColor(Color.WHITE);
-        //g.fillRect(0,0,GamePanel.WIDTH*GamePanel.SCALE,GamePanel.HEIGHT*GamePanel.SCALE);
-        //System.out.println(blocks.size());
         g.setColor(Color.BLUE);
         g.fillRect(0,0,GamePanel.WIDTH*GamePanel.SCALE,GamePanel.HEIGHT*GamePanel.SCALE);
-        //background.draw(g);
         for(int i=0;i<blocks.size();i++)
             if(blocks.get(i).getOnScreen())
                 blocks.get(i).draw(g,this);
         for(int i=0;i<enemies.size();i++)
             if(enemies.get(i).getOnScreen())
                 enemies.get(i).draw(g);
-        //tileMap.draw(g);
         player.draw(g);
     }
 
     public void end(){
-        //System.out.println("Game is ending WHY?");
-        //if(!ann.isReadytoPropogate())
-        //    System.out.println("This should not happen :: Level1State 286");
         if(GlobalController.aiRun&&ann!=null){
             System.out.println("This AI's score was "+xOffset);
             new CMDTester(ann.getNet());
@@ -331,10 +235,8 @@ public class Level1State extends GameState{
                 System.out.println("ERROR 2");
             ann.getNet().setFitness(xOffset);
             reset();
-            //if(GlobalController.gameRunning)
-                GlobalController.running=false;
+            GlobalController.running=false;
         }else{
-            //System.exit(0);
             System.out.println("Fitness: " + xOffset + " :: Level1State 297");
             GlobalController.running=false;
         }

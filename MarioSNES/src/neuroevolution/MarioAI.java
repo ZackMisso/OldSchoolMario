@@ -4,14 +4,12 @@
  * 
  */
 package neuroevolution;
-import core.GlobalController;
 import entities.Block;
 import entities.Mario;
 import gameState.Level1State;
 import java.util.ArrayList;
 import neuroevolution.networks.NeuralNetwork;
 import neuroevolution.networks.SpeciationNeuralNetwork;
-import testtools.CMDTester;
 public class MarioAI {
     
     private NeuralNetwork net;
@@ -28,35 +26,19 @@ public class MarioAI {
     }
 
     public boolean movesLeft(){
-        //if(GlobalController.speciation) // temporary
-        //    return false;
         return outputs.get(0)>=1.0;
-        //return false;
     }
 
     public boolean movesRight(){
-        //System.out.println("Moving right by SPECIATION");
-        //if(GlobalController.speciation)
-        //    return outputs.get(0)>=1.0;
     	return outputs.get(1)>=1.0;
     }
 
     public boolean jumps(){
-        //if(GlobalController.speciation) // temporary
-        //    return false;
     	return outputs.get(2)>=1.0;
     }
 
     public void propogate(Level1State state){
     	ArrayList<Double> inputs=new ArrayList<>();
-    	// sensor infor
-    	//ArrayList<Block> nearest=getNearestBlocks(state.getBlocks(),state.getPlayer());
-    	//for(int i=0;i<nearest.size();i++){
-    	//	inputs.add(nearest.get(i).getRelativeX(state.getPlayer()));
-    	//	inputs.add(nearest.get(i).getRelativeY(state.getPlayer()));
-    	//}
-    	// now propogate
-        //System.out.println(inputs.toString());
     	net.setInputs(inputs);
         try{outputs=net.run();}
         catch(StackOverflowError e){
@@ -65,17 +47,9 @@ public class MarioAI {
             outputs.add(0.0);
             outputs.add(0.0);
             outputs.add(0.0);
-            //new CMDTester(net);
             net.setFitness(Double.MIN_VALUE);
             return;
         }
-        //catch(NullPointerException e){
-        //    new CMDTester(net);
-        //}
-        
-        //System.out.println(outputs.toString());
-        //System.out.println(net.getNeurons().size());
-        //System.out.println("THIS HAS RAN");
     }
 
     // The efficiency of this could be greatly improved
@@ -113,7 +87,6 @@ public class MarioAI {
     			nearest.set(2,blk);
     		}
     	}
-        //System.out.println(zero+" :: closest distance to a block");
         return nearest;
     }
     

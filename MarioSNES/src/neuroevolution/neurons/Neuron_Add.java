@@ -17,13 +17,4 @@ public class Neuron_Add extends Neuron{
         setCache(activation);
         return activation;
     }
-
-    //public Neuron makeCopy() {
-    //    Neuron_Add newneuron = new Neuron_Add();
-    //    newneuron.setBias(getBias());
-    //    newneuron.setInnovationNum(getInnovationNum());
-    //    newneuron.setInputs(getInputs());
-    //    newneuron.setOutputs(getOutputs());
-    //    return newneuron;
-    //}
 }

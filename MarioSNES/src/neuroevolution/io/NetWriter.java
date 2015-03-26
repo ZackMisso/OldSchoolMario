@@ -6,8 +6,6 @@
 package neuroevolution.io;
 import neuroevolution.networks.NeuralNetwork;
 import neuroevolution.neurons.Neuron;
-import neuroevolution.neurons.InputNeuron;
-import neuroevolution.neurons.OutputNeuron;
 import neuroevolution.connections.Connection;
 import java.io.BufferedWriter;
 import java.io.FileWriter;

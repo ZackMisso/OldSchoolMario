@@ -1,5 +1,4 @@
 package neuroevolution.networks;
-//import neuroevolution.Node;
 import neuroevolution.neurons.InputNeuron_Add;
 import neuroevolution.neurons.OutputNeuron_Add;
 import neuroevolution.neurons.InputNeuron;
@@ -8,26 +7,13 @@ import neuroevolution.neurons.Neuron;
 import neuroevolution.neurons.Neuron_Add;
 import neuroevolution.connections.Connection;
 import core.GlobalController;
-//import neuroevolution.speciation.SpeciationFunctions;
 import neuroevolution.speciation.HistoricalTracker;
 import testtools.CMDTester;
 import neuroevolution.RandomNumberGenerator;
-//import datastructures.NodeToNode;
 import java.util.ArrayList;
 import java.util.Random;
 public class SpeciationNeuralNetwork extends NeuralNetwork{
-    //private ArrayList<Node> nodes; // reference to all the nodes
-    // TODO :: replace the bottom two with the one above
-    //private ArrayList<Neuron> neurons;
-    //private ArrayList<Connection> connections;
-    //private ArrayList<Integer> inputs;
-    //private ArrayList<Integer> outputs;
     private HistoricalTracker tracker;
-    //private RandomNumberGenerator rng;
-    //private double fitness;
-    //private int nodeCnt; // this will be global soon
-    //private int currentPropogationStep;
-    //private boolean depthNotFound;
     private boolean usingSpeciation;
     private boolean networkSorted; // used to save run time
     
@@ -44,12 +30,9 @@ public class SpeciationNeuralNetwork extends NeuralNetwork{
         inputs.add(0.0);
         outputs=new ArrayList<>();
         tracker=param;
-        //System.out.println("RNG was set");
         rng=new RandomNumberGenerator();
         fitness=0.0;
         nodeCnt=0;
-        //currentPropogationStep=0;
-        //depthNotFound=true;
         usingSpeciation=true; // set to true to test speciation
         initializeNetwork(ins,outs);
     }
@@ -64,7 +47,6 @@ public class SpeciationNeuralNetwork extends NeuralNetwork{
             nodes.add(connections.get(i));
         inputs=new ArrayList<>();
         outputs=new ArrayList<>();
-        //System.out.println("RNG was set");
         rng=new RandomNumberGenerator();
         fitness=0.0;
         nodeCnt=0;
@@ -88,10 +70,8 @@ public class SpeciationNeuralNetwork extends NeuralNetwork{
         for(f=0;f<outsnum;f++){
             OutputNeuron_Add neuron=new OutputNeuron_Add();
             neuron.setOutputID(f);
-            if(usingSpeciation){
+            if(usingSpeciation)
                 neuron.setInnovationNum(f+i);
-                //tracker.setNextInnovation(insnum+outsnum);
-            }
             else
                 neuron.setInnovationNum(nodeCnt++);
             neurons.add(neuron);
@@ -102,22 +82,15 @@ public class SpeciationNeuralNetwork extends NeuralNetwork{
         for(i=0;i<ins.size();i++)
             for(f=0;f<outs.size();f++)
                 makeConnection(ins.get(i),outs.get(f),insnum+outsnum+f+i*outs.size());
-        //if(tracker!=null){
-        //    if(tracker.notSet())
-        //        tracker.setNextInnovation(100); // will need to change if we have large networks
-        //}
     }
     
     // controls the mutation of the neural network
     public void mutate(){
         double chance=rng.simpleDouble();
-        if(chance>.96){
-            //System.out.println("Mutating topology :: SNN");
+        if(chance>.96)
             mutateTopology();
-        }else{
-            //System.out.println("Mutating weights :: SNN");
+        else
             mutateWeights();
-        }
     }
     
     // mutates the weights of the neural network
@@ -141,7 +114,6 @@ public class SpeciationNeuralNetwork extends NeuralNetwork{
         if(makeRandomConnection>.55)
             newRandomConnection(neuron);
         else if(neuron instanceof InputNeuron){
-            //System.out.println("Debug :: 1 :: SNN");
             ArrayList<Connection> outputs=neuron.getOutputs();
             if(newNeuron>.8&&neurons.size()<GlobalController.MAX_NEURONS)
                 addNeuron(outputs,neuron);
@@ -151,19 +123,14 @@ public class SpeciationNeuralNetwork extends NeuralNetwork{
                 mutateTopology();
         }
         else if(neuron instanceof OutputNeuron){
-            //System.out.println("Debug :: 2 :: SNN");
             ArrayList<Connection> inputs=neuron.getInputs();
-            if(newNeuron>.5&&neurons.size()<GlobalController.MAX_NEURONS){
-                //System.out.println("ADDING NEURON :: SNN");
+            if(newNeuron>.5&&neurons.size()<GlobalController.MAX_NEURONS)
                 addNeuron(inputs,neuron); // error called from here
-            }
-            else if(connections.size()>GlobalController.MIN_CONNECTIONS){
-                //System.out.println("Turning off connection :: SNN");
+            else if(connections.size()>GlobalController.MIN_CONNECTIONS)
                 turnOffConnection(inputs,neuron);
-            }else
+            else
                 mutateTopology();
         }else{ // hidden neurons
-            //System.out.println("Debug :: 3 :: SNN");
             ArrayList<Connection> inputs=neuron.getInputs();
             ArrayList<Connection> outputs=neuron.getOutputs();
             double inorout=rng.simpleDouble();
@@ -187,9 +154,6 @@ public class SpeciationNeuralNetwork extends NeuralNetwork{
     
     // new (More efficient new Random Connection method)
     public void newRandomConnection(Neuron neuron){
-        //ArrayList<OutputNeuron> outputs=findOutputs();
-        //    for(int i=0;i<outputs.size();i++)
-        //        outputs.get(i).findDepth();
         try{
             for(int i=0;i<neurons.size();i++)
                 neurons.get(i).findDepth();
@@ -270,19 +234,13 @@ public class SpeciationNeuralNetwork extends NeuralNetwork{
     // adds a neuron in the middle of a connection
     public void addNeuron(ArrayList<Connection> connects,Neuron neuron){
         // THIS SHOULD NEVER RUN
-        //System.out.println("Starting Add Neuron");
         if(connects.isEmpty()){
             mutate();
-            //System.out.println("List of connections is empty :: SNN");
-            //System.out.println("Nodes: " + nodes.size() + ", Connections: "+connects.size());
-            //new CMDTester(this);
-            //setFitness(-10.0);
             return;
         }
         int connectionNum=rng.getInt(connects.size(),null,false);
         Connection connection=connects.get(connectionNum);
         //hack to make sure not inserting node into connection to self
-        //System.out.println("So Far So Good :: SNN");
         int cnt=0;
         while(connection.getGiveNeuron()==connection.getRecieveNeuron()){
             cnt++;
@@ -291,14 +249,12 @@ public class SpeciationNeuralNetwork extends NeuralNetwork{
             if(cnt==200)
                 new CMDTester(this);
         }
-        //System.out.println("Hey Listen :: SNN");
         Neuron otherNeuron=null;
         if(connection.getGiveNeuron()==neuron)
             otherNeuron=connection.getRecieveNeuron();
         else
             otherNeuron=connection.getGiveNeuron();
         Neuron newNeuron=new Neuron_Add();
-        //System.out.println("Im too young for this shzz :: SNN");
         if(usingSpeciation){
             newNeuron.setInitIn(neuron.getInnovationNum());
             newNeuron.setInitOut(otherNeuron.getInnovationNum());
@@ -306,7 +262,6 @@ public class SpeciationNeuralNetwork extends NeuralNetwork{
         }
         else
             newNeuron.setInnovationNum(nodeCnt++);
-        //System.out.println("You can obviously tell I am tired :: SNN");
         if(connection.getGiveNeuron()==neuron){
             makeConnection(neuron,newNeuron);
             makeConnection(newNeuron,otherNeuron);
@@ -316,44 +271,28 @@ public class SpeciationNeuralNetwork extends NeuralNetwork{
         }
         neurons.add(newNeuron);
         nodes.add(newNeuron);
-        //System.out.println("Fourth wall has been broken :: SNN");
     }
     
     public ArrayList<Double> run(){
         for(int i = 0; i<connections.size(); i++){
             if(connections.get(i).getGiveNeuron()==null) System.out.println("Error 1:: NeuralNetwork 368");
             if(connections.get(i).getRecieveNeuron()==null) System.out.println("Error 2:: NeuralNetwork 369");
-            if(connections.get(i).getGiveNeuron().equals(connections.get(i).getRecieveNeuron())){
-                //System.out.println("Recurrent connection found. Removing. :: NeuralNetwork 361");
+            if(connections.get(i).getGiveNeuron().equals(connections.get(i).getRecieveNeuron()))
                 connections.remove(connections.get(i));
-            }
         }
         ArrayList<OutputNeuron> outputNs=findOutputs();
-        //System.out.println(outputNs.size()+" :: Number of found output neurons");
         ArrayList<InputNeuron> inpuNs=findInputs();
         if(inpuNs.size()==0){
             System.out.println("there are no input neurons");
             System.exit(0);
         }
-        //if(inputs.size()==0){
-        //    System.out.println("there are no input neurons :: 2");
-        //    System.exit(0);
-        //}
         ArrayList<Double> results=new ArrayList<>();
-        for(int i=0;i<inpuNs.size();i++){
-            //inputs.get(i).setInput(param.getInputs().get(i));
-            //inputs.add(i,1.0); // debuging
-        }
-        //System.out.println("DEBUG");
         for(int i=0;i<outputNs.size();i++){
             outputNs.get(i).evaluate();
             results.add(outputNs.get(i).getOutput());
         }
-        //System.out.println(results.size()+" HADHFASDFA");
-        //System.out.println(results.toString());
         nextGeneration();
         return results;
-        //return null;
     }
     
     // turns off a connection
@@ -406,7 +345,6 @@ public class SpeciationNeuralNetwork extends NeuralNetwork{
             network.getNeurons().add(neurons.get(i).makeCopy());
         for(int i=0;i<connections.size();i++)
             network.getConnections().add(connections.get(i).makeCopy(network.getNeurons(),network));
-            //    catch(NullPointerException e){new CMDTester(this);}
         network.setNodeCnt(nodeCnt);
         network.setRNG(rng);
         network.setState(level);
@@ -414,11 +352,8 @@ public class SpeciationNeuralNetwork extends NeuralNetwork{
     }
     
     public SpeciationNeuralNetwork copyAndMutate(){
-        //System.out.println("Starting from SpeciationNeuralNetwork :: SNN");
         SpeciationNeuralNetwork network=copy();
-        //System.out.println("Copied :: SNN");
         network.mutate();
-        //System.out.println("Mutated :: SNN");
         return network;
     }
     
@@ -442,24 +377,10 @@ public class SpeciationNeuralNetwork extends NeuralNetwork{
     }
     
     // getter methods
-    //public ArrayList<Node> getNodes(){return nodes;}
-    //public ArrayList<Neuron> getNeurons(){return neurons;}
-    //public ArrayList<Connection> getConnections(){return connections;}
-    //public ArrayList<Integer> getInputs(){return inputs;}
-    //public ArrayList<Integer> outputs(){return outputs;}
     public RandomNumberGenerator getRNG(){return rng;} // needed for CMDTest
-    //public double getFitness(){return fitness;}
-    //public int getNodeCnt(){return nodeCnt;}
-    //public int getCurrentPropogationStep(){return currentPropogationStep;}
     public boolean getNetworkSorted(){return networkSorted;}
     
     // setter methods
-    //public void setNeurons(ArrayList<Neuron> param){neurons=param;}
-    //public void setConnections(ArrayList<Connection> param){connections=param;}
-    //public void setInputs(ArrayList<Integer> param){inputs=param;}
-    //public void setOutputs(ArrayList<Integer> param){outputs=param;}
     public void setRNG(RandomNumberGenerator param){rng=param;}
-    //public void setFitness(double param){fitness=param;}
-    //public void setNodeCnt(int param){nodeCnt=param;}
     public void setNetworkSorted(boolean param){networkSorted=param;}
 }

@@ -28,7 +28,6 @@ public class Goomba extends Enemy{
         setCWidth(getWidth()-4);
         setCHeight(getHeight()-1);
         updateC();
-        //setDrawC(true);
     }
     
     // this method updates the collision box relative to its current location
@@ -83,47 +82,27 @@ public class Goomba extends Enemy{
                             setDy(0);
                         setYTemp(list.get(i).getYpos()-getHeight());
                         setFalling(false);
-                        //System.out.println("TOP");
                     }else{
                         // Collision is from the left side of this object 
-                        //if(distanceBetweenCenters(list.get(i))>getMaxDistance(list.get(i))-2){
-                        //    setDx(tempDx);
-                        //    setXTemp(tempX);
-                        //}else{
-                        //    setXTemp(list.get(i).getXpos()+getWidth());
-                        //    turn();
-                        //}
                         if(lengthDistance(list.get(i))>=16){
                             setDx(tempDx);
                             setXTemp(tempX);
                         }else{
                             setXTemp(list.get(i).getXpos()+getWidth());
-                            //System.out.println("Turned Left :: Goomba");
-                            //System.out.println("Left distance :: "+lengthDistance(list.get(i)));
                             turn();
                         }
                         lft=true;
-                        //System.out.println("LEFT");
                     }
                 }else{
                     if(wy>-hx){
                         // Collision is on the right side of this object
                         setXTemp(list.get(i).getXpos()-getWidth()-1);
-                        //if(distanceBetweenCenters(list.get(i))>getMaxDistance(list.get(i))){
-                        //    setDx(tempDx);
-                        //    setXTemp(tempX);
-                        //}else
-                        //    turn();
                         if(lengthDistance(list.get(i))>=16){
                             setDx(tempDx);
                             setXTemp(tempX);
-                        }else{
-                            //System.out.println("Turned Right :: Goomba");
-                            //System.out.println("Right distance :: "+lengthDistance(list.get(i)));
+                        }else
                             turn();
-                        }
                         rgt=true;
-                        //System.out.println("RIGHT");
                     }else{
                         // Collision is on the top of this object
                         // THIS SHOULD NEVER HAPPEN

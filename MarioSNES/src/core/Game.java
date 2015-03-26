@@ -19,7 +19,7 @@ public class Game {
     private GamePanel panel;
     private EvolutionaryAlgorithm evo;
     private SpeciationEvolutionaryAlgorithm specEvo;
-    private ArrayList<HVplusPit> templist;  //mark added 21 Sep 14
+    private ArrayList<HVplusPit> templist;
 
     public Game(){
         ImageCache.initImages();
@@ -45,13 +45,10 @@ public class Game {
     }
     
     public void initMarioAI(){
-        //NeuralNetwork net=NetReader.readNetwork(GlobalController.aiFileName);
-        //NeuralNetwork net=new NeuralNetwork(6,3);
         panel=new GamePanel();
         Level1State state=(Level1State)(panel.getGSM().getGameStates().get(0));
         HistoricalTracker HT = new HistoricalTracker();
         SpeciationNeuralNetwork net=NetReader.readSpeciationNetwork(HT, "test/"+GlobalController.aiFileName, state);
-        //new CMDTester(net);
         MarioAI agent=new MarioAI();
         agent.createAI(net);
         state.setANN(agent);

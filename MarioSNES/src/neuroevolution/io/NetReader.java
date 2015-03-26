@@ -12,10 +12,7 @@ import java.util.Scanner;
 import neuroevolution.connections.Connection;
 import neuroevolution.networks.NeuralNetwork;
 import neuroevolution.networks.SpeciationNeuralNetwork;
-import neuroevolution.neurons.InputNeuron_Add;
 import neuroevolution.neurons.Neuron;
-import neuroevolution.neurons.Neuron_Add;
-import neuroevolution.neurons.OutputNeuron_Add;
 import neuroevolution.neurons.hardcoded.NeuronType;
 import neuroevolution.speciation.HistoricalTracker;
 public class NetReader {

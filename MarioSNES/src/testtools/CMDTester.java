@@ -1,3 +1,8 @@
+/**
+ *
+ * @author Zackary Misso
+ * 
+ */
 package testtools;
 import neuroevolution.networks.NeuralNetwork;
 import neuroevolution.networks.SpeciationNeuralNetwork;

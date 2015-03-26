@@ -1,18 +1,14 @@
 /**
  *
- * @author Zack and Mark
+ * @author Mark
  * 
  */
-
 //first hardcoded network without recurrent connections
 package neuroevolution.networks;
 import gameState.*;
-import java.util.*;
-import neuroevolution.connections.Connection;
 import neuroevolution.neurons.*;
 import neuroevolution.neurons.hardcoded.*;
 import neuroevolution.speciation.HistoricalTracker;
-import testtools.CMDTester;
 
 public class HVplusPit extends SpeciationNeuralNetwork {
     /* Inheirited fields:
@@ -51,7 +47,6 @@ public class HVplusPit extends SpeciationNeuralNetwork {
         neurons.get(0).findDepth();
         neurons.get(1).findDepth();
         neurons.get(2).findDepth();
-        //new CMDTester(this);
         neurons.get(0).setBias(0.0);                //set left bias zero
         setState(ref);
         PC.setLevel(ref);

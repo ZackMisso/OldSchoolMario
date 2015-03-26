@@ -1,6 +1,6 @@
 /**
  *
- * @author Zackary Misso
+ * @author Zack
  * 
  */
 package neuroevolution.speciation;
@@ -37,7 +37,6 @@ public class HistoricalTracker {
     
     // MAYBE DONT NEED
     public void endGeneration(){
-        //System.out.println("Resetting historical tracker");
         addedNodes.clear();
     }
     

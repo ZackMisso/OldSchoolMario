@@ -20,6 +20,7 @@ public class PlayerState {
     }
     
     // getter methods
+    public long getScore(){return score;}
     public int getCoins(){return coins;}
     public int getLives(){return lives;}
     
