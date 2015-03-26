@@ -42,12 +42,12 @@ public class GlobalController {
         individuals = 200;
         generations = 10000;
         marioDeaths=0;
-        evolving = false;
+        evolving = true;
         speciation = true;
         aiRun = false;
         debug = false; // currently causes the rects of objects to be drawn
-        headless = false;
-        gameRunning = true;
+        headless = true;
+        gameRunning = false;
         running = true;
         testInput = true;
         runningOnWorkstation=true;
@@ -56,14 +56,4 @@ public class GlobalController {
         //lolsPhysics = false; // LEAVE TRUE UNTIL ACTUAL PHYSICS RUNS (ALL HELL WILL BREAK LOOSE OTHERWISE)
         //hack=1;
     }
-
-    // I dont think the two below are needed
-    
-    //public static void transferControlToGame(NeuralNetwork net){
-    //    // implement
-    //}
-    
-    //public static void transferControlToEvolution(){
-    //    // implement
-    //} 
 }
